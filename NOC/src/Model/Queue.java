@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import DEVSModel.DEVSAtomic;
@@ -6,35 +8,38 @@ import DEVSModel.Port;
 
 public class Queue extends DEVSAtomic {
 
-	public enum COMMAND {NEXT_TASK};
-	public enum QUEUE_STATE {IDLE, WAITING_CMD, WAITING_TASK, SENDING};
+	public enum COMMAND {NEXT_TASK}
+	public enum QUEUE_STATE {IDLE, WAITING_CMD, WAITING_TASK, SENDING}
 
-	Port 	in_task,			
-	in_command,			
-	out_switch;
+	Port in_task;
+	Port in_command;
+	Port out_switch;
 
 	Task 		value_in_task;	
 	COMMAND 	value_in_command;
 	Task 		value_out_switch;
 
 	ConcurrentLinkedQueue<Task> queue; 
-	int id;
+	NodeCoordinate coordinate;
+	int number;
 
 	QUEUE_STATE state;
 	float rho;
 
 
-	public Queue(String name, int id) {
+	public Queue(String name, NodeCoordinate coordinate, int number) {
 		super();
 
-		this.id 			= id;
-		this.name 			= name + '-' + id;
+		this.coordinate = coordinate;
+		this.name 		= name + coordinate + '-' + number;
 
 		this.out_switch = new Port(this, "out_switch");
 		this.in_task 	= new Port(this, "in_task");
 		this.in_command = new Port(this, "in_command");
 
-		queue = new ConcurrentLinkedQueue<Task>();
+		this.number = number;
+
+		queue = new ConcurrentLinkedQueue<>();
 
 		this.addOutPort(this.out_switch);
 		this.addInPort(this.in_task);
@@ -131,7 +136,7 @@ public class Queue extends DEVSAtomic {
 			output[0] = this.out_switch;
 			output[1] = queue.poll();
 
-			Pretty_print.trace( this.name , "SEND " + ((Task) output[1]).getName() + " TO SWITCH " + " (size: " + queue.size() + ")");
+//			Pretty_print.trace( this.name , "SEND " + ((Task) output[1]).getName() + " TO SWITCH " + " (size: " + queue.size() + ")");
 
 			return output;
 		} else {
@@ -193,5 +198,17 @@ public class Queue extends DEVSAtomic {
 		return rho;
 	}
 
+
+	public Port getIn_task() {
+		return in_task;
+	}
+
+	public Port getIn_command() {
+		return in_command;
+	}
+
+	public Port getOut_switch() {
+		return out_switch;
+	}
 
 }

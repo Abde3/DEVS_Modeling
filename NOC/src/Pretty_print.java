@@ -5,7 +5,7 @@ public class Pretty_print {
 	public static void trace(String src, String info)
 	{
 
-		boolean print = true;
+		boolean print = false;
 		
 		if (print) {
 

@@ -5,15 +5,17 @@ import DEVSModel.DEVSCoupled;
 import DEVSModel.DEVSModel;
 import DEVSModel.Port;
 
+import Model.*;
+
 public class NOC_Unit extends DEVSCoupled {
 
-	public  Vector<Port> v_in_NCUnit;
-	public  Vector<Port> v_out_NCUnit;
+	public  Vector<Port> v_in_port;
+	public  Vector<Port> v_out_port;
 	private QueueSwitch QS;
 	private ProcessingElement PE;
-	private int id;
+	private NodeCoordinate id;
 	
-	public NOC_Unit(String name, int id, int dimension){
+	public NOC_Unit(String name, NodeCoordinate id, int dimension){
 		
 		super();
 		
@@ -28,22 +30,22 @@ public class NOC_Unit extends DEVSCoupled {
 		this.getSubModels().add(QS);
 		this.getSubModels().add(PE);
 
-		v_in_NCUnit  = new Vector<Port>();
-		v_out_NCUnit = new Vector<Port>();
+		v_in_port = new Vector<Port>();
+		v_out_port = new Vector<Port>();
 
 		
 		for (int i = 0; i < DEGREE; i++) {
-			v_out_NCUnit.add(i, new Port(this, "out_NCUnit-"+i));
-			this.addOutPort(v_out_NCUnit.get(i));			
+			v_out_port.add(i, new Port(this, "out_port-"+i));
+			this.addOutPort(v_out_port.get(i));
 		}
 		
 		for (int i = 0; i < DEGREE; i++) {
-			v_in_NCUnit.add(i, new Port(this, "in_NCUnit-"+i));
-			this.addInPort(v_in_NCUnit.get(i));			
+			v_in_port.add(i, new Port(this, "in_port-"+i));
+			this.addInPort(v_in_port.get(i));
 		}
 		
 		for (int i = 0; i < DEGREE; i++) {
-			this.addEIC(this.getInPort("in_NCUnit-"+i), this.getSubModel("QS"+'-'+id).getInPort("in_queue-"+i));
+			this.addEIC(this.getInPort("in_port-"+i), this.getSubModel("QS"+'-'+id).getInPort("in_queue-"+i));
 		}
 		
 		for (int i = 0; i < DEGREE; i++) {

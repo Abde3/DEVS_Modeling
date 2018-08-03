@@ -1,10 +1,13 @@
+package Model;
+
 import DEVSModel.DEVSAtomic;
 import DEVSModel.Port;
 
 
 public class ProcessingElement extends DEVSAtomic {
 
-	public enum STATE {IDLE, PROCESSING, NOTIFY};
+
+	public enum STATE {IDLE, PROCESSING, NOTIFY}
 
 	Port 	in_task,
 	out_cmd,			
@@ -12,22 +15,20 @@ public class ProcessingElement extends DEVSAtomic {
 
 	Task 			value_in_task;	
 	Task 			value_out_next;
-	Queue.COMMAND value_out_cmd;
+	Queue.COMMAND   value_out_cmd;
 
 	STATE state;
 	long nbCycleProcessed;
-	int id;
+	NodeCoordinate coordinate;
 	int dimension;
 	float rho;
 
 	
-	public ProcessingElement(String name, int id, int dimension) {
+	public ProcessingElement(String name, NodeCoordinate coordinate, int dimension) {
 		super();
 
-		this.id = id;
-		this.dimension = dimension;
-		
-		this.name 		= name + '-' + id;
+		this.name 		= name + '-' + coordinate;
+
 		this.in_task 	= new Port(this, "in_task");
 		this.out_queue 	= new Port(this, "out_queue");
 		this.out_cmd 	= new Port(this, "out_cmd");
@@ -53,9 +54,9 @@ public class ProcessingElement extends DEVSAtomic {
 			if ( state.equals(STATE.IDLE) ) {
 				value_out_next = value_in_task;
 
-				if (value_out_next.getDestination() == this.id) {
+				if (value_out_next.getDestination() == this.coordinate) {
 
-					value_out_next.setDestination( ((value_out_next.getDestination() + 1) % dimension) + 1);
+					value_out_next.setDestination( value_out_next.getDestination() );
 					value_out_next.increment_age();
 					
 					state = STATE.PROCESSING;
@@ -152,7 +153,7 @@ public class ProcessingElement extends DEVSAtomic {
 			output[0] = this.out_cmd;
 			output[1] = Queue.COMMAND.NEXT_TASK;
 
-			Pretty_print.trace( this.name , "ASK NEXT_TASK TO SWITCH-" + this.id );
+			Pretty_print.trace( this.name , "ASK NEXT_TASK TO SWITCH-" + this.coordinate);
 
 			return output;
 		} else {
@@ -160,5 +161,19 @@ public class ProcessingElement extends DEVSAtomic {
 			return null;
 		}
 	}
+
+
+	public Port getPortIn_task() {
+		return in_task;
+	}
+
+	public Port getPortOut_cmd() {
+		return out_cmd;
+	}
+
+	public Port getPortOut_queue() {
+		return out_queue;
+	}
+
 
 }

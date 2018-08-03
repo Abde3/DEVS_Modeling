@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.Random;
 import java.util.Vector;
 
@@ -9,6 +11,40 @@ import DEVSModel.Port;
 // WHANG MOON
 
 
+/********************************************************************************************************************************
+ *
+ *
+ *                                                           SWITCH
+ *
+ *                          +----------------------------------------------------------------------+             ------+
+ *                          |                          +--------------+                            |    out_cmd_queue0 |
+ *                          |                 +....... |   WAIT_PE    <------------------+         +------>            |
+ *                          |                 :        |              |                  |         |                   | i times
+ *                          |                 :        +--------------+                  |         |    out_cmd_queue1 |
+ *                          |                 :                                          |         +------>            |
+ *                          |                 :                                          |         |             ------+
+ *         +------          |                 :                               +----------+---+     |             ------+
+ *         |                |    +------------v-+          +..................>   SEND_PE    |     |                   |
+ *         | in_task_queue0 |    |     IDLE     |          :                  |              |     |   out_task_next0  |
+ *         |      +--------->    |              +----------:---------+        +----------+---+     +------>            |
+ * i times |                |    +------------+-+          :         |                   |         |                   | i times
+ *         |                |                 |            :         |                   |         |                   |
+ *         | in_task_queue1 |                 |            :         |                   |         |   out_task_next1  |
+ *         |      +--------->                 |            :         |                   |         +------>            |
+ *         +-----           |                 |            :         |                   |         |             ------+
+ *                          |                +v------------++      +-v------------+      |         |
+ *                          |                |  SEND_CMD    <......+   SEND_NEXT  |      |         |
+ *                          |                |              |      |              <------+         |
+ *            in_cmd_PE     |                +--------------+      +--------------+                |      out_task_PE
+ *                +--------->                                                                      +------>
+ *                          |                                                                      |
+ *                          +----------------------------------------------------------------------+
+ *
+ *
+ *******************************************************************************************************************************/
+
+
+
 public class Switch extends DEVSAtomic {
 
 	private enum SWITCH_STATE {IDLE, SENDING_TO_PE, SENDING_TO_NEXT, WAITING_PE, SENDING_CMD_TO_QUEUE};
@@ -16,20 +52,20 @@ public class Switch extends DEVSAtomic {
 	Vector<Port> v_in_task_queue;
 	Vector<Port> v_out_cmd_queue;
 	Vector<Port> v_out_task_next;
-	Port in_cmd_PE,
-		 out_task_PE;
 
-	Task value_in_task_queue,
-	value_out_cmd_queue,
-	value_out_task_PE,
-	value_out_task_next;
+	Port in_cmd_PE;
+	Port out_task_PE;
+
+	Task value_in_task_queue;
+	Task value_out_cmd_queue;
+	Task value_out_task_PE;
+	Task value_out_task_next;
 	
 	Vector<Task> v_value_out_task_next;
-
 	Queue.COMMAND value_in_cmd_PE;
 
 	SWITCH_STATE 	state;
-	int id;
+	NodeCoordinate id;
 
 	float 	rho;
 
@@ -37,13 +73,13 @@ public class Switch extends DEVSAtomic {
 	private Random random_generator;
 	private int dimension;
 	
-	public Switch(String name, int id, int dimension) {
+	public Switch(String name, NodeCoordinate id, int dimension) {
 		super();
 
 		int DEGREE = dimension * dimension;
 
 		this.id 			= id;
-		this.name 			= name + '-' + id;
+		this.name 			= name + id;
 
 		this.dimension = dimension;
 		random_generator = new Random();
@@ -51,7 +87,7 @@ public class Switch extends DEVSAtomic {
 		
 		this.in_cmd_PE  	= new Port(this, "in_cmd_PE");	
 		this.out_task_PE    = new Port(this, "out_task_PE");
-		this.v_value_out_task_next = new Vector<Task>();
+		this.v_value_out_task_next = new Vector<>();
 
 		this.addOutPort(out_task_PE);
 		this.addInPort(in_cmd_PE);
@@ -226,12 +262,6 @@ public class Switch extends DEVSAtomic {
 
 			output[0] = this.v_out_cmd_queue.get(0); //TODO not 0
 			output[1] = Queue.COMMAND.NEXT_TASK;
-//			output[2] = this.v_out_cmd_queue.get(1); //TODO not 0
-//			output[3] = COMMAND.NEXT_TASK;
-//			output[4] = this.v_out_cmd_queue.get(2); //TODO not 0
-//			output[5] = COMMAND.NEXT_TASK;
-//			output[6] = this.v_out_cmd_queue.get(3); //TODO not 0
-//			output[7] = COMMAND.NEXT_TASK;
 
 			Pretty_print.trace( this.name , "ASK NEXT_TASK TO QUEUE-" + this.id);
 			return output;
