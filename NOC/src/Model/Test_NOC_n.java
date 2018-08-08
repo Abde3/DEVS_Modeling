@@ -15,6 +15,7 @@ public class Test_NOC_n {
         Root root = new Root(MESH_4, 5);
         root.startSimulation();
 
+        network.getPersistance().saveNodes(MESH_4);
         network.getPersistance().generate_output();
     }
 

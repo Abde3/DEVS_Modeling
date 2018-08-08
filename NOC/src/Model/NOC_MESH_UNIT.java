@@ -27,7 +27,6 @@ public class NOC_MESH_UNIT extends NOC_Unit {
             return;
         }
 
-
         for (int i = 0; i < limit; i++) {
             v_out_ports.add(new Port(this, "out_NCUnit-"+i));
             this.addOutPort(v_out_ports.get(i));

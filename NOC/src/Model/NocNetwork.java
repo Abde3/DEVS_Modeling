@@ -1,15 +1,21 @@
 package Model;
 
+import DEVSModel.DEVSCoupled;
+
 public class NocNetwork {
 
     private NOC_factory.Topology topology;
     private int size;
     private Persistance persistance;
+    private NOC nocInstance;
 
     /** Constructeur privé */
     private NocNetwork()
     {
-        persistance = new Persistance();
+
+
+        String path = "C:\\Users\\Abdelhak khemiri\\Desktop\\GENERATED_MESH_4.graph";
+        persistance = new Persistance(path);
 
     }
 
@@ -24,7 +30,7 @@ public class NocNetwork {
         INSTANCE.size = size;
         INSTANCE.topology = topology;
 
-        NOC nocInstance = NOC_factory.create_NOC( topology, size );
+        nocInstance = NOC_factory.create_NOC( topology, size );
         nocInstance.set_generator(new Generator_Task("Simple Generator"));
         nocInstance.build_network();
 
@@ -37,4 +43,8 @@ public class NocNetwork {
         return persistance;
     }
 
+
+    public DEVSCoupled getNocInstance() {
+        return nocInstance;
+    }
 }

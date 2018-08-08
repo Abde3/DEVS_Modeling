@@ -41,9 +41,12 @@ public class NOC_MESH extends NOC {
 
                 /** FORWARD LINKS **/
                 this.addIC(src.getOutPort("out_NCUnit-0"), dest.getInPort("in_NCUnit-0"));
+//                System.out.println(Util.nodeNumFromCoordinate(src.getCoordinate(), 4) + " ---> "+  Util.nodeNumFromCoordinate(dest.getCoordinate(), 4) );
 
                 /** BACKWARD LINKS **/
                 this.addIC(dest.getOutPort("out_NCUnit-1"), src.getInPort("in_NCUnit-1"));
+//                System.out.println(Util.nodeNumFromCoordinate(dest.getCoordinate(), 4) + " ---> "+  Util.nodeNumFromCoordinate(src.getCoordinate(), 4) );
+
             }
         }
 
