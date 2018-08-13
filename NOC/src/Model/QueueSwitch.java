@@ -26,21 +26,21 @@ public class QueueSwitch extends DEVSCoupled {
 		this.v_queue = new Vector<>();
 
 		for (int i = 0; i < DEGREE; i++) {
-			Queue queue_tmp = new Queue("queue", coordinate, i);
+			Queue queue_tmp = new Queue("queue", coordinate, NOC_MESH.getDirectionFromIndex(i));
 			this.getSubModels().add(queue_tmp);
 			v_queue.add(queue_tmp);
 		}
 		
 		v_in_queue = new Vector<Port>();
 		for (int i = 0; i < DEGREE; i++) {
-			Port port_tmp = new Port(this, "in_queue-"+i);
+			Port port_tmp = new Port(this, "in_queue-" + NOC_MESH.getDirectionFromIndex(i));
 			v_in_queue.add(i, port_tmp);
 			this.addInPort(port_tmp);			
 		}
 		
 		v_out_queue = new Vector<Port>();
 		for (int i = 0; i < DEGREE; i++) {
-			Port port_tmp = new Port(this, "out_queue-"+i);
+			Port port_tmp = new Port(this, "out_queue-" + NOC_MESH.getDirectionFromIndex(i));
 			v_out_queue.add(i, port_tmp);
 			this.addOutPort(port_tmp);			
 		}
@@ -58,18 +58,20 @@ public class QueueSwitch extends DEVSCoupled {
 		
 		
 		this.addEIC(in_PE, switch1.getInPort("in_cmd_PE"));
-		for (int i = 0; i < DEGREE; i++) { this.addEIC(v_in_queue.elementAt(i), v_queue.get(i).getIn_task()); }
+		for (int i = 0; i < DEGREE; i++) {
+			this.addEIC(v_in_queue.elementAt(i), v_queue.get(i).getIn_task());
+		}
 
 		
 		this.addEOC(switch1.getOutPort("out_task_PE"), out_PE);
 		for (int i = 0; i < DEGREE; i++) {
-			this.addEOC(switch1.getOutPort("out_task_next-"+i), this.getOutPort("out_queue-"+i));
+			this.addEOC(switch1.getOutPort("out_task_next-"+NOC_MESH.getDirectionFromIndex(i)), this.getOutPort("out_queue-"+NOC_MESH.getDirectionFromIndex(i)));
 		}
 
 		
 		for (int i = 0; i < DEGREE; i++) {
-			this.addIC(this.getSubModel("queue"+coordinate+'-'+i).getOutPort("out_switch"), this.getSubModel("switch"+coordinate).getInPort("in_task_queue-"+i));
-			this.addIC(this.getSubModel("switch"+coordinate).getOutPort("out_cmd_queue-"+i), this.getSubModel("queue"+coordinate+'-'+i).getInPort("in_command"));
+			this.addIC(this.getSubModel("queue"+coordinate+'-'+NOC_MESH.getDirectionFromIndex(i)).getOutPort("out_switch"), this.getSubModel("switch"+coordinate).getInPort("in_task_queue-"+NOC_MESH.getDirectionFromIndex(i)));
+			this.addIC(this.getSubModel("switch"+coordinate).getOutPort("out_cmd_queue-"+NOC_MESH.getDirectionFromIndex(i)), this.getSubModel("queue"+coordinate+'-'+NOC_MESH.getDirectionFromIndex(i)).getInPort("in_command"));
 		}
 
 		this.setSelectPriority();
@@ -103,13 +105,13 @@ public class QueueSwitch extends DEVSCoupled {
 		this.selectPriority.put(new Vector<>( Arrays.asList( v_queue.get(1),v_queue.get(3),switch1) ), v_queue.get(1));
 		this.selectPriority.put(new Vector<>( Arrays.asList( v_queue.get(2),v_queue.get(3),switch1) ), v_queue.get(2));
 
-		this.selectPriority.put(new Vector<DEVSModel>( Arrays.asList( v_queue.get(0),v_queue.get(1),v_queue.get(2),v_queue.get(3)) ), v_queue.get(0));
-		this.selectPriority.put(new Vector<DEVSModel>( Arrays.asList( v_queue.get(0),v_queue.get(1),v_queue.get(2),switch1) ), v_queue.get(0));
-		this.selectPriority.put(new Vector<DEVSModel>( Arrays.asList( v_queue.get(0),v_queue.get(1),v_queue.get(3),switch1) ), v_queue.get(0));
-		this.selectPriority.put(new Vector<DEVSModel>( Arrays.asList( v_queue.get(0),v_queue.get(2),v_queue.get(3),switch1) ), v_queue.get(0));
-		this.selectPriority.put(new Vector<DEVSModel>( Arrays.asList( v_queue.get(1),v_queue.get(2),v_queue.get(3),switch1) ), v_queue.get(1));
+		this.selectPriority.put(new Vector<>( Arrays.asList( v_queue.get(0),v_queue.get(1),v_queue.get(2),v_queue.get(3)) ), v_queue.get(0));
+		this.selectPriority.put(new Vector<>( Arrays.asList( v_queue.get(0),v_queue.get(1),v_queue.get(2),switch1) ), v_queue.get(0));
+		this.selectPriority.put(new Vector<>( Arrays.asList( v_queue.get(0),v_queue.get(1),v_queue.get(3),switch1) ), v_queue.get(0));
+		this.selectPriority.put(new Vector<>( Arrays.asList( v_queue.get(0),v_queue.get(2),v_queue.get(3),switch1) ), v_queue.get(0));
+		this.selectPriority.put(new Vector<>( Arrays.asList( v_queue.get(1),v_queue.get(2),v_queue.get(3),switch1) ), v_queue.get(1));
 
-		this.selectPriority.put(new Vector<DEVSModel>( Arrays.asList( v_queue.get(0),v_queue.get(1),v_queue.get(2),v_queue.get(3),switch1) ), v_queue.get(0));
+		this.selectPriority.put(new Vector<>( Arrays.asList( v_queue.get(0),v_queue.get(1),v_queue.get(2),v_queue.get(3),switch1) ), v_queue.get(0));
 
 
 

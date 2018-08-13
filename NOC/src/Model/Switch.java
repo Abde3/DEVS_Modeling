@@ -93,23 +93,23 @@ public class Switch extends DEVSAtomic {
 		this.addInPort(in_cmd_PE);
 
 		
-		v_in_task_queue = new Vector<Port>();
+		v_in_task_queue = new Vector<>();
 		for (int i = 0; i < DEGREE; i++) {
-			Port port_tmp = new Port(this, "in_task_queue-" +i);
+			Port port_tmp = new Port(this, "in_task_queue-" + NOC_MESH.getDirectionFromIndex(i));
 			this.v_in_task_queue.add(i, port_tmp);
 			this.addInPort(port_tmp);
 		}
 		
-		v_out_task_next = new Vector<Port>();
+		v_out_task_next = new Vector<>();
 		for (int i = 0; i < DEGREE; i++) {
-			Port port_tmp = new Port(this, "out_task_next-"+i);
+			Port port_tmp = new Port(this, "out_task_next-" + NOC_MESH.getDirectionFromIndex(i));
 			this.v_out_task_next.add(i, port_tmp);
 			this.addOutPort(this.v_out_task_next.get(i));
 		}
 		
-		v_out_cmd_queue = new Vector<Port>();
+		v_out_cmd_queue = new Vector<>();
 		for (int i = 0; i < DEGREE; i++) {
-			Port cmd_tmp = new Port(this, "out_cmd_queue-"+i);
+			Port cmd_tmp = new Port(this, "out_cmd_queue-" + NOC_MESH.getDirectionFromIndex(i));
 			this.v_out_cmd_queue.add(i, cmd_tmp);
 			this.addOutPort(cmd_tmp);
 		}
@@ -260,7 +260,7 @@ public class Switch extends DEVSAtomic {
 		if (state.equals(SWITCH_STATE.SENDING_CMD_TO_QUEUE)) {
 			Object[] output = new Object[2];
 
-			output[0] = this.v_out_cmd_queue.get(0); //TODO not 0
+			output[0] = this.v_out_cmd_queue.get(NOC_MESH.DIRECTION.WEST.ordinal());
 			output[1] = Queue.COMMAND.NEXT_TASK;
 
 			Pretty_print.trace( this.name , "ASK NEXT_TASK TO QUEUE-" + this.id);
@@ -281,7 +281,7 @@ public class Switch extends DEVSAtomic {
 			Object[] output = new Object[2];
 			
 //			output[0] = this.v_out_task_next.elementAt(random_generator.nextInt(dimension));
-			output[0] = this.v_out_task_next.elementAt(0);
+			output[0] = this.v_out_task_next.get(NOC_MESH.DIRECTION.EAST.ordinal());
 			output[1] = value_out_task_next;
 			Pretty_print.trace( this.name , "SEND "  + value_out_task_next.getName() +  " TO NEXT PE: " + output[1]);
 			

@@ -1,13 +1,19 @@
 package Model;
 
 import DEVSModel.Port;
+import javafx.geometry.Point2D;
 
-import java.util.AbstractMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Vector;
+
+import java.util.*;
 
 public class Util {
+
+
+    private static final int BASE_GRAPH_X_COORDINATE = 1000;
+    private static final int BASE_GRAPH_Y_COORDINATE = 1000;
+    private static final int GRAPH_NODE_OFFSET = 200 ;
+    private static final int GRAPH_NODE_WIDTH = 150 ;
+    private static final int GRAPH_NODE_HEIGHT = 100 ;
 
 
     public static NOC_Unit_factory.NODE_POSITION getNodePosition(NodeCoordinate coordinate, int rowSize, NOC_factory.Topology topology) {
@@ -113,16 +119,60 @@ public class Util {
 
     }
 
-    public static NodeCoordinate getCoordinateFromNodeNum(int srcNodeNum, int srcNumPort) {
+    public static NodeCoordinate getCoordinateFromNodeNum(int srcNodeNum) {
+
 
         int X = Math.floorDiv(srcNodeNum, 4);
         int Y = Math.floorMod(srcNodeNum ,4);
 
-        X = X * 200 + 500 ;
-        Y = Y * 200 + 500 ;
-
         return new NodeCoordinate(X, Y);
 
+    }
+
+    public static List<Point2D> getGraphJointsPosition(int srcNodeNum, int srcNumPort, int destNodeNum, int destNumPort) {
+
+        NodeCoordinate srcCoordinate = getCoordinateFromNodeNum(srcNodeNum);
+        NodeCoordinate destCoordinate = getCoordinateFromNodeNum(destNodeNum);
+
+        NodeCoordinate graphSrcCoordinate = getNodeGraphPosition(srcCoordinate);
+        NodeCoordinate graphDestCoordinate = getNodeGraphPosition(destCoordinate);
+
+        ArrayList<Point2D> joints = new ArrayList<>();
+
+        if(isAtTop(srcCoordinate, destCoordinate)) {
+            Point2D start   = new Point2D(graphSrcCoordinate.getX()  + (srcNumPort+1) * (100 / (2+srcNumPort)), graphSrcCoordinate.getY() + GRAPH_NODE_HEIGHT + 20 );
+            Point2D end     = new Point2D(graphDestCoordinate.getX() + (srcNumPort+1) * (100 / (2+srcNumPort)), graphDestCoordinate.getY() - 15);
+            joints.add(start);
+            joints.add(end);
+        } else if (isAtRight(srcCoordinate, destCoordinate)) {
+            Point2D start = new Point2D(graphSrcCoordinate.getX() - 15 , graphSrcCoordinate.getY() + (srcNumPort+1) * (100 / (2+srcNumPort)) );
+            Point2D end   = new Point2D(graphDestCoordinate.getX() + (GRAPH_NODE_WIDTH) + 20, graphDestCoordinate.getY() + (srcNumPort+1) * (100 / (2+srcNumPort)) );
+            joints.add(start);
+            joints.add(end);
+        } else if (isAtBottom(srcCoordinate, destCoordinate)) {
+            Point2D start = new Point2D(graphSrcCoordinate.getX() + (srcNumPort+1) * (100 / (2+srcNumPort)) , graphSrcCoordinate.getY() - 15);
+            Point2D end   = new Point2D(graphDestCoordinate.getX() + (srcNumPort+1) * (100 / (2+srcNumPort)), graphDestCoordinate.getY() + GRAPH_NODE_HEIGHT + 20 );
+            joints.add(start);
+            joints.add(end);
+        } else if (isAtLeft(srcCoordinate, destCoordinate)) {
+             Point2D start = new Point2D(graphSrcCoordinate.getX()  + (GRAPH_NODE_WIDTH) + 20, graphSrcCoordinate.getY() + (srcNumPort+1) * (100 / (2+srcNumPort)) );
+             Point2D end   = new Point2D(graphDestCoordinate.getX() - 15, graphDestCoordinate.getY() + (srcNumPort+1) * (100 / (2+srcNumPort)) );
+             joints.add(start);
+             joints.add(end);
+        } else {
+            return joints;
+        }
+
+        return joints;
+    }
+
+
+    public static NodeCoordinate getNodeGraphPosition(NodeCoordinate coordinate) {
+
+        int X = BASE_GRAPH_X_COORDINATE + coordinate.getY() * GRAPH_NODE_OFFSET;
+        int Y = BASE_GRAPH_Y_COORDINATE + coordinate.getX() * GRAPH_NODE_OFFSET;
+
+        return new NodeCoordinate(X, Y);
 
     }
 }

@@ -8,7 +8,7 @@ public abstract class NOC extends DEVSCoupled {
 
     public enum NODE_TYPE {NOC, NODE, QUEUE, SWITCH, QUEUE_SWITCH, PE};
 
-    protected Vector<Vector<NOC_Unit>> model = new Vector<Vector<NOC_Unit>>();
+    protected Vector<Vector<NOC_Unit>> model = new Vector<>();
 
     protected DEVSModel generator;
     protected NODE_TYPE node_type;

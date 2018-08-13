@@ -21,23 +21,23 @@ public class Queue extends DEVSAtomic {
 
 	ConcurrentLinkedQueue<Task> queue; 
 	NodeCoordinate coordinate;
-	int number;
+	NOC_MESH.DIRECTION direction;
 
 	QUEUE_STATE state;
 	float rho;
 
 
-	public Queue(String name, NodeCoordinate coordinate, int number) {
+	public Queue(String name, NodeCoordinate coordinate, NOC_MESH.DIRECTION direction) {
 		super();
 
 		this.coordinate = coordinate;
-		this.name 		= name + coordinate + '-' + number;
+		this.name 		= name + coordinate + '-' + direction;
 
 		this.out_switch = new Port(this, "out_switch");
 		this.in_task 	= new Port(this, "in_task");
 		this.in_command = new Port(this, "in_command");
 
-		this.number = number;
+		this.direction = direction;
 
 		queue = new ConcurrentLinkedQueue<>();
 

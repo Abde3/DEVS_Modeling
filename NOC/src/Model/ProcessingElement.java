@@ -24,7 +24,7 @@ public class ProcessingElement extends DEVSAtomic {
 	float rho;
 
 	
-	public ProcessingElement(String name, NodeCoordinate coordinate, int dimension) {
+	public ProcessingElement(String name, NodeCoordinate coordinate) {
 		super();
 
 		this.name 		= name + '-' + coordinate;

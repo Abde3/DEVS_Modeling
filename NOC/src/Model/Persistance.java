@@ -2,6 +2,7 @@ package Model;
 
 import DEVSModel.DEVSModel;
 import DEVSModel.Port;
+import javafx.geometry.Point2D;
 import org.w3c.dom.*;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -194,22 +195,24 @@ public class Persistance {
     }
 
 
-    private Element create_connection_element(int SrcNodeNum, int SrcNumPort, int destNodeNum, int destNumPort) {
-
+    private Element create_connection_element(int srcNodeNum, int srcNumPort, int destNodeNum, int destNumPort) {
 
         Element connectionElement = doc.createElement("connections");
-        connectionElement.setAttribute("source", "//@nodes." + SrcNodeNum + "/@connectors." + SrcNumPort);
+        connectionElement.setAttribute("source", "//@nodes." + srcNodeNum + "/@connectors." + srcNumPort);
         connectionElement.setAttribute("target", "//@nodes." + destNodeNum + "/@connectors." + destNumPort);
 
-        Element jointsElement = doc.createElement("joints");
-        jointsElement.setAttribute("x", Integer.toString( Util.getCoordinateFromNodeNum(SrcNodeNum, SrcNumPort).getX()) );
-        jointsElement.setAttribute("y", Integer.toString( Util.getCoordinateFromNodeNum(SrcNodeNum, SrcNumPort).getY()) );
-        connectionElement.appendChild(jointsElement);
+        NodeCoordinate graphSrcNodeCoordinate = Util.getNodeGraphPosition(Util.getCoordinateFromNodeNum(srcNodeNum));
+        NodeCoordinate graphDestNodeCoordinate = Util.getNodeGraphPosition(Util.getCoordinateFromNodeNum(destNodeNum));
 
-        Element jointsElement2 = doc.createElement("joints");
-        jointsElement2.setAttribute("x", Integer.toString( Util.getCoordinateFromNodeNum(destNodeNum, destNumPort).getX()));
-        jointsElement2.setAttribute("y", Integer.toString( Util.getCoordinateFromNodeNum(destNodeNum, destNumPort).getY()) );
-        connectionElement.appendChild(jointsElement2);
+
+        for ( Point2D point : Util.getGraphJointsPosition(srcNodeNum, srcNumPort,  destNodeNum,  destNumPort )) {
+
+            Element jointsElement = doc.createElement("joints");
+            jointsElement.setAttribute("x", Integer.toString((int) point.getX()));
+            jointsElement.setAttribute("y", Integer.toString((int) point.getY()));
+            connectionElement.appendChild(jointsElement);
+        }
+
 
         rootElement.appendChild(connectionElement);
 
@@ -217,11 +220,15 @@ public class Persistance {
     }
 
     private Element create_nodes_element(Model.NOC_Unit unitNode) {
+
+        NodeCoordinate graphCoordinate = Util.getNodeGraphPosition(unitNode.coordinate);
+
         Element nodeElement = doc.createElement("nodes");
         nodeElement.setAttribute("id", unitNode.getName());
-        nodeElement.setAttribute("x", Integer.toString(unitNode.coordinate.getY()*200 + 500));
-        nodeElement.setAttribute("y", Integer.toString(unitNode.coordinate.getX()*200 + 500));
+        nodeElement.setAttribute("x", Integer.toString(graphCoordinate.getX()));
+        nodeElement.setAttribute("y", Integer.toString(graphCoordinate.getY()));
         rootElement.appendChild(nodeElement);
+
         return nodeElement;
     }
 

@@ -2,6 +2,12 @@ package Model;
 
 import DEVSSimulator.Root;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.AbstractMap;
+import java.util.Vector;
+
 
 public class Test_NOC_n {
 
@@ -17,9 +23,63 @@ public class Test_NOC_n {
 
         network.getPersistance().saveNodes(MESH_4);
         network.getPersistance().generate_output();
+
+        readSimulaionSequence("C:\\Users\\Abdelhak khemiri\\IdeaProjects\\DEVS Modeling\\NOC\\output\\out_test_read");
     }
 
 
+
+    public static Vector<AbstractMap.SimpleEntry<Double, Vector<AbstractMap.SimpleEntry<String, String>>>> readSimulaionSequence(String fileName) {
+
+        Vector<AbstractMap.SimpleEntry<Double, Vector<AbstractMap.SimpleEntry<String, String>>>> sequences= new Vector<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            double currentTime = 0;
+
+            while ((line = br.readLine()) != null) {
+
+                Vector<AbstractMap.SimpleEntry<String, String>> sequence = new Vector<>();
+
+                if (line.startsWith("time:")) {
+//                    System.out.println(line);
+                    currentTime = Double.parseDouble(line.substring(5));
+                    continue;
+                }
+
+                do{
+                    if(line.startsWith("--NODE")) {
+
+                        if (line.matches(".*in_.*")) {
+                            System.out.println("-" + line);
+
+                            //System.out.println(line.replaceAll("--(.*)\\(.*", "$1"));
+                            sequence.add(new AbstractMap.SimpleEntry<String, String>("in",line.replaceAll("--(.*)\\(.*", "$1")));
+                        } else if (line.matches(".*out_.*")) {
+                            System.out.println("-->" + line);
+                            sequence.add(new AbstractMap.SimpleEntry<String, String>("out",line.replaceAll("--(.*)\\(.*", "$1")));
+                        }
+
+                    }
+                } while ((line = br.readLine()) != null && !line.startsWith("time:") );
+
+                sequences.add(new AbstractMap.SimpleEntry<>(currentTime, sequence));
+
+                // check why we got out
+                if (line != null && line.startsWith("time:")) {
+                    System.out.println(line);
+                    currentTime = Double.parseDouble(line.substring(5));
+                } else {
+                    break;
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return sequences;
+    }
 
 
 //	public static void main(String[] args){

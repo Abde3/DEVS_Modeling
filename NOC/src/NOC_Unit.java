@@ -15,17 +15,15 @@ public class NOC_Unit extends DEVSCoupled {
 	private ProcessingElement PE;
 	private NodeCoordinate id;
 	
-	public NOC_Unit(String name, NodeCoordinate id, int dimension){
+	public NOC_Unit(String name, NodeCoordinate coordinate, int dimension){
 		
 		super();
+
+		this.id = coordinate;
+		this.name = name + '-' + coordinate;
 		
-		int DEGREE = dimension * dimension;
-		
-		this.id = id;
-		this.name = name + '-' + id;
-		
-		QS = new QueueSwitch("QS", id, 2);
-		PE = new ProcessingElement("PE", id, dimension);
+		QS = new QueueSwitch("QS", coordinate, 2);
+		PE = new ProcessingElement("PE", coordinate);
 		
 		this.getSubModels().add(QS);
 		this.getSubModels().add(PE);
@@ -33,28 +31,27 @@ public class NOC_Unit extends DEVSCoupled {
 		v_in_port = new Vector<Port>();
 		v_out_port = new Vector<Port>();
 
-		
-		for (int i = 0; i < DEGREE; i++) {
-			v_out_port.add(i, new Port(this, "out_port-"+i));
-			this.addOutPort(v_out_port.get(i));
+
+		for ( NOC_MESH.DIRECTION direction : NOC_Unit_factory.getAlldirectionsforNode(coordinate, 4, NOC_factory.Topology.MESH)) {
+			Port out_port = new Port(this, "out_port-" + direction);
+			v_out_port.add(out_port);
+			this.addOutPort(out_port);
+
+			Port inPort = new Port(this, "in_port-" + direction);
+			v_in_port.add(inPort);
+			this.addInPort(inPort);
 		}
-		
-		for (int i = 0; i < DEGREE; i++) {
-			v_in_port.add(i, new Port(this, "in_port-"+i));
-			this.addInPort(v_in_port.get(i));
+
+
+		for ( NOC_MESH.DIRECTION direction : NOC_Unit_factory.getAlldirectionsforNode(coordinate, 4, NOC_factory.Topology.MESH)) {
+			this.addEIC(this.getInPort("in_port-"+direction), this.getSubModel("QS"+'-'+coordinate).getInPort("in_queue-"+direction));
+			this.addEOC(this.getSubModel("QS"+'-'+coordinate).getOutPort("out_queue-"+direction), this.getOutPort("out_NCUnit-"+direction));
 		}
-		
-		for (int i = 0; i < DEGREE; i++) {
-			this.addEIC(this.getInPort("in_port-"+i), this.getSubModel("QS"+'-'+id).getInPort("in_queue-"+i));
-		}
-		
-		for (int i = 0; i < DEGREE; i++) {
-			this.addEOC(this.getSubModel("QS"+'-'+id).getOutPort("out_queue-"+i), this.getOutPort("out_NCUnit-"+i));
-		}
-		
-		this.addIC(this.getSubModel("PE"+'-'+id).getOutPort("out_cmd"), this.getSubModel("QS"+'-'+id).getInPort("in_PE"));
-		this.addIC(this.getSubModel("QS"+'-'+id).getOutPort("out_PE"), this.getSubModel("PE"+'-'+id).getInPort("in_task"));
-		this.addIC(this.getSubModel("PE"+'-'+id).getOutPort("out_queue"), this.getSubModel("QS"+'-'+id).getInPort("in_queue-0"));
+
+
+		this.addIC(this.getSubModel("PE"+'-'+coordinate).getOutPort("out_cmd"), this.getSubModel("QS"+'-'+coordinate).getInPort("in_PE"));
+		this.addIC(this.getSubModel("QS"+'-'+coordinate).getOutPort("out_PE"), this.getSubModel("PE"+'-'+coordinate).getInPort("in_task"));
+		this.addIC(this.getSubModel("PE"+'-'+coordinate).getOutPort("out_queue"), this.getSubModel("QS"+'-'+coordinate).getInPort("in_queue-0"));
 		
 		this.setSelectPriority();
 		
