@@ -1,7 +1,5 @@
 package Model;
 
-import DEVSModel.DEVSModel;
-
 import java.util.Vector;
 
 public class NOC_MESH extends NOC {
@@ -81,6 +79,7 @@ public class NOC_MESH extends NOC {
 //                this.addIC(dest.getOutPort("out_NCUnit-1"), src.getInPort("in_NCUnit-1"));
 //            }
 //        }
+
 
         this.addIC(getGenerator().getOutPort("out"), model.get(0).get(0).getInPort("in_NCUnit-"+DIRECTION.WEST));
 

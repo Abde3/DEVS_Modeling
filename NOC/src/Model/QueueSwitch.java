@@ -26,24 +26,33 @@ public class QueueSwitch extends DEVSCoupled {
 		this.v_queue = new Vector<>();
 
 		for (int i = 0; i < DEGREE; i++) {
-			Queue queue_tmp = new Queue("queue", coordinate, NOC_MESH.getDirectionFromIndex(i));
+			Queue queue_tmp = new Queue("queue", coordinate, NOC_MESH.getDirectionFromIndex(i).name());
 			this.getSubModels().add(queue_tmp);
 			v_queue.add(queue_tmp);
 		}
-		
+
+		Queue queue_inPE = new Queue("queue", coordinate, "INPE");
+		this.getSubModels().add(queue_inPE);
+		v_queue.add(queue_inPE);
+		Queue queue_outPE = new Queue("queue", coordinate, "OUTPE");
+		this.getSubModels().add(queue_outPE);
+		v_queue.add(queue_outPE);
+
+
 		v_in_queue = new Vector<Port>();
 		for (int i = 0; i < DEGREE; i++) {
 			Port port_tmp = new Port(this, "in_queue-" + NOC_MESH.getDirectionFromIndex(i));
-			v_in_queue.add(i, port_tmp);
+			v_in_queue.add(port_tmp);
 			this.addInPort(port_tmp);			
 		}
-		
+
 		v_out_queue = new Vector<Port>();
 		for (int i = 0; i < DEGREE; i++) {
 			Port port_tmp = new Port(this, "out_queue-" + NOC_MESH.getDirectionFromIndex(i));
-			v_out_queue.add(i, port_tmp);
+			v_out_queue.add(port_tmp);
 			this.addOutPort(port_tmp);			
 		}
+
 
 		switch1 = new Switch("switch", coordinate, dimension);
 		this.getSubModels().add(switch1);

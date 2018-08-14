@@ -25,15 +25,28 @@ public class NOC_MESH_UNIT extends NOC_Unit {
         }
 
 
+
+
         for ( NOC_MESH.DIRECTION direction : NOC_Unit_factory.getAlldirectionsforNode(coordinate, 4, NOC_factory.Topology.MESH)) {
             this.addEIC(this.getInPort("in_NCUnit-"+direction), this.getQueueSwitch().getInPort("in_queue-"+direction));
             this.addEOC(this.getQueueSwitch().getOutPort("out_queue-"+direction), this.getOutPort("out_NCUnit-"+direction));
         }
 
 
+        // STARTING NODE ADD INPUT FOR GENERATOR
+        if(coordinate.getX() == 0 && coordinate.getY() ==0) {
+            Port inPort = new Port(this, "in_NCUnit-" + NOC_MESH.DIRECTION.WEST);
+            v_in_ports.add(inPort);
+            this.addInPort(inPort);
+
+            this.addEIC(this.getInPort("in_NCUnit-"+NOC_MESH.DIRECTION.WEST), this.getQueueSwitch().getInPort("in_queue-"+NOC_MESH.DIRECTION.WEST));
+
+        }
+
+
         this.addIC(this.getProcessingElement().getOutPort("out_cmd"), this.getQueueSwitch().getInPort("in_PE"));
         this.addIC(this.getQueueSwitch().getOutPort("out_PE"), this.getProcessingElement().getInPort("in_task"));
-        this.addIC(this.getProcessingElement().getOutPort("out_queue"), this.getQueueSwitch().getInPort("in_queue-0"));
+        this.addIC(this.getProcessingElement().getOutPort("out_queue"), this.getQueueSwitch().getInPort("in_queue-PE"));
 
         this.setSelectPriority();
     }

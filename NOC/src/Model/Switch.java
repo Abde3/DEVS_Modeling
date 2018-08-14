@@ -279,8 +279,7 @@ public class Switch extends DEVSAtomic {
 		} else if (state.equals(SWITCH_STATE.SENDING_TO_NEXT)) {
 
 			Object[] output = new Object[2];
-			
-//			output[0] = this.v_out_task_next.elementAt(random_generator.nextInt(dimension));
+
 			output[0] = this.v_out_task_next.get(NOC_MESH.DIRECTION.EAST.ordinal());
 			output[1] = value_out_task_next;
 			Pretty_print.trace( this.name , "SEND "  + value_out_task_next.getName() +  " TO NEXT PE: " + output[1]);
