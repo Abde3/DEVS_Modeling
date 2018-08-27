@@ -189,7 +189,7 @@ public class Queue extends DEVSAtomic {
 			rho = Float.POSITIVE_INFINITY;
 			break;
 		case SENDING:
-			rho = 0F;
+			rho = 1F;
 			break;
 		default:
 			break;

@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Objects;
+
 public class NodeCoordinate {
     private int x;
     private int y;
@@ -25,8 +27,39 @@ public class NodeCoordinate {
         this.y = y;
     }
 
+    public boolean isOnLeftOf(NodeCoordinate coordinate) {
+        return  (getX() < coordinate.getX());
+    }
+
+    public boolean isOnRightOf(NodeCoordinate coordinate) {
+        return  (getX() > coordinate.getX());
+    }
+
+    public boolean isUnderOf(NodeCoordinate coordinate) {
+        return  (getY() > coordinate.getY());
+    }
+
+    public boolean isOnTopOf(NodeCoordinate coordinate) {
+        return  (getY() < coordinate.getY());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NodeCoordinate that = (NodeCoordinate) o;
+        return getX() == that.getX() && getY() == that.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getX(), getY());
+    }
+
     @Override
     public String toString() {
         return "[" + x + ", "+ y + "]";
     }
+
+
 }

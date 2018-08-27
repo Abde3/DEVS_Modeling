@@ -42,7 +42,7 @@ public class Util {
 
     public static int nodeNumFromCoordinate(NodeCoordinate coordinate, int rowSize) {
 
-        return coordinate.getX() * rowSize + coordinate.getY();
+        return coordinate.getY() * rowSize + coordinate.getX();
     }
 
     public static NodeCoordinate nodeCoordinateFromNodeName(String nodeName) {
@@ -54,6 +54,22 @@ public class Util {
 
         return new NodeCoordinate(X, Y);
     }
+
+
+    public static NodeCoordinate nodeCoordinateFromElementName(String elementName) {
+
+        String s = elementName.replaceAll(".*\\[(.*)\\]", "$1");
+        Scanner scan = new Scanner(s).useDelimiter(", ");
+        int X = scan.nextInt();
+        int Y = scan.nextInt();
+
+        return new NodeCoordinate(X, Y);
+    }
+
+    public static String getDirectionFromElementName( String elementName) {
+        return elementName.replaceAll(".*-((WEST)|(EAST)|(NORTH)|(SOUTH)).*", "$1");
+    }
+
 
     public static Port getSource(Port inPort) {
         Port srcPort = null;
@@ -92,19 +108,19 @@ public class Util {
     }
 
 
-    private static boolean isAtLeft(NodeCoordinate src, NodeCoordinate dest) {
+    private static boolean isAtTop(NodeCoordinate src, NodeCoordinate dest) {
         return (src.getX() == dest.getX() && dest.getY() == src.getY()+1);
     }
 
     private static boolean isAtRight(NodeCoordinate src, NodeCoordinate dest) {
-        return (src.getX() == dest.getX() && dest.getY() == src.getY()-1);
-    }
-
-    private static boolean isAtBottom(NodeCoordinate src, NodeCoordinate dest) {
         return (src.getX() == dest.getX()+1 && dest.getY() == src.getY());
     }
 
-    private static boolean isAtTop(NodeCoordinate src, NodeCoordinate dest) {
+    private static boolean isAtBottom(NodeCoordinate src, NodeCoordinate dest) {
+        return (src.getX() == dest.getX() && dest.getY() == src.getY()-1);
+    }
+
+    private static boolean isAtLeft(NodeCoordinate src, NodeCoordinate dest) {
         return (src.getX() == dest.getX()-1 && dest.getY() == src.getY());
     }
 
@@ -122,8 +138,8 @@ public class Util {
     public static NodeCoordinate getCoordinateFromNodeNum(int srcNodeNum) {
 
 
-        int X = Math.floorDiv(srcNodeNum, 4);
-        int Y = Math.floorMod(srcNodeNum ,4);
+        int X = Math.floorMod(srcNodeNum, 4);
+        int Y = Math.floorDiv(srcNodeNum ,4);
 
         return new NodeCoordinate(X, Y);
 
@@ -169,8 +185,8 @@ public class Util {
 
     public static NodeCoordinate getNodeGraphPosition(NodeCoordinate coordinate) {
 
-        int X = BASE_GRAPH_X_COORDINATE + coordinate.getY() * GRAPH_NODE_OFFSET;
-        int Y = BASE_GRAPH_Y_COORDINATE + coordinate.getX() * GRAPH_NODE_OFFSET;
+        int X = BASE_GRAPH_X_COORDINATE + coordinate.getX() * GRAPH_NODE_OFFSET;
+        int Y = BASE_GRAPH_Y_COORDINATE + coordinate.getY() * GRAPH_NODE_OFFSET;
 
         return new NodeCoordinate(X, Y);
 

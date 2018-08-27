@@ -18,11 +18,13 @@ public class Test_NOC_n {
         NocNetwork network = NocNetwork.getInstance();
         NOC MESH_4 = network.create_noc(NOC_factory.Topology.MESH, 4);
 
-        Root root = new Root(MESH_4, 5);
+        Root root = new Root(MESH_4, 150);
         root.startSimulation();
 
         network.getPersistance().saveNodes(MESH_4);
         network.getPersistance().generate_output();
+
+
 
         readSimulaionSequence("C:\\Users\\Abdelhak khemiri\\IdeaProjects\\DEVS Modeling\\NOC\\output\\out_test_read");
     }
@@ -63,7 +65,10 @@ public class Test_NOC_n {
                     }
                 } while ((line = br.readLine()) != null && !line.startsWith("time:") );
 
-                sequences.add(new AbstractMap.SimpleEntry<>(currentTime, sequence));
+
+                if (! sequence.isEmpty()) {
+                    sequences.add(new AbstractMap.SimpleEntry<>(currentTime, sequence));
+                }
 
                 // check why we got out
                 if (line != null && line.startsWith("time:")) {

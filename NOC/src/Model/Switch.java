@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Vector;
 
@@ -47,7 +48,9 @@ import DEVSModel.Port;
 
 public class Switch extends DEVSAtomic {
 
-	private enum SWITCH_STATE {IDLE, SENDING_TO_PE, SENDING_TO_NEXT, WAITING_PE, SENDING_CMD_TO_QUEUE};
+    private String lastEntryPort;
+
+    private enum SWITCH_STATE {IDLE, SENDING_TO_PE, SENDING_TO_NEXT, WAITING_PE, SENDING_CMD_TO_QUEUE};
 
 	Vector<Port> v_in_task_queue;
 	Vector<Port> v_out_cmd_queue;
@@ -66,9 +69,9 @@ public class Switch extends DEVSAtomic {
 
 	SWITCH_STATE 	state;
 	NodeCoordinate id;
+    ArrayList<NOC_MESH.DIRECTION> directionsPossible;
 
 	float 	rho;
-
 	
 	private Random random_generator;
 	private int dimension;
@@ -113,7 +116,9 @@ public class Switch extends DEVSAtomic {
 			this.v_out_cmd_queue.add(i, cmd_tmp);
 			this.addOutPort(cmd_tmp);
 		}
-		
+
+        directionsPossible = NOC_Unit_factory.getAlldirectionsforNode(Util.nodeCoordinateFromElementName(getName()), 4, NOC_factory.Topology.MESH);
+
 	} 
 
 	
@@ -127,7 +132,7 @@ public class Switch extends DEVSAtomic {
 
 				value_in_task_queue = ((Task)event);
 				
-				if ( value_in_task_queue.getDestination() == id ) {
+				if ( value_in_task_queue.getDestination().equals(id) ) {
 					value_out_task_PE = value_in_task_queue;
 					state = SWITCH_STATE.SENDING_TO_PE;
 					Pretty_print.trace( this.name , "IDLE -> SENDING_TO_PE(ρ = 0)");
@@ -136,6 +141,7 @@ public class Switch extends DEVSAtomic {
 					value_out_task_next = value_in_task_queue;
 					state = SWITCH_STATE.SENDING_TO_NEXT;
 					Pretty_print.trace( this.name , "IDLE -> SENDING_TO_NEXT(ρ = 0)");
+					lastEntryPort = port.getName();
 				}
 
 			} else {
@@ -225,7 +231,7 @@ public class Switch extends DEVSAtomic {
 			break;
 
 		case SENDING_TO_PE:
-			rho = 0F;
+			rho = 5F;
 			break;
 
 		case WAITING_PE:
@@ -233,11 +239,11 @@ public class Switch extends DEVSAtomic {
 			break;
 
 		case SENDING_CMD_TO_QUEUE:
-			rho = 0F;
+			rho = 5F;
 			break;
 
 		case SENDING_TO_NEXT:
-			rho = 0F;
+			rho = 5F;
 			break;
 
 		default:
@@ -280,7 +286,7 @@ public class Switch extends DEVSAtomic {
 
 			Object[] output = new Object[2];
 
-			output[0] = this.v_out_task_next.get(NOC_MESH.DIRECTION.EAST.ordinal());
+            output[0] = this.v_out_task_next.get(getOutputDirection_X_Y());
 			output[1] = value_out_task_next;
 			Pretty_print.trace( this.name , "SEND "  + value_out_task_next.getName() +  " TO NEXT PE: " + output[1]);
 			
@@ -289,8 +295,60 @@ public class Switch extends DEVSAtomic {
 		} else {
 			return null;
 		}
-
 	}
+
+    private int getOutputDirection_random_notLast() {
+
+        int direction;
+
+        do {
+            direction = directionsPossible.get(new Random().nextInt(directionsPossible.size())).ordinal();
+        } while ( direction == NOC_MESH.DIRECTION.valueOf(Util.getDirectionFromElementName(lastEntryPort)).ordinal());
+
+        return direction;
+    }
+
+
+    private int getOutputDirection_X_Y() {
+
+        int direction = -1;
+
+        do {
+            direction = computeNextStepX_Y().ordinal();
+        } while ( direction == -1 || direction == NOC_MESH.DIRECTION.valueOf(Util.getDirectionFromElementName(lastEntryPort)).ordinal());
+
+        return direction;
+    }
+
+    private NOC_MESH.DIRECTION computeNextStepX_Y() {
+	    NodeCoordinate source = this.id;
+	    NodeCoordinate target = value_out_task_next.getDestination();
+
+        NOC_MESH.DIRECTION nextDirectionStep = null;
+
+	    if( target.isOnLeftOf(source) ) {
+            nextDirectionStep = NOC_MESH.DIRECTION.WEST;
+        } else if ( target.isOnRightOf(source) ) {
+            nextDirectionStep = NOC_MESH.DIRECTION.EAST;
+        } else {
+            if( target.isOnTopOf(source) ) {
+                nextDirectionStep =  NOC_MESH.DIRECTION.NORTH;
+            } else if ( target.isUnderOf(source) ) {
+                nextDirectionStep = NOC_MESH.DIRECTION.SOUTH;
+            } else {
+                System.out.println("ERROR IN SWITCHING LOGIC ! TASK SHOULD BE SEND TO PE");
+            }
+        }
+
+        if (directionsPossible.indexOf(nextDirectionStep) == -1) {
+            System.out.println("ERROR IN SWITCHING LOGIC ! Comptuted step is not possible");
+            nextDirectionStep = null;
+        }
+
+        System.out.println(source + " --> " + target + " : " + nextDirectionStep);
+
+	    return nextDirectionStep;
+    }
 
 }
 
