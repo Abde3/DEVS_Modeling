@@ -44,9 +44,9 @@ public class NOC_MESH_UNIT extends NOC_Unit {
         }
 
 
-        this.addIC(this.getProcessingElement().getOutPort("out_cmd"), this.getQueueSwitch().getInPort("in_PE"));
-        this.addIC(this.getQueueSwitch().getOutPort("out_PE"), this.getProcessingElement().getInPort("in_task"));
-        this.addIC(this.getProcessingElement().getOutPort("out_queue"), this.getQueueSwitch().getInPort("in_queue-PE"));
+        this.addIC(this.getProcessingElement().getPortOut_cmd(), this.getQueueSwitch().getInPort("in_PE"));
+        this.addIC(this.getQueueSwitch().getOutPort("out_PE"), this.getProcessingElement().getPortIn_task());
+        this.addIC(this.getProcessingElement().getPortOut_queue(), this.getQueueSwitch().getInPort("in_task_PE"));
 
         this.setSelectPriority();
     }

@@ -41,12 +41,13 @@ public class Generator_Task extends DEVSAtomic {
 	public void deltaInt() {
 
 		if (state.equals(State.WAIT)) {
-			value_out = new Task(random_generator.nextInt(99)+1, random_generator.nextInt(4), new NodeCoordinate(random_generator.nextInt(3)+1, random_generator.nextInt(3)+1));
+			value_out = new Task(random_generator.nextInt(99)+1,  random_generator.nextInt(4),
+                    new NodeCoordinate(random_generator.nextInt(3)+1, random_generator.nextInt(3)+1));
 			state     = State.GENERATE;
 			rho       = 0F;
 		} else if (state.equals(State.GENERATE)) {
 			state = State.WAIT;
-			rho   =  random_generator.nextInt(5)+1;
+			rho   =  150; //random_generator.nextInt(5)+1;
 		}
 
 	}

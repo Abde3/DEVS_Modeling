@@ -11,6 +11,7 @@ public abstract class NOC_Unit extends DEVSCoupled {
     protected Vector<Port> v_out_ports;
     protected QueueSwitch queueSwitch;
     protected ProcessingElement processingElement;
+
     protected NOC.NODE_TYPE node_type;
     protected NOC_Unit_factory.NODE_POSITION node_position;
     protected NodeCoordinate coordinate;
@@ -35,7 +36,6 @@ public abstract class NOC_Unit extends DEVSCoupled {
         return processingElement;
     }
 
-
     public Vector<Port> get_in_ports() {
         return v_in_ports;
     }
@@ -52,9 +52,7 @@ public abstract class NOC_Unit extends DEVSCoupled {
         return node_position;
     }
 
-    public NodeCoordinate getCoordinate() {
-        return coordinate;
-    }
+    public NodeCoordinate getCoordinate() { return coordinate; }
 
     @Override
     public void setSelectPriority() {

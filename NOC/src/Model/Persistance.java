@@ -88,6 +88,8 @@ public class Persistance {
 		}
 
 
+
+
         for (Map.Entry<Port, Vector<Port>> entry: NocNetwork.getInstance().getNocInstance().getIC().entrySet()) {
 
             Port src = entry.getKey();
@@ -117,7 +119,7 @@ public class Persistance {
                     create_connection_element(srcNodePos, srcConnectorPos, destNodePos, destConnectorPos);
 
                 } else {
-                    System.err.println("Skipping, not an instance of NOC_UNIT");
+                    // System.err.println("Skipping, not an instance of NOC_UNIT");
                 }
 
             }
@@ -242,6 +244,7 @@ public class Persistance {
             if (coordinate.getX() == 0) {
                 if (coordinate.getY() == 0) {
 
+                    // top left
                     add_connector_left_input(DOMNode, doc);
                     add_connector_right_output(DOMNode, doc);
                     add_connector_right_input(DOMNode, doc);
@@ -249,22 +252,23 @@ public class Persistance {
                     add_connector_bottom_input(DOMNode, doc);
 
                 } else {
+                    // bottom left
+                    add_connector_right_output(DOMNode, doc);
+                    add_connector_right_input(DOMNode, doc);
+                    add_connector_top_input(DOMNode, doc);
+                    add_connector_top_output(DOMNode, doc);
 
+                }
+            } else {
+                if (coordinate.getY() == 0) {
+                    // top right
                     add_connector_left_input(DOMNode, doc);
                     add_connector_left_output(DOMNode, doc);
                     add_connector_bottom_output(DOMNode, doc);
                     add_connector_bottom_input(DOMNode, doc);
 
-                }
-            } else {
-                if (coordinate.getY() == 0) {
-
-                    add_connector_right_output(DOMNode, doc);
-                    add_connector_right_input(DOMNode, doc);
-                    add_connector_top_input(DOMNode, doc);
-                    add_connector_top_output(DOMNode, doc);
                 } else {
-
+                    // bottom right
                     add_connector_left_input(DOMNode, doc);
                     add_connector_left_output(DOMNode, doc);
                     add_connector_top_input(DOMNode, doc);
@@ -273,7 +277,7 @@ public class Persistance {
             }
         } else if (position == NOC_Unit_factory.NODE_POSITION.EDGE) {
 
-            if (coordinate.getY() == 0) {
+            if (coordinate.getX() == 0) {
                 // gauche
 
                 add_connector_bottom_output(DOMNode, doc);
@@ -282,7 +286,7 @@ public class Persistance {
                 add_connector_right_input(DOMNode, doc);
                 add_connector_top_input(DOMNode, doc);
                 add_connector_top_output(DOMNode, doc);
-            } else if (coordinate.getX() == 0) {
+            } else if (coordinate.getY() == 0) {
                 // haut
 
                 add_connector_left_input(DOMNode, doc);
@@ -292,7 +296,7 @@ public class Persistance {
                 add_connector_right_output(DOMNode, doc);
                 add_connector_right_input(DOMNode, doc);
 
-            } else if (coordinate.getY() == rowSize-1) {
+            } else if (coordinate.getX() == rowSize-1) {
                 // droite
 
                 add_connector_left_input(DOMNode, doc);

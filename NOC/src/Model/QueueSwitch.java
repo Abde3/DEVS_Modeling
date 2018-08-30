@@ -11,6 +11,7 @@ public class QueueSwitch extends DEVSCoupled {
 
 	public  Port in_PE;
 	public  Port out_PE;
+	public  Port in_task_PE;
 	public  Vector<Port> v_in_queue;
 	public  Vector<Port> v_out_queue;
 	private Vector<Queue> v_queue;
@@ -34,6 +35,9 @@ public class QueueSwitch extends DEVSCoupled {
 		Queue queue_inPE = new Queue("queue", coordinate, "INPE");
 		this.getSubModels().add(queue_inPE);
 		v_queue.add(queue_inPE);
+        Queue queue_inTaskPE = new Queue("queue", coordinate, "INTASKPE");
+        this.getSubModels().add(queue_inTaskPE);
+        v_queue.add(queue_inTaskPE);
 		Queue queue_outPE = new Queue("queue", coordinate, "OUTPE");
 		this.getSubModels().add(queue_outPE);
 		v_queue.add(queue_outPE);
@@ -59,14 +63,17 @@ public class QueueSwitch extends DEVSCoupled {
 
 		out_PE 		= new Port(this, "out_PE");
 		in_PE	 	= new Port(this, "in_PE");
+		in_task_PE  = new Port(this, "in_task_PE");
 		
 		this.addInPort(in_PE);
+        this.addInPort(in_task_PE);
 		this.addOutPort(out_PE);
 		
 		/******** LINKS *************************************************************************************************/
 		
 		
 		this.addEIC(in_PE, switch1.getInPort("in_cmd_PE"));
+		this.addEIC(in_task_PE, switch1.getInPort("in_task_PE"));
 		for (int i = 0; i < DEGREE; i++) {
 			this.addEIC(v_in_queue.elementAt(i), v_queue.get(i).getIn_task());
 		}
@@ -82,6 +89,7 @@ public class QueueSwitch extends DEVSCoupled {
 			this.addIC(this.getSubModel("queue"+coordinate+'-'+NOC_MESH.getDirectionFromIndex(i)).getOutPort("out_switch"), this.getSubModel("switch"+coordinate).getInPort("in_task_queue-"+NOC_MESH.getDirectionFromIndex(i)));
 			this.addIC(this.getSubModel("switch"+coordinate).getOutPort("out_cmd_queue-"+NOC_MESH.getDirectionFromIndex(i)), this.getSubModel("queue"+coordinate+'-'+NOC_MESH.getDirectionFromIndex(i)).getInPort("in_command"));
 		}
+
 
 		this.setSelectPriority();
 	}
