@@ -3,6 +3,8 @@ package Model;
 import DEVSModel.DEVSAtomic;
 import DEVSModel.Port;
 
+import java.util.Random;
+
 
 public class ProcessingElement extends DEVSAtomic {
 
@@ -27,11 +29,13 @@ public class ProcessingElement extends DEVSAtomic {
 	public ProcessingElement(String name, NodeCoordinate coordinate) {
 		super();
 
-		this.name 		= name + '-' + coordinate;
+        this.coordinate = coordinate;
+        this.name 		= name + '-' + coordinate;
 
-		this.in_task 	= new Port(this, "in_task");
-		this.out_queue 	= new Port(this, "out_queue");
-		this.out_cmd 	= new Port(this, "out_cmd");
+        this.in_task 	= new Port(this, "in_task");
+        this.out_queue 	= new Port(this, "out_queue");
+        this.out_cmd 	= new Port(this, "out_cmd");
+
 
 		this.addOutPort(this.out_queue);
 		this.addOutPort(this.out_cmd);
@@ -54,12 +58,15 @@ public class ProcessingElement extends DEVSAtomic {
 			if ( state.equals(STATE.IDLE) ) {
 				value_out_next = value_in_task;
 
-				if (value_out_next.getDestination() == this.coordinate) {
+				if (value_out_next.getDestination().equals(this.coordinate)) {
 
-					value_out_next.setDestination( value_out_next.getDestination() );
+                    Random random_generator = new Random();
+                    NodeCoordinate destination = new NodeCoordinate(random_generator.nextInt(3) + 1, random_generator.nextInt(3) + 1);
+                    value_out_next.setDestination(destination);
 					value_out_next.increment_age();
 					
 					state = STATE.PROCESSING;
+
 
 					Pretty_print.trace( this.name , "IDLE -> PROCESSING(ρ = "+ value_out_next.getComputation_requirement() + ")");
 
@@ -149,9 +156,11 @@ public class ProcessingElement extends DEVSAtomic {
 			}
 
 		} else if (state.equals(STATE.NOTIFY)) {
-			Object[] output = new Object[2];
+			Object[] output = new Object[4];
 			output[0] = this.out_cmd;
 			output[1] = Queue.COMMAND.NEXT_TASK;
+            output[2] = this.out_queue;
+            output[3] = value_out_next;
 
 			Pretty_print.trace( this.name , "ASK NEXT_TASK TO SWITCH-" + this.coordinate);
 

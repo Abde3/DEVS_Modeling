@@ -9,8 +9,8 @@ import java.util.*;
 public class Util {
 
 
-    private static final int BASE_GRAPH_X_COORDINATE = 1000;
-    private static final int BASE_GRAPH_Y_COORDINATE = 1000;
+    private static final int BASE_GRAPH_X_COORDINATE = 10;
+    private static final int BASE_GRAPH_Y_COORDINATE = 10;
     private static final int GRAPH_NODE_OFFSET = 200 ;
     private static final int GRAPH_NODE_WIDTH = 150 ;
     private static final int GRAPH_NODE_HEIGHT = 100 ;
@@ -67,6 +67,7 @@ public class Util {
     }
 
     public static String getDirectionFromElementName( String elementName) {
+        if ( elementName == null ) return "";
         return elementName.replaceAll(".*-((WEST)|(EAST)|(NORTH)|(SOUTH)).*", "$1");
     }
 

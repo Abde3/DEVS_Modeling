@@ -18,15 +18,13 @@ public class Test_NOC_n {
         NocNetwork network = NocNetwork.getInstance();
         NOC MESH_4 = network.create_noc(NOC_factory.Topology.MESH, 4);
 
-        Root root = new Root(MESH_4, 150);
+        Root root = new Root(MESH_4, 100);
         root.startSimulation();
 
         network.getPersistance().saveNodes(MESH_4);
         network.getPersistance().generate_output();
 
-
-
-        readSimulaionSequence("C:\\Users\\Abdelhak khemiri\\IdeaProjects\\DEVS Modeling\\NOC\\output\\out_test_read");
+        //readSimulaionSequence("/home/mofed/IdeaProjects/DEVS Modeling/NOC/output/out_test_read");
     }
 
 

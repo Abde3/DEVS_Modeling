@@ -119,7 +119,7 @@ public class Persistance {
                     create_connection_element(srcNodePos, srcConnectorPos, destNodePos, destConnectorPos);
 
                 } else {
-                    System.err.println("Skipping, not an instance of NOC_UNIT");
+                    // System.err.println("Skipping, not an instance of NOC_UNIT");
                 }
 
             }

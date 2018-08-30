@@ -14,7 +14,7 @@ public class NocNetwork {
     {
 
 
-        String path = "C:\\Users\\Abdelhak khemiri\\Desktop\\GENERATED_MESH_4.graph";
+        String path = "/home/mofed/Bureau/GENERATED_MESH_4.graph";
         persistance = new Persistance(path);
 
     }
