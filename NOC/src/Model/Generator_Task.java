@@ -8,26 +8,25 @@ import DEVSModel.Port;
 
 public class Generator_Task extends DEVSAtomic {
 
-	private enum State {WAIT, GENERATE};
-
-	private Port 	out;
-	private Task value_out;
-
-	private State 	state;
-	private float 	rho;
-	
+	private enum State {WAIT, GENERATE;}
 	private Random random_generator;
+
+	/******************************************************************************************************************/
+	private Port 	out;			/**************************** OutPort of the model ********************************/
+	private Task 	value_out;		/**************************** Represent the value in the OutPort ******************/
+
+	private State 	state;			/***************************  Represent the state     *****************************/
+	private float 	rho;			/***************************  Time elapsed in a state *****************************/
+
 
 	public Generator_Task(String name) {
 		super();
-		
-		this.name = name;
-		this.out = new Port(this, "out");
+        random_generator = new Random();
 
-		this.addOutPort(this.out);		
+        this.name = name;
+        this.out = new Port(this, "out");
 
-		random_generator = new Random();
-		
+        this.addOutPort(this.out);
 	}
 
 
@@ -41,13 +40,16 @@ public class Generator_Task extends DEVSAtomic {
 	public void deltaInt() {
 
 		if (state.equals(State.WAIT)) {
-			value_out = new Task(random_generator.nextInt(99)+1,  random_generator.nextInt(4),
-                    new NodeCoordinate(random_generator.nextInt(3)+1, random_generator.nextInt(3)+1));
+            int id = random_generator.nextInt(99) + 1;
+            int computation_requirement = random_generator.nextInt(4) + 1;
+            NodeCoordinate destination = new NodeCoordinate(random_generator.nextInt(3) + 1, random_generator.nextInt(3) + 1);
+
+            value_out = new Task(id, computation_requirement, destination);
 			state     = State.GENERATE;
 			rho       = 0F;
 		} else if (state.equals(State.GENERATE)) {
 			state = State.WAIT;
-			rho   =  150; //random_generator.nextInt(5)+1;
+			rho   = random_generator.nextInt(2)+1;
 		}
 
 	}
@@ -60,9 +62,8 @@ public class Generator_Task extends DEVSAtomic {
 	@Override
 	public void init() {
 		state = State.WAIT;
-		rho   =  1F;
-		System.out.println("STARTING GENERATOR");
-
+		rho   =  0F;
+//		System.out.println("STARTING GENERATOR");
 	}
 
 	@Override
@@ -70,10 +71,7 @@ public class Generator_Task extends DEVSAtomic {
 		Object[] output;
 
 		if (state.equals(State.GENERATE)) {
-			output = new Object[2];
-
-			output[0] = this.out;
-			output[1] = value_out;
+			output = setOutputLambda(out, value_out);
 			Pretty_print.trace(this.name,  " TASK " + value_out + " created!");
 		} else {
 			output = null;
@@ -81,5 +79,15 @@ public class Generator_Task extends DEVSAtomic {
 
 		return output;
 	}
+
+
+	private Object[] setOutputLambda(Port port, Object value) {
+        Object[] output = new Object[2];
+
+        output[0] = port;
+        output[1] = value;
+
+        return output;
+    }
 
 }

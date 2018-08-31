@@ -33,6 +33,7 @@ public abstract class NOC extends DEVSCoupled {
         return generator;
     }
 
+
     protected abstract void build_network();
 
 }
