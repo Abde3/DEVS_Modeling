@@ -1,3 +1,4 @@
+package NOC;
 
 import DEVSModel.*;
 
@@ -5,9 +6,11 @@ import java.util.Vector;
 
 public abstract class NOC extends DEVSCoupled {
 
-    public enum NodeType {NOC, NODE, QUEUE, SWITCH, QUEUE_SWITCH, PE};
-    public enum Topology {LINEAR, MESH};
-    public enum RoutingPolicy {DETERMINISTIC, SEMI_DETERMINISTIC, ADAPTATIVE};
+    public enum NodeType {NOC, NODE, QUEUE, SWITCH, QUEUE_SWITCH, PE}
+
+    public enum Topology {LINEAR, MESH}
+
+    public enum RoutingPolicy {DETERMINISTIC, SEMI_DETERMINISTIC, ADAPTATIVE}
 
 
     protected NocNetwork nocNetwork;                        /***** Represent all the units in the model ***************/

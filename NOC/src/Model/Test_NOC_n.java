@@ -24,7 +24,7 @@ public class Test_NOC_n {
         network.getPersistance().saveNodes(MESH_4);
         network.getPersistance().generate_output();
 
-        //readSimulaionSequence("/home/mofed/IdeaProjects/DEVS Modeling/NOC/output/out_test_read");
+        //readSimulaionSequence("/home/mofed/IdeaProjects/DEVS Modeling/NOC.NOC/output/out_test_read");
     }
 
 

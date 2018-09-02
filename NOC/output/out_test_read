@@ -12,8 +12,8 @@ time:2.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 
 time:3.0
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
@@ -26,22 +26,22 @@ time:3.0
 --queue[0, 0]-WEST(in_task = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 
 time:4.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:5.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
@@ -50,10 +50,10 @@ time:5.0
 --queue[0, 0]-WEST(in_task = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 
 time:6.0
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --switch[0, 0](out_task_next-EAST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
@@ -64,18 +64,18 @@ time:6.0
 --queue[1, 0]-WEST(in_task = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 
 time:7.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-60, age: 0, dest: [3, 1], comutation_req: 1.0})
@@ -84,21 +84,21 @@ time:7.0
 --queue[0, 0]-WEST(in_task = {name: TASK-60, age: 0, dest: [3, 1], comutation_req: 1.0})
 
 time:8.0
---conflict[NOC]= {NODE[2, 0],NODE[2, 1],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[2, 1],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 1],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 1],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[2, 1]-NORTH(out_switch = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --switch[2, 1](in_task_queue-NORTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --Simple Generator(out = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
@@ -107,21 +107,21 @@ time:8.0
 --queue[0, 0]-WEST(in_task = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 
 time:9.0
---conflict[NOC]= {NODE[2, 1],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 1],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 1](out_task_next-SOUTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --QS[2, 1](out_queue-SOUTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --NODE[2, 1](out_NCUnit-SOUTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --NODE[2, 2](in_NCUnit-NORTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --QS[2, 2](in_queue-NORTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --queue[2, 2]-NORTH(in_task = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
@@ -134,48 +134,48 @@ time:9.0
 --queue[0, 0]-WEST(in_task = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 
 time:10.0
---conflict[NOC]= {NODE[2, 1],NODE[2, 2],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 1],NODE[2, 2],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 1](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 1]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 2],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 2],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --queue[2, 2]-NORTH(out_switch = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --switch[2, 2](in_task_queue-NORTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-EAST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[2, 0](out_queue-EAST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[2, 0](out_NCUnit-EAST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[3, 0](in_NCUnit-WEST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[3, 0](in_queue-WEST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --queue[3, 0]-WEST(in_task = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:11.0
---conflict[NOC]= {Simple Generator,NODE[2, 2],NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[2, 2],NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 2],NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 2],NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[2, 2](out_task_next-SOUTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --QS[2, 2](out_queue-SOUTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --NODE[2, 2](out_NCUnit-SOUTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --NODE[2, 3](in_NCUnit-NORTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --QS[2, 3](in_queue-NORTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
 --queue[2, 3]-NORTH(in_task = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --queue[3, 0]-WEST(out_switch = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --switch[3, 0](in_task_queue-WEST = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --Simple Generator(out = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
@@ -184,27 +184,27 @@ time:11.0
 --queue[0, 0]-WEST(in_task = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
 
 time:12.0
---conflict[NOC]= {NODE[2, 2],NODE[2, 3],NODE[3, 0],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 2],NODE[2, 3],NODE[3, 0],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 2](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 2]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 3],NODE[3, 0],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 3],NODE[3, 0],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[2, 3]-NORTH(out_switch = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --switch[2, 3](in_task_queue-NORTH = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[3, 0](out_task_next-SOUTH = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[3, 0](out_queue-SOUTH = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[3, 0](out_NCUnit-SOUTH = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[3, 1](in_NCUnit-NORTH = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[3, 1](in_queue-NORTH = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --queue[3, 1]-NORTH(in_task = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
@@ -217,49 +217,49 @@ time:12.0
 --queue[0, 0]-WEST(in_task = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 
 time:13.0
---conflict[NOC]= {NODE[2, 3],NODE[3, 0],NODE[3, 1],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 3],NODE[3, 0],NODE[3, 1],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 3](out_task_PE = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --QS[2, 3](out_PE = {name: TASK-21, age: 0, dest: [2, 3], comutation_req: 3.0})
 --PE-[2, 3](in_task = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[3, 0],NODE[3, 1],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[3, 1],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[3, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[3, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[3, 1],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 1],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --queue[3, 1]-NORTH(out_switch = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --switch[3, 1](in_task_queue-NORTH = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-53, age: 0, dest: [2, 1], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:14.0
---conflict[NOC]= {Simple Generator,NODE[3, 1],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[3, 1],NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[3, 1],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 1],NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[3, 1](out_task_PE = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[3, 1](out_PE = {name: TASK-38, age: 0, dest: [3, 1], comutation_req: 0.0})
 --PE-[3, 1](in_task = {name: TASK-38, age: 1, dest: [2, 2], comutation_req: 0.0})
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,NODE[3, 1],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,NODE[3, 1],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,NODE[3, 1],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,NODE[3, 1],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,NODE[3, 1],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,NODE[3, 1],} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
---conflict[NOC]= {Simple Generator,NODE[3, 1],} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[3, 1],} --> null
 --Simple Generator(out = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --NODE[0, 0](in_NCUnit-WEST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --QS[0, 0](in_queue-WEST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
@@ -272,21 +272,21 @@ time:14.0
 --switch[3, 1](in_cmd_PE = NEXT_TASK)
 
 time:15.0
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],NODE[3, 1],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],NODE[3, 1],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],NODE[3, 1],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],NODE[3, 1],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],NODE[3, 1],} --> null
---conflict[NOC]= {NODE[0, 0],NODE[3, 1],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],NODE[3, 1],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[3, 1],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --NODE[1, 0](in_NCUnit-WEST = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --QS[1, 0](in_queue-WEST = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --queue[1, 0]-WEST(in_task = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
---conflict[NOC]= {NODE[3, 1],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[3, 1],Simple Generator,} --> null
 --switch[3, 1](out_task_next-WEST = {name: TASK-38, age: 1, dest: [2, 2], comutation_req: 0.0})
 --QS[3, 1](out_queue-WEST = {name: TASK-38, age: 1, dest: [2, 2], comutation_req: 0.0})
 --NODE[3, 1](out_NCUnit-WEST = {name: TASK-38, age: 1, dest: [2, 2], comutation_req: 0.0})
@@ -299,27 +299,27 @@ time:15.0
 --queue[0, 0]-WEST(in_task = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 
 time:16.0
---conflict[NOC]= {NODE[2, 3],NODE[2, 0],NODE[1, 0],NODE[3, 1],NODE[2, 1],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 3],NODE[2, 0],NODE[1, 0],NODE[3, 1],NODE[2, 1],NODE[0, 0],} --> null
 --PE-[2, 3](out_queue = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --QS[2, 3](in_task_PE = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --switch[2, 3](in_task_PE = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[3, 1],NODE[2, 1],NODE[0, 0],NODE[2, 3],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[3, 1],NODE[2, 1],NODE[0, 0],NODE[2, 3],} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 1.0})
---conflict[NOC]= {NODE[1, 0],NODE[3, 1],NODE[0, 0],NODE[2, 3],NODE[2, 1],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[3, 1],NODE[0, 0],NODE[2, 3],NODE[2, 1],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
---conflict[NOC]= {NODE[3, 1],NODE[0, 0],NODE[2, 3],NODE[2, 1],} --> null
+--conflict[NOC.NOC]= {NODE[3, 1],NODE[0, 0],NODE[2, 3],NODE[2, 1],} --> null
 --switch[3, 1](out_cmd_queue-WEST = NEXT_TASK)
 --queue[3, 1]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[0, 0],NODE[2, 3],NODE[2, 1],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[2, 3],NODE[2, 1],} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 3],NODE[2, 1],} --> null
+--conflict[NOC.NOC]= {NODE[2, 3],NODE[2, 1],} --> null
 --PE-[2, 3](out_cmd = NEXT_TASK)
 --QS[2, 3](in_PE = NEXT_TASK)
 --switch[2, 3](in_cmd_PE = NEXT_TASK)
@@ -327,28 +327,28 @@ time:16.0
 --switch[2, 1](in_task_queue-EAST = {name: TASK-38, age: 1, dest: [2, 2], comutation_req: 0.0})
 
 time:17.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[1, 0],NODE[0, 0],NODE[2, 3],NODE[2, 1],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],NODE[2, 3],NODE[2, 1],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[1, 0],NODE[0, 0],NODE[2, 3],NODE[2, 1],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],NODE[2, 3],NODE[2, 1],Simple Generator,} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],NODE[2, 3],NODE[2, 1],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],NODE[2, 3],NODE[2, 1],Simple Generator,} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --NODE[1, 1](in_NCUnit-NORTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --QS[1, 1](in_queue-NORTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --queue[1, 1]-NORTH(in_task = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
---conflict[NOC]= {NODE[0, 0],NODE[2, 3],NODE[2, 1],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[2, 3],NODE[2, 1],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
---conflict[NOC]= {NODE[2, 3],NODE[2, 1],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[2, 3],NODE[2, 1],Simple Generator,} --> null
 --switch[2, 3](out_task_next-WEST = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --QS[2, 3](out_queue-WEST = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --NODE[2, 3](out_NCUnit-WEST = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --NODE[1, 3](in_NCUnit-EAST = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --QS[1, 3](in_queue-EAST = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --queue[1, 3]-EAST(in_task = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[2, 1],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[2, 1],Simple Generator,} --> null
 --switch[2, 1](out_task_next-SOUTH = {name: TASK-38, age: 1, dest: [2, 2], comutation_req: 0.0})
 --QS[2, 1](out_queue-SOUTH = {name: TASK-38, age: 1, dest: [2, 2], comutation_req: 0.0})
 --NODE[2, 1](out_NCUnit-SOUTH = {name: TASK-38, age: 1, dest: [2, 2], comutation_req: 0.0})
@@ -361,19 +361,19 @@ time:17.0
 --queue[0, 0]-WEST(in_task = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 
 time:18.0
---conflict[NOC]= {NODE[1, 0],NODE[1, 1],NODE[2, 3],NODE[1, 3],NODE[2, 1],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[1, 1],NODE[2, 3],NODE[1, 3],NODE[2, 1],NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 1],NODE[2, 3],NODE[1, 3],NODE[2, 1],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 1],NODE[2, 3],NODE[1, 3],NODE[2, 1],NODE[0, 0],} --> null
 --queue[1, 1]-NORTH(out_switch = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --switch[1, 1](in_task_queue-NORTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
---conflict[NOC]= {NODE[2, 3],NODE[1, 3],NODE[2, 1],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 3],NODE[1, 3],NODE[2, 1],NODE[0, 0],} --> null
 --switch[2, 3](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 3]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 3],NODE[2, 1],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 3],NODE[2, 1],NODE[0, 0],} --> null
 --queue[1, 3]-EAST(out_switch = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --switch[1, 3](in_task_queue-EAST = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[2, 1],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 1],NODE[0, 0],} --> null
 --switch[2, 1](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 1]-WEST(in_command = NEXT_TASK)
 --switch[0, 0](out_task_next-EAST = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
@@ -384,25 +384,25 @@ time:18.0
 --queue[1, 0]-WEST(in_task = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
 
 time:19.0
---conflict[NOC]= {Simple Generator,NODE[1, 1],NODE[1, 3],NODE[0, 0],NODE[1, 0],} --> null
---conflict[NOC]= {NODE[1, 1],NODE[1, 3],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 1],NODE[1, 3],NODE[0, 0],NODE[1, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 1],NODE[1, 3],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[1, 1](out_task_next-SOUTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --QS[1, 1](out_queue-SOUTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --NODE[1, 1](out_NCUnit-SOUTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --NODE[1, 2](in_NCUnit-NORTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --QS[1, 2](in_queue-NORTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --queue[1, 2]-NORTH(in_task = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 3],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 3],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[1, 3](out_task_next-NORTH = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --QS[1, 3](out_queue-NORTH = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --NODE[1, 3](out_NCUnit-NORTH = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --NODE[1, 2](in_NCUnit-SOUTH = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --QS[1, 2](in_queue-SOUTH = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --queue[1, 2]-SOUTH(in_task = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
 --Simple Generator(out = {name: TASK-73, age: 0, dest: [2, 3], comutation_req: 3.0})
@@ -411,42 +411,42 @@ time:19.0
 --queue[0, 0]-WEST(in_task = {name: TASK-73, age: 0, dest: [2, 3], comutation_req: 3.0})
 
 time:20.0
---conflict[NOC]= {NODE[1, 1],NODE[1, 3],NODE[1, 2],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 1],NODE[1, 3],NODE[1, 2],NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 1](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 1]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 3],NODE[1, 2],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 3],NODE[1, 2],NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 3](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 3]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 2],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 2],NODE[1, 0],NODE[0, 0],} --> null
 --conflict[QS[1, 2]]= {queue[1, 2]-NORTH,queue[1, 2]-SOUTH,} --> queue[1, 2]-SOUTH
 --queue[1, 2]-SOUTH(out_switch = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --switch[1, 2](in_task_queue-SOUTH = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],NODE[1, 2],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],NODE[1, 2],} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
 --NODE[1, 1](in_NCUnit-NORTH = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
 --QS[1, 1](in_queue-NORTH = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
 --queue[1, 1]-NORTH(in_task = {name: TASK-55, age: 0, dest: [1, 2], comutation_req: 1.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 2],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 2],} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --queue[1, 2]-NORTH(out_switch = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 --switch[1, 2](in_task_queue-NORTH = {name: TASK-63, age: 0, dest: [1, 3], comutation_req: 2.0})
 
 time:21.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],NODE[1, 2],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],NODE[1, 2],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],NODE[1, 2],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],NODE[1, 2],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[0, 0],NODE[1, 2],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 2],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --NODE[1, 0](in_NCUnit-WEST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --QS[1, 0](in_queue-WEST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --queue[1, 0]-WEST(in_task = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 2],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 2],Simple Generator,} --> null
 --switch[1, 2](out_task_PE = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --QS[1, 2](out_PE = {name: TASK-21, age: 1, dest: [1, 2], comutation_req: 3.0})
 --PE-[1, 2](in_task = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
@@ -456,22 +456,22 @@ time:21.0
 --queue[0, 0]-WEST(in_task = {name: TASK-78, age: 0, dest: [1, 2], comutation_req: 1.0})
 
 time:22.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:23.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --Simple Generator(out = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
@@ -480,17 +480,17 @@ time:23.0
 --queue[0, 0]-WEST(in_task = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 
 time:24.0
---conflict[NOC]= {NODE[1, 2],NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 2],NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
 --PE-[1, 2](out_queue = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
 --QS[1, 2](in_task_PE = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
 --switch[1, 2](in_task_PE = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],NODE[1, 2],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],NODE[1, 2],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 2],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 2],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 2],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 2],} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
@@ -502,21 +502,21 @@ time:24.0
 --switch[1, 2](in_cmd_PE = NEXT_TASK)
 
 time:25.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],NODE[1, 2],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],NODE[1, 2],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],NODE[1, 2],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],NODE[1, 2],Simple Generator,} --> null
 --switch[2, 0](out_task_next-EAST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --QS[2, 0](out_queue-EAST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --NODE[2, 0](out_NCUnit-EAST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --NODE[3, 0](in_NCUnit-WEST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --QS[3, 0](in_queue-WEST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --queue[3, 0]-WEST(in_task = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 0],NODE[1, 2],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 0],NODE[1, 2],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[1, 2],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[1, 2],Simple Generator,} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 2],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 2],Simple Generator,} --> null
 --switch[1, 2](out_task_next-SOUTH = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
 --QS[1, 2](out_queue-SOUTH = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
 --NODE[1, 2](out_NCUnit-SOUTH = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
@@ -529,48 +529,48 @@ time:25.0
 --queue[0, 0]-WEST(in_task = {name: TASK-28, age: 0, dest: [2, 1], comutation_req: 2.0})
 
 time:26.0
---conflict[NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[1, 2],NODE[1, 3],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[1, 2],NODE[1, 3],NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[1, 2],NODE[1, 3],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[1, 2],NODE[1, 3],NODE[0, 0],} --> null
 --queue[3, 0]-WEST(out_switch = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --switch[3, 0](in_task_queue-WEST = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 0],NODE[1, 2],NODE[1, 3],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[1, 2],NODE[1, 3],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 2],NODE[1, 3],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 2],NODE[1, 3],NODE[0, 0],} --> null
 --switch[1, 2](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 2]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 3],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 3],NODE[0, 0],} --> null
 --queue[1, 3]-NORTH(out_switch = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
 --switch[1, 3](in_task_queue-NORTH = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
 --queue[0, 0]-WEST(out_switch = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 
 time:27.0
---conflict[NOC]= {Simple Generator,NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[1, 3],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[1, 3],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[1, 3],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[1, 3],NODE[0, 0],Simple Generator,} --> null
 --switch[3, 0](out_task_next-SOUTH = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --QS[3, 0](out_queue-SOUTH = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --NODE[3, 0](out_NCUnit-SOUTH = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --NODE[3, 1](in_NCUnit-NORTH = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --QS[3, 1](in_queue-NORTH = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
 --queue[3, 1]-NORTH(in_task = {name: TASK-7, age: 0, dest: [3, 3], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[1, 3],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[1, 3],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[1, 3],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 3],NODE[0, 0],Simple Generator,} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 3],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 3],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 3](out_task_PE = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
 --QS[1, 3](out_PE = {name: TASK-21, age: 2, dest: [1, 3], comutation_req: 3.0})
 --PE-[1, 3](in_task = {name: TASK-21, age: 3, dest: [1, 1], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
@@ -583,21 +583,21 @@ time:27.0
 --queue[0, 0]-WEST(in_task = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 
 time:28.0
---conflict[NOC]= {NODE[3, 0],NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[3, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[3, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-EAST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --QS[2, 0](out_queue-EAST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --NODE[2, 0](out_NCUnit-EAST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --NODE[3, 0](in_NCUnit-WEST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --QS[3, 0](in_queue-WEST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --queue[3, 0]-WEST(in_task = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 --Simple Generator(out = {name: TASK-70, age: 0, dest: [1, 3], comutation_req: 1.0})
@@ -606,13 +606,13 @@ time:28.0
 --queue[0, 0]-WEST(in_task = {name: TASK-70, age: 0, dest: [1, 3], comutation_req: 1.0})
 
 time:29.0
---conflict[NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
 --queue[3, 0]-WEST(out_switch = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --switch[3, 0](in_task_queue-WEST = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
@@ -623,29 +623,29 @@ time:29.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 
 time:30.0
---conflict[NOC]= {NODE[1, 3],Simple Generator,NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
---conflict[NOC]= {Simple Generator,NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],NODE[1, 3],} --> null
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],NODE[1, 3],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 3],Simple Generator,NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],NODE[1, 3],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],NODE[1, 3],Simple Generator,} --> null
 --switch[3, 0](out_task_next-SOUTH = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --QS[3, 0](out_queue-SOUTH = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --NODE[3, 0](out_NCUnit-SOUTH = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --NODE[3, 1](in_NCUnit-NORTH = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --QS[3, 1](in_queue-NORTH = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
 --queue[3, 1]-NORTH(in_task = {name: TASK-85, age: 0, dest: [3, 1], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],NODE[1, 3],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],NODE[1, 3],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 3],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 3],Simple Generator,} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 3],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 3],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --NODE[1, 0](in_NCUnit-WEST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --QS[1, 0](in_queue-WEST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --queue[1, 0]-WEST(in_task = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 3],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 3],Simple Generator,} --> null
 --PE-[1, 3](out_cmd = NEXT_TASK)
 --QS[1, 3](in_PE = NEXT_TASK)
 --switch[1, 3](in_cmd_PE = NEXT_TASK)
@@ -655,41 +655,41 @@ time:30.0
 --queue[0, 0]-WEST(in_task = {name: TASK-97, age: 0, dest: [1, 1], comutation_req: 0.0})
 
 time:31.0
---conflict[NOC]= {NODE[3, 0],NODE[2, 0],NODE[1, 0],NODE[1, 3],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[2, 0],NODE[1, 0],NODE[1, 3],NODE[0, 0],} --> null
 --switch[3, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[3, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[1, 3],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[1, 3],NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-EAST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[2, 0](out_queue-EAST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[2, 0](out_NCUnit-EAST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[3, 0](in_NCUnit-WEST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[3, 0](in_queue-WEST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --queue[3, 0]-WEST(in_task = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {NODE[1, 0],NODE[1, 3],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[1, 3],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 3],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 3],NODE[0, 0],} --> null
 --switch[1, 3](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 3]-WEST(in_command = NEXT_TASK)
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:32.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --queue[3, 0]-WEST(out_switch = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --switch[3, 0](in_task_queue-WEST = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-78, age: 0, dest: [1, 2], comutation_req: 1.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-78, age: 0, dest: [1, 2], comutation_req: 1.0})
 --Simple Generator(out = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
@@ -698,17 +698,17 @@ time:32.0
 --queue[0, 0]-WEST(in_task = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 
 time:33.0
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
 --switch[3, 0](out_task_next-SOUTH = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[3, 0](out_queue-SOUTH = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[3, 0](out_NCUnit-SOUTH = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --NODE[3, 1](in_NCUnit-NORTH = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --QS[3, 1](in_queue-NORTH = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
 --queue[3, 1]-NORTH(in_task = {name: TASK-50, age: 0, dest: [3, 1], comutation_req: 0.0})
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --switch[0, 0](out_task_next-EAST = {name: TASK-78, age: 0, dest: [1, 2], comutation_req: 1.0})
@@ -719,21 +719,21 @@ time:33.0
 --queue[1, 0]-WEST(in_task = {name: TASK-78, age: 0, dest: [1, 2], comutation_req: 1.0})
 
 time:34.0
---conflict[NOC]= {Simple Generator,NODE[3, 0],NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
---conflict[NOC]= {NODE[3, 0],NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[3, 0],NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[3, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[3, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-55, age: 0, dest: [2, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-78, age: 0, dest: [1, 2], comutation_req: 1.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-78, age: 0, dest: [1, 2], comutation_req: 1.0})
 --Simple Generator(out = {name: TASK-13, age: 0, dest: [2, 1], comutation_req: 0.0})
@@ -742,10 +742,10 @@ time:34.0
 --queue[0, 0]-WEST(in_task = {name: TASK-13, age: 0, dest: [2, 1], comutation_req: 0.0})
 
 time:35.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-78, age: 0, dest: [1, 2], comutation_req: 1.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-78, age: 0, dest: [1, 2], comutation_req: 1.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-78, age: 0, dest: [1, 2], comutation_req: 1.0})
@@ -756,11 +756,11 @@ time:35.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 
 time:36.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
@@ -773,11 +773,11 @@ time:36.0
 --queue[0, 0]-WEST(in_task = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 
 time:37.0
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 --Simple Generator(out = {name: TASK-29, age: 0, dest: [1, 3], comutation_req: 0.0})
@@ -786,7 +786,7 @@ time:37.0
 --queue[0, 0]-WEST(in_task = {name: TASK-29, age: 0, dest: [1, 3], comutation_req: 0.0})
 
 time:38.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
@@ -797,14 +797,14 @@ time:38.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 
 time:39.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
@@ -817,32 +817,32 @@ time:39.0
 --queue[0, 0]-WEST(in_task = {name: TASK-55, age: 0, dest: [1, 1], comutation_req: 0.0})
 
 time:40.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-52, age: 0, dest: [2, 2], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:41.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-97, age: 0, dest: [1, 1], comutation_req: 0.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-97, age: 0, dest: [1, 1], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
@@ -851,10 +851,10 @@ time:41.0
 --queue[0, 0]-WEST(in_task = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 
 time:42.0
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --switch[0, 0](out_task_next-EAST = {name: TASK-97, age: 0, dest: [1, 1], comutation_req: 0.0})
@@ -865,18 +865,18 @@ time:42.0
 --queue[1, 0]-WEST(in_task = {name: TASK-97, age: 0, dest: [1, 1], comutation_req: 0.0})
 
 time:43.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-71, age: 0, dest: [2, 3], comutation_req: 1.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-97, age: 0, dest: [1, 1], comutation_req: 0.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-97, age: 0, dest: [1, 1], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-6, age: 0, dest: [3, 2], comutation_req: 1.0})
@@ -885,10 +885,10 @@ time:43.0
 --queue[0, 0]-WEST(in_task = {name: TASK-6, age: 0, dest: [3, 2], comutation_req: 1.0})
 
 time:44.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-97, age: 0, dest: [1, 1], comutation_req: 0.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-97, age: 0, dest: [1, 1], comutation_req: 0.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-97, age: 0, dest: [1, 1], comutation_req: 0.0})
@@ -899,11 +899,11 @@ time:44.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 
 time:45.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
@@ -916,11 +916,11 @@ time:45.0
 --queue[0, 0]-WEST(in_task = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 
 time:46.0
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 --Simple Generator(out = {name: TASK-67, age: 0, dest: [1, 1], comutation_req: 0.0})
@@ -929,7 +929,7 @@ time:46.0
 --queue[0, 0]-WEST(in_task = {name: TASK-67, age: 0, dest: [1, 1], comutation_req: 0.0})
 
 time:47.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
@@ -940,14 +940,14 @@ time:47.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 
 time:48.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
@@ -960,32 +960,32 @@ time:48.0
 --queue[0, 0]-WEST(in_task = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 
 time:49.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-92, age: 0, dest: [2, 2], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:50.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 --NODE[1, 1](in_NCUnit-NORTH = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 --QS[1, 1](in_queue-NORTH = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
 --queue[1, 1]-NORTH(in_task = {name: TASK-33, age: 0, dest: [1, 3], comutation_req: 1.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-55, age: 0, dest: [1, 1], comutation_req: 0.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-55, age: 0, dest: [1, 1], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
@@ -994,7 +994,7 @@ time:50.0
 --queue[0, 0]-WEST(in_task = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 
 time:51.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
 --switch[0, 0](out_task_next-EAST = {name: TASK-55, age: 0, dest: [1, 1], comutation_req: 0.0})
@@ -1005,11 +1005,11 @@ time:51.0
 --queue[1, 0]-WEST(in_task = {name: TASK-55, age: 0, dest: [1, 1], comutation_req: 0.0})
 
 time:52.0
---conflict[NOC]= {Simple Generator,NODE[0, 0],NODE[1, 0],} --> null
---conflict[NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],NODE[1, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-55, age: 0, dest: [1, 1], comutation_req: 0.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-55, age: 0, dest: [1, 1], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-80, age: 0, dest: [2, 3], comutation_req: 0.0})
@@ -1018,7 +1018,7 @@ time:52.0
 --queue[0, 0]-WEST(in_task = {name: TASK-80, age: 0, dest: [2, 3], comutation_req: 0.0})
 
 time:53.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-55, age: 0, dest: [1, 1], comutation_req: 0.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-55, age: 0, dest: [1, 1], comutation_req: 0.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-55, age: 0, dest: [1, 1], comutation_req: 0.0})
@@ -1029,11 +1029,11 @@ time:53.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 
 time:54.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
@@ -1046,11 +1046,11 @@ time:54.0
 --queue[0, 0]-WEST(in_task = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 
 time:55.0
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 --Simple Generator(out = {name: TASK-94, age: 0, dest: [3, 3], comutation_req: 2.0})
@@ -1059,15 +1059,15 @@ time:55.0
 --queue[0, 0]-WEST(in_task = {name: TASK-94, age: 0, dest: [3, 3], comutation_req: 2.0})
 
 time:56.0
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --Simple Generator(out = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
@@ -1076,14 +1076,14 @@ time:56.0
 --queue[0, 0]-WEST(in_task = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
 
 time:57.0
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
@@ -1096,18 +1096,18 @@ time:57.0
 --queue[0, 0]-WEST(in_task = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 
 time:58.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-EAST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --QS[2, 0](out_queue-EAST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --NODE[2, 0](out_NCUnit-EAST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --NODE[3, 0](in_NCUnit-WEST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --QS[3, 0](in_queue-WEST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --queue[3, 0]-WEST(in_task = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 --Simple Generator(out = {name: TASK-50, age: 0, dest: [3, 2], comutation_req: 1.0})
@@ -1116,21 +1116,21 @@ time:58.0
 --queue[0, 0]-WEST(in_task = {name: TASK-50, age: 0, dest: [3, 2], comutation_req: 1.0})
 
 time:59.0
---conflict[NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[3, 0]-WEST(out_switch = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --switch[3, 0](in_task_queue-WEST = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --Simple Generator(out = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
@@ -1139,21 +1139,21 @@ time:59.0
 --queue[0, 0]-WEST(in_task = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 
 time:60.0
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[3, 0](out_task_next-SOUTH = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --QS[3, 0](out_queue-SOUTH = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --NODE[3, 0](out_NCUnit-SOUTH = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --NODE[3, 1](in_NCUnit-NORTH = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --QS[3, 1](in_queue-NORTH = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
 --queue[3, 1]-NORTH(in_task = {name: TASK-10, age: 0, dest: [3, 3], comutation_req: 1.0})
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
@@ -1166,21 +1166,21 @@ time:60.0
 --queue[0, 0]-WEST(in_task = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 
 time:61.0
---conflict[NOC]= {NODE[3, 0],NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[3, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[3, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-59, age: 0, dest: [2, 3], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 --Simple Generator(out = {name: TASK-23, age: 0, dest: [1, 2], comutation_req: 2.0})
@@ -1189,18 +1189,18 @@ time:61.0
 --queue[0, 0]-WEST(in_task = {name: TASK-23, age: 0, dest: [1, 2], comutation_req: 2.0})
 
 time:62.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
@@ -1209,10 +1209,10 @@ time:62.0
 --queue[0, 0]-WEST(in_task = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 
 time:63.0
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --switch[0, 0](out_task_next-EAST = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
@@ -1223,18 +1223,18 @@ time:63.0
 --queue[1, 0]-WEST(in_task = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 
 time:64.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[2, 0](out_task_next-EAST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --QS[2, 0](out_queue-EAST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --NODE[2, 0](out_NCUnit-EAST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --NODE[3, 0](in_NCUnit-WEST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --QS[3, 0](in_queue-WEST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --queue[3, 0]-WEST(in_task = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-6, age: 0, dest: [2, 2], comutation_req: 3.0})
@@ -1243,21 +1243,21 @@ time:64.0
 --queue[0, 0]-WEST(in_task = {name: TASK-6, age: 0, dest: [2, 2], comutation_req: 3.0})
 
 time:65.0
---conflict[NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[3, 0]-WEST(out_switch = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --switch[3, 0](in_task_queue-WEST = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --Simple Generator(out = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
@@ -1266,21 +1266,21 @@ time:65.0
 --queue[0, 0]-WEST(in_task = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 
 time:66.0
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[3, 0](out_task_next-SOUTH = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --QS[3, 0](out_queue-SOUTH = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --NODE[3, 0](out_NCUnit-SOUTH = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --NODE[3, 1](in_NCUnit-NORTH = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --QS[3, 1](in_queue-NORTH = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
 --queue[3, 1]-NORTH(in_task = {name: TASK-2, age: 0, dest: [3, 1], comutation_req: 3.0})
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
@@ -1293,35 +1293,35 @@ time:66.0
 --queue[0, 0]-WEST(in_task = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 
 time:67.0
---conflict[NOC]= {NODE[3, 0],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[3, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[3, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-20, age: 0, dest: [2, 3], comutation_req: 0.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:68.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
@@ -1330,10 +1330,10 @@ time:68.0
 --queue[0, 0]-WEST(in_task = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
 
 time:69.0
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --switch[0, 0](out_task_next-EAST = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
@@ -1344,18 +1344,18 @@ time:69.0
 --queue[1, 0]-WEST(in_task = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
 
 time:70.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-4, age: 0, dest: [2, 2], comutation_req: 1.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-56, age: 0, dest: [3, 3], comutation_req: 2.0})
@@ -1364,10 +1364,10 @@ time:70.0
 --queue[0, 0]-WEST(in_task = {name: TASK-56, age: 0, dest: [3, 3], comutation_req: 2.0})
 
 time:71.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-99, age: 0, dest: [1, 2], comutation_req: 0.0})
@@ -1378,11 +1378,11 @@ time:71.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 
 time:72.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
@@ -1395,22 +1395,22 @@ time:72.0
 --queue[0, 0]-WEST(in_task = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 
 time:73.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:74.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 --NODE[1, 1](in_NCUnit-NORTH = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 --QS[1, 1](in_queue-NORTH = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
 --queue[1, 1]-NORTH(in_task = {name: TASK-54, age: 0, dest: [1, 2], comutation_req: 0.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --Simple Generator(out = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
@@ -1419,11 +1419,11 @@ time:74.0
 --queue[0, 0]-WEST(in_task = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 
 time:75.0
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
@@ -1436,22 +1436,22 @@ time:75.0
 --queue[0, 0]-WEST(in_task = {name: TASK-61, age: 0, dest: [1, 3], comutation_req: 2.0})
 
 time:76.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:77.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --Simple Generator(out = {name: TASK-65, age: 0, dest: [2, 3], comutation_req: 0.0})
@@ -1460,14 +1460,14 @@ time:77.0
 --queue[0, 0]-WEST(in_task = {name: TASK-65, age: 0, dest: [2, 3], comutation_req: 0.0})
 
 time:78.0
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
@@ -1480,18 +1480,18 @@ time:78.0
 --queue[0, 0]-WEST(in_task = {name: TASK-24, age: 0, dest: [2, 1], comutation_req: 2.0})
 
 time:79.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-9, age: 0, dest: [2, 2], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 --Simple Generator(out = {name: TASK-73, age: 0, dest: [2, 1], comutation_req: 0.0})
@@ -1500,18 +1500,18 @@ time:79.0
 --queue[0, 0]-WEST(in_task = {name: TASK-73, age: 0, dest: [2, 1], comutation_req: 0.0})
 
 time:80.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --NODE[2, 0](in_NCUnit-WEST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --QS[2, 0](in_queue-WEST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --queue[2, 0]-WEST(in_task = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-81, age: 0, dest: [3, 3], comutation_req: 0.0})
@@ -1520,10 +1520,10 @@ time:80.0
 --queue[0, 0]-WEST(in_task = {name: TASK-81, age: 0, dest: [3, 3], comutation_req: 0.0})
 
 time:81.0
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --switch[0, 0](out_task_next-EAST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
@@ -1534,18 +1534,18 @@ time:81.0
 --queue[1, 0]-WEST(in_task = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 
 time:82.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[0, 0],NODE[1, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-99, age: 0, dest: [2, 1], comutation_req: 2.0})
---conflict[NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],NODE[1, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --Simple Generator(out = {name: TASK-29, age: 0, dest: [1, 3], comutation_req: 0.0})
@@ -1554,10 +1554,10 @@ time:82.0
 --queue[0, 0]-WEST(in_task = {name: TASK-29, age: 0, dest: [1, 3], comutation_req: 0.0})
 
 time:83.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
@@ -1568,14 +1568,14 @@ time:83.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 
 time:84.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
@@ -1588,18 +1588,18 @@ time:84.0
 --queue[0, 0]-WEST(in_task = {name: TASK-40, age: 0, dest: [1, 3], comutation_req: 3.0})
 
 time:85.0
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-EAST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --QS[2, 0](out_queue-EAST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --NODE[2, 0](out_NCUnit-EAST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --NODE[3, 0](in_NCUnit-WEST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --QS[3, 0](in_queue-WEST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --queue[3, 0]-WEST(in_task = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 --Simple Generator(out = {name: TASK-1, age: 0, dest: [1, 1], comutation_req: 3.0})
@@ -1608,13 +1608,13 @@ time:85.0
 --queue[0, 0]-WEST(in_task = {name: TASK-1, age: 0, dest: [1, 1], comutation_req: 3.0})
 
 time:86.0
---conflict[NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[0, 0],} --> null
 --queue[3, 0]-WEST(out_switch = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --switch[3, 0](in_task_queue-WEST = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-EAST = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --QS[1, 0](out_queue-EAST = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --NODE[1, 0](out_NCUnit-EAST = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
@@ -1625,21 +1625,21 @@ time:86.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 
 time:87.0
---conflict[NOC]= {Simple Generator,NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[1, 0],NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[3, 0](out_task_next-SOUTH = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --QS[3, 0](out_queue-SOUTH = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --NODE[3, 0](out_NCUnit-SOUTH = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --NODE[3, 1](in_NCUnit-NORTH = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --QS[3, 1](in_queue-NORTH = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
 --queue[3, 1]-NORTH(in_task = {name: TASK-79, age: 0, dest: [3, 3], comutation_req: 0.0})
---conflict[NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[0, 0],Simple Generator,} --> null
 --queue[2, 0]-WEST(out_switch = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --switch[2, 0](in_task_queue-WEST = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
@@ -1652,35 +1652,35 @@ time:87.0
 --queue[0, 0]-WEST(in_task = {name: TASK-21, age: 0, dest: [3, 3], comutation_req: 0.0})
 
 time:88.0
---conflict[NOC]= {NODE[3, 0],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[3, 0],NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[3, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[3, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
 --switch[2, 0](out_task_next-SOUTH = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --QS[2, 0](out_queue-SOUTH = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --NODE[2, 0](out_NCUnit-SOUTH = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --NODE[2, 1](in_NCUnit-NORTH = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --QS[2, 1](in_queue-NORTH = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
 --queue[2, 1]-NORTH(in_task = {name: TASK-37, age: 0, dest: [2, 3], comutation_req: 2.0})
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:89.0
---conflict[NOC]= {Simple Generator,NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[2, 0],NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[2, 0],NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[2, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[2, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 --NODE[1, 1](in_NCUnit-NORTH = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 --QS[1, 1](in_queue-NORTH = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
 --queue[1, 1]-NORTH(in_task = {name: TASK-60, age: 0, dest: [1, 3], comutation_req: 0.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
 --Simple Generator(out = {name: TASK-90, age: 0, dest: [2, 1], comutation_req: 3.0})
@@ -1689,11 +1689,11 @@ time:89.0
 --queue[0, 0]-WEST(in_task = {name: TASK-90, age: 0, dest: [2, 1], comutation_req: 3.0})
 
 time:90.0
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
@@ -1706,11 +1706,11 @@ time:90.0
 --queue[0, 0]-WEST(in_task = {name: TASK-30, age: 0, dest: [1, 3], comutation_req: 1.0})
 
 time:91.0
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 --Simple Generator(out = {name: TASK-83, age: 0, dest: [3, 1], comutation_req: 0.0})
@@ -1719,7 +1719,7 @@ time:91.0
 --queue[0, 0]-WEST(in_task = {name: TASK-83, age: 0, dest: [3, 1], comutation_req: 0.0})
 
 time:92.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-4, age: 0, dest: [1, 2], comutation_req: 3.0})
@@ -1730,11 +1730,11 @@ time:92.0
 --switch[0, 0](in_task_queue-WEST = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 
 time:93.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
@@ -1747,22 +1747,22 @@ time:93.0
 --queue[0, 0]-WEST(in_task = {name: TASK-52, age: 0, dest: [1, 3], comutation_req: 2.0})
 
 time:94.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:95.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 --NODE[1, 1](in_NCUnit-NORTH = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 --QS[1, 1](in_queue-NORTH = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
 --queue[1, 1]-NORTH(in_task = {name: TASK-60, age: 0, dest: [1, 2], comutation_req: 0.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --Simple Generator(out = {name: TASK-72, age: 0, dest: [3, 1], comutation_req: 0.0})
@@ -1771,11 +1771,11 @@ time:95.0
 --queue[0, 0]-WEST(in_task = {name: TASK-72, age: 0, dest: [3, 1], comutation_req: 0.0})
 
 time:96.0
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
@@ -1788,22 +1788,22 @@ time:96.0
 --queue[0, 0]-WEST(in_task = {name: TASK-57, age: 0, dest: [1, 2], comutation_req: 3.0})
 
 time:97.0
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],} --> null
 --queue[1, 0]-WEST(out_switch = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --switch[1, 0](in_task_queue-WEST = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --switch[0, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[0, 0]-WEST(in_command = NEXT_TASK)
 
 time:98.0
---conflict[NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
---conflict[NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[1, 0],NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],NODE[0, 0],Simple Generator,} --> null
 --switch[1, 0](out_task_next-SOUTH = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --QS[1, 0](out_queue-SOUTH = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --NODE[1, 0](out_NCUnit-SOUTH = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --NODE[1, 1](in_NCUnit-NORTH = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --QS[1, 1](in_queue-NORTH = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
 --queue[1, 1]-NORTH(in_task = {name: TASK-89, age: 0, dest: [1, 1], comutation_req: 3.0})
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --queue[0, 0]-WEST(out_switch = {name: TASK-61, age: 0, dest: [1, 3], comutation_req: 2.0})
 --switch[0, 0](in_task_queue-WEST = {name: TASK-61, age: 0, dest: [1, 3], comutation_req: 2.0})
 --Simple Generator(out = {name: TASK-46, age: 0, dest: [3, 1], comutation_req: 3.0})
@@ -1812,11 +1812,11 @@ time:98.0
 --queue[0, 0]-WEST(in_task = {name: TASK-46, age: 0, dest: [3, 1], comutation_req: 3.0})
 
 time:99.0
---conflict[NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[1, 0],Simple Generator,NODE[0, 0],} --> null
 --switch[1, 0](out_cmd_queue-WEST = NEXT_TASK)
 --queue[1, 0]-WEST(in_command = NEXT_TASK)
---conflict[NOC]= {Simple Generator,NODE[0, 0],} --> null
---conflict[NOC]= {NODE[0, 0],Simple Generator,} --> null
+--conflict[NOC.NOC]= {Simple Generator,NODE[0, 0],} --> null
+--conflict[NOC.NOC]= {NODE[0, 0],Simple Generator,} --> null
 --switch[0, 0](out_task_next-EAST = {name: TASK-61, age: 0, dest: [1, 3], comutation_req: 2.0})
 --QS[0, 0](out_queue-EAST = {name: TASK-61, age: 0, dest: [1, 3], comutation_req: 2.0})
 --NODE[0, 0](out_NCUnit-EAST = {name: TASK-61, age: 0, dest: [1, 3], comutation_req: 2.0})
@@ -1829,7 +1829,7 @@ time:99.0
 --queue[0, 0]-WEST(in_task = {name: TASK-77, age: 0, dest: [3, 3], comutation_req: 0.0})
 
 ======================================================
-|Simulated model: NOC
+|Simulated model: NOC.NOC
 |Simulation ends at time: 100.0 t.u
 |Execution time: 1356409506 ns
 |Simulation date: Thu Aug 30 17:52:39 CEST 2018
