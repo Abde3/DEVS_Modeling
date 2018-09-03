@@ -1,4 +1,6 @@
-package NOCUnit;
+package BaseModel;
+
+import NOCUnit.NodeCoordinate;
 
 public class Task {
 	
@@ -6,8 +8,8 @@ public class Task {
 	
 	private String 	name;
 	private int id;
-	private int 	age;
-	private NodeCoordinate 	destination;
+	private int age;
+	private NodeCoordinate destination;
 	private float 	computation_requirement;
 
 	public Task(int id, int computation_requirement, NodeCoordinate destination) {
