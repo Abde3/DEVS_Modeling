@@ -2,8 +2,6 @@ package NOCUnit;
 
 import DEVSModel.DEVSCoupled;
 import DEVSModel.Port;
-
-import java.util.Collections;
 import java.util.Vector;
 
 
