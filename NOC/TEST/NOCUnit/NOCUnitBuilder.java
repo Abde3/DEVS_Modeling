@@ -1,7 +1,6 @@
 package NOCUnit;
 
-
-import DEVSModel.Port;
+import BaseModel.ProcessingElement;
 
 import java.util.Vector;
 
@@ -40,10 +39,7 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
     @Override
     void buildSubComponents(NOCUnit unit) {
-
         unit.processingElement = new ProcessingElement();
-        unit.queueSwitch = new QueueSwitch();
-
     }
 
 

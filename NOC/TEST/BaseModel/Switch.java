@@ -1,4 +1,4 @@
-package NOCUnit;
+package BaseModel;
 
 
 import DEVSModel.DEVSAtomic;
@@ -8,23 +8,17 @@ public class Switch extends DEVSAtomic {
 
 
 	@Override
-	public void init() {
-		
-	}
+	public void init() { }
 
 	@Override
-	public void deltaExt(Port port, Object o, float v) {
-
-	}
+	public void deltaExt(Port port, Object o, float v) { }
 
 	@Override
-	public void deltaInt() {
-
-	}
+	public void deltaInt() { }
 
 	@Override
 	public Object[] lambda() {
-		return new Object[0];
+		return null;
 	}
 
 	@Override

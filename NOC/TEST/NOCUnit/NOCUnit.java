@@ -1,7 +1,11 @@
 package NOCUnit;
 
+import BaseModel.ProcessingElement;
+import BaseModel.Queue;
+import BaseModel.Switch;
 import DEVSModel.DEVSCoupled;
 import DEVSModel.Port;
+
 import java.util.Vector;
 
 
@@ -9,9 +13,10 @@ public class NOCUnit extends DEVSCoupled {
 
     protected Vector<Port>      v_in_ports;
     protected Vector<Port>      v_out_ports;
-    protected QueueSwitch       queueSwitch;
+    protected Vector<Queue>     v_in_queue;
+    protected Vector<Queue>     v_out_queue;
+    protected Switch            aSwitch;
     protected ProcessingElement processingElement;
-
 
     private boolean addPort(boolean isInPort, String portName) throws ExistingPortException {
 
@@ -43,14 +48,12 @@ public class NOCUnit extends DEVSCoupled {
 
     }
 
-
     protected boolean addOutPort(String portName) throws ExistingPortException {
         return addPort(false, portName);
     }
 
-
     protected boolean addInPort(String portName) throws ExistingPortException {
-        return  addPort(true, portName);
+        return addPort(true, portName);
     }
 
 
