@@ -1,26 +1,24 @@
 package NocTopology;
 
 
-import NocTopology.NOCDirections.CardinalDirection2D;
+import NOCUnit.MeshNocNetwork;
+import NocTopology.NOCDirections.Coordinate2D;
+import NocTopology.NOCDirections.ICoordinateSystem;
 import NocTopology.NOCDirections.IDirection;
 
 public class MeshTopology extends NocTopology {
 
 
-    private IDirection directionSystem;
+    protected MeshTopology(int size) {
+        this.size = size;
+        this.nocNetwork = new MeshNocNetwork(size);
 
-    protected MeshTopology() {
-        directionSystem = new CardinalDirection2D();
-    }
-
-    @Override
-    public void buildLink() {
 
     }
 
     @Override
-    public IDirection getDirectionSystem() {
-        return directionSystem;
+    public ICoordinateSystem getCoordinateSystem() {
+        return coordinateSystem;
     }
 
 

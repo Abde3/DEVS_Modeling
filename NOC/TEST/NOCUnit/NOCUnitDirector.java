@@ -1,20 +1,41 @@
 package NOCUnit;
 
-public class NOCUnitDirector {
-    AbstractNOCUnitBuilder unitBuilder;
 
-    public NOCUnitDirector (AbstractNOCUnitBuilder unitBuilder) {
-        this.unitBuilder = unitBuilder;
+import NOCRoutingPolicy.NocRoutingPolicy;
+import NocTopology.NOCDirections.ICoordinateSystem;
+import NocTopology.NocTopology;
+
+public class NOCUnitDirector {
+
+    private final NocTopology topology;
+    private final NocRoutingPolicy routingPolicy;
+
+    public NOCUnitDirector(NocTopology topology, NocRoutingPolicy routingPolicy) {
+        this.topology = topology;
+        this.routingPolicy = routingPolicy;
     }
 
-    public NOCUnit build() {
 
-        NOCUnit unit = unitBuilder.newBuilder();
-        unitBuilder.buildInPorts(unit);
-        unitBuilder.buildOutPorts(unit);
-        unitBuilder.buildSubComponents(unit);
 
-        return unit;
+    public NOCUnit buildNocUnit(ICoordinateSystem coordinate) {
+        NOCUnit nocUnit = null;
+
+        try {
+
+            nocUnit = new NOCUnitBuilder()
+                    .withInPorts()
+                    .withOutPorts(" ", " ")
+                    .withQueuePerInPortRatio(1)
+                    .withQueuePerOutPortRatio(0)
+                    .withRoutingPolicy(routingPolicy)
+                    .build();
+
+        } catch (NOCUnit.ExistingPortException e) {
+            e.printStackTrace();
+        }
+
+
+        return nocUnit;
     }
 
 }

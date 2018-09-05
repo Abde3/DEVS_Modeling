@@ -1,21 +1,16 @@
 package NocTopology;
 
 
-import NocTopology.NOCDirections.IDirection;
+import NocTopology.NOCDirections.ICoordinateSystem;
 
 public class LinearTopology extends NocTopology {
 
-    public LinearTopology() {
+    public LinearTopology(int size) {
 
     }
 
     @Override
-    public void buildLink() {
-
-    }
-
-    @Override
-    public IDirection getDirectionSystem() {
+    public ICoordinateSystem getCoordinateSystem() {
         return null;
     }
 }

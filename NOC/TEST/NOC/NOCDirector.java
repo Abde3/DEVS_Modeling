@@ -1,62 +1,39 @@
 package NOC;
 
 
+import DEVSModel.DEVSModel;
 import NOCRoutingPolicy.NocRoutingPolicy;
 import NOCRoutingPolicy.UnhandledRoutingPolicyException;
-import NOCUnit.NOCUnit;
-import NOCUnit.NOCUnitBuilder;
-import NOCUnit.NOCUnitDirector;
+import NOCUnit.*;
 import NocTopology.NocTopology;
 
+import java.util.HashMap;
+
 public class NOCDirector {
-    AbstractNOCBuilder nocBuilder;
-    NOCUnitDirector nocUnitDirector;
-    NocRoutingPolicy routingPolicy;
-    NocTopology topology;
-    int nocSize;
 
 
-    public NOCDirector (AbstractNOCBuilder nocBuilder) {
-        this.nocBuilder = nocBuilder;
-        nocUnitDirector = new NOCUnitDirector( new NOCUnitBuilder() );
-        nocSize = -1;
-    }
+    public static NOC buildNOCMesh() {
 
-
-    public NOCDirector withSize(int nocSize) {
-        this.nocSize = nocSize;
-        return this;
-    }
-
-
-    public NOCDirector withRoutingPolicy(NOC.RoutingPolicy routingPolicy) {
+        NOC NOCMesh = null;
         try {
-            this.routingPolicy = NocRoutingPolicy.buildRoutingPolicy(routingPolicy);
+
+            NOCMesh = new NOC2DimensionBuilder()
+                    .withSize( 4 )
+                    .withTopology( NocTopology.Topology.MESH )
+                    .withRoutingPolicy( NocRoutingPolicy.RoutingPolicy.DETERMINISTIC )
+                    .withAGenerator( null , null )
+                    .withNumberOfVirtualChannel(1)
+                    .build();
+
+        } catch (NOC2DimensionBuilder.ExistingGeneratorException e) {
+            e.printStackTrace();
         } catch (UnhandledRoutingPolicyException e) {
             e.printStackTrace();
-        }
-        return this;
-    }
-
-
-    public NOCDirector withTopology(NocTopology.NocTopology.Topology nocTopology ) {
-        try {
-            this.topology = NocTopology.buildTopology( nocTopology );
         } catch (NocTopology.UnhandledTopologyException e) {
             e.printStackTrace();
         }
-        return this;
-    }
 
-
-    public NOC build() {
-
-        NOC noc = nocBuilder.newBuilder(nocSize, topology, routingPolicy);
-        NOCUnit nocUnit = nocUnitDirector.
-        nocBuilder.buildNocUnits(noc);
-        nocBuilder.buildLinks(noc);
-
-        return noc;
+        return NOCMesh;
     }
 
 

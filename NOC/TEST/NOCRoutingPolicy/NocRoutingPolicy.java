@@ -4,7 +4,9 @@ import NOC.NOC;
 
 public abstract class NocRoutingPolicy {
 
-        public static NocRoutingPolicy buildRoutingPolicy(NOC.RoutingPolicy routingPolicy) throws UnhandledRoutingPolicyException {
+        public enum RoutingPolicy {DETERMINISTIC, SEMI_DETERMINISTIC, ADAPTATIVE}
+
+        public static NocRoutingPolicy buildRoutingPolicy(RoutingPolicy routingPolicy) throws UnhandledRoutingPolicyException {
             NocRoutingPolicy nocRoutingPolicy = null;
             switch(routingPolicy)
             {
@@ -23,10 +25,3 @@ public abstract class NocRoutingPolicy {
 
 
 
-public class UnhandledRoutingPolicyException extends Throwable {
-
-    public UnhandledRoutingPolicyException(String message) {
-        super(message);
-    }
-
-}

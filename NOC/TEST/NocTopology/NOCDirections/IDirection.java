@@ -1,9 +1,18 @@
 package NocTopology.NOCDirections;
 
-import NocTopology.NocTopology;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 
-public interface IDirection {
+public class IDirection {
 
-    String[] getPossibleDirection();
+    LinkedHashSet<String> directions ;
+
+    public IDirection(String ... directions) {
+        this.directions = new LinkedHashSet(Arrays.asList(directions));
+    }
+
+    final public String[] getDirectionsSet() {
+        return directions.toArray(new String[directions.size()]);
+    }
 
 }

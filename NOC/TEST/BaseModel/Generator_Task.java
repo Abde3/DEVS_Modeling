@@ -1,9 +1,9 @@
-package Model;
+package BaseModel;
 
 import java.util.Random;
 import DEVSModel.DEVSAtomic;
 import DEVSModel.Port;
-
+import NOCUnit.NodeCoordinate;
 
 
 public class Generator_Task extends DEVSAtomic {
@@ -72,7 +72,7 @@ public class Generator_Task extends DEVSAtomic {
 
 		if (state.equals(State.GENERATE)) {
 			output = setOutputLambda(out, value_out);
-			Pretty_print.trace(this.name,  " TASK " + value_out + " created!");
+//			Pretty_print.trace(this.name,  " TASK " + value_out + " created!");
 		} else {
 			output = null;
 		}

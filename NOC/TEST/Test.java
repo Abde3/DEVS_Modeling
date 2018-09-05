@@ -4,20 +4,18 @@ import NOC.*;
 import NOCUnit.NodeCoordinate;
 import NocTopology.NocTopology;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+
 
 public class Test {
 
     public static void main(String[] args){
-        System.out.println("ooow");
+        System.out.println("ooow ");
 
-        NOC noc = new NOCDirector( new NOC2DimensionBuilder() )
-                    .withRoutingPolicy( NOC.RoutingPolicy.DETERMINISTIC )
-                    .withTopology( NocTopology.Topology.MESH )
-                    .withSize( 4 )
-                    .withAGeneratorAt( new Generator_Task("random"), new NodeCoordinate(0, 0))
-                    .build( );
+        NOC MESH_4_DETERMINISTIC = NOCDirector.buildNOCMesh();
 
-        Root root = new Root(noc, 40);
+        Root root = new Root(MESH_4_DETERMINISTIC, 40);
 		root.startSimulation();
 
     }
