@@ -55,8 +55,6 @@ public class NOCUnit extends DEVSCoupled {
 
     }
 
-
-
     private boolean addPort(boolean isInPort, String portName)  {
 
         if (isInPort) {
@@ -79,16 +77,13 @@ public class NOCUnit extends DEVSCoupled {
 
     }
 
-
     private boolean addOutPort(String portName) {
         return addPort(false, portName);
     }
 
-
     private boolean addInPort(String portName) {
         return  addPort(true, portName);
     }
-
 
 
     @Override

@@ -1,4 +1,6 @@
-package NOCRoutingPolicy;
+package Model.Routing;
+
+import Model.Routing.NocRoutingPolicy;
 
 public class DeterministicRouting extends NocRoutingPolicy {
 

@@ -1,6 +1,4 @@
-package NOCRoutingPolicy;
-
-import NOC.NOC;
+package Model.Routing;
 
 public abstract class NocRoutingPolicy {
 

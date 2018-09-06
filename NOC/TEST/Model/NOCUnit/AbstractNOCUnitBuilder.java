@@ -1,9 +1,11 @@
-package NOCUnit;
+package Model.NOCUnit;
 
 import BaseModel.ProcessingElement;
 import BaseModel.Queue;
 import BaseModel.Switch;
-import NOCRoutingPolicy.NocRoutingPolicy;
+import Model.Routing.NocRoutingPolicy;
+import NOCUnit.NOCUnit;
+
 import java.util.Set;
 
 

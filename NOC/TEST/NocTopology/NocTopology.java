@@ -1,7 +1,7 @@
 package NocTopology;
 
-import NOC.INocNetwork;
-import NocTopology.NOCDirections.ICoordinateSystem;
+
+import Model.NOCModel.INocNetwork;
 
 public abstract class NocTopology {
 
@@ -10,9 +10,6 @@ public abstract class NocTopology {
 
     protected INocNetwork nocNetwork;                       /***** Represent all the units in the model *********/
     protected int size;                                     /***** Represent the size of the model **************/
-
-
-    public abstract ICoordinateSystem getCoordinateSystem();
 
 
     public static NocTopology buildTopology(Topology topology, int size) throws UnhandledTopologyException {

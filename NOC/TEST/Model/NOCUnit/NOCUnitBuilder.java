@@ -1,14 +1,16 @@
-package NOCUnit;
+package Model.NOCUnit;
 
 import BaseModel.ProcessingElement;
 import BaseModel.Queue;
 import BaseModel.Switch;
-import DEVSModel.Port;
-import NOCRoutingPolicy.NocRoutingPolicy;
+import Model.Routing.NocRoutingPolicy;
+import NOCUnit.NOCUnit;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Vector;
+
 
 public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
@@ -29,9 +31,9 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
     @Override
     public AbstractNOCUnitBuilder withOutPorts(String... outPorts) throws NOCUnit.ExistingPortException {
 
-        v_in_ports_names = new HashSet<>(Arrays.asList(outPorts));
+        v_out_ports_names = new HashSet<>(Arrays.asList(outPorts));
 
-        if (v_in_ports_names.size() != outPorts.length) {
+        if (v_out_ports_names.size() != outPorts.length) {
             throw new NOCUnit.ExistingPortException("The given list of output ports names contains duplicate") ;
         }
 
@@ -40,6 +42,8 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
     @Override
     public AbstractNOCUnitBuilder withQueuePerInPortRatio(int queuePerInPortRatio) {
+
+        v_in_queue = new LinkedHashSet<>();
 
         for ( String inPortName : v_in_ports_names) {
 
@@ -54,6 +58,8 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
     @Override
     public AbstractNOCUnitBuilder withQueuePerOutPortRatio(int queuePerOutPortRatio) {
+
+        v_out_queue = new LinkedHashSet<>();
 
         for ( String outPortName : v_out_ports_names) {
 

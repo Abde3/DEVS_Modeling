@@ -1,24 +1,17 @@
 package NOCUnit;
 
 import DEVSModel.DEVSModel;
-import NOC.INocNetwork;
-import NocTopology.NOCDirections.Coordinate2D;
-import NocTopology.NOCDirections.ICoordinateSystem;
-import NocTopology.NOCDirections.IDirection;
+import Model.NOCModel.INocNetwork;
+import NocTopology.NOCDirections.ICoordinate;
+import NocTopology.NOCDirections.Point2D;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;;
 
-public class MeshNocNetwork extends INocNetwork {
+public class MeshNocNetwork extends INocNetwork<Point2D> {
 
     public MeshNocNetwork(int size) {
-        this.units = new LinkedHashMap<>(size*size);
-
-        for (int y = 0; y < size; y++) {
-            for (int x = 0; x < size; x++) {
-                Coordinate2D coordinate = new Coordinate2D(x, y);
-                units.put(coordinate, null);
-            }
-        }
+        super(size);
     }
 
     @Override
@@ -27,22 +20,22 @@ public class MeshNocNetwork extends INocNetwork {
     }
 
     @Override
-    public DEVSModel getUnitAt(ICoordinateSystem position) {
+    public DEVSModel getUnitAt(ICoordinate position) {
         return units.get(position);
     }
 
-    @Override
-    public DEVSModel getUnitFromPosition(ICoordinateSystem position, IDirection direction) {
-        return null;
-    }
 
     @Override
-    public boolean addUnitAt(DEVSModel model, ICoordinateSystem position) {
+    public boolean addUnitAt(DEVSModel model, Point2D position) {
         return ( units.put(position, model) == null );
     }
 
+    @Override
+    public DEVSModel getUnitFromPosition(Point2D position, String direction) {
+        return null;
+    }
 
-    public Collection<ICoordinateSystem> getAllPositions() {
+    public Collection<Point2D> getAllPositions() {
         return units.keySet();
     }
 

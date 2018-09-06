@@ -1,11 +1,11 @@
-package NOC;
+package Model.NOCModel;
 
 
 import DEVSModel.DEVSModel;
-import NOCRoutingPolicy.NocRoutingPolicy;
-import NOCRoutingPolicy.UnhandledRoutingPolicyException;
-import NOCUnit.NodeCoordinate;
-import NocTopology.NOCDirections.ICoordinateSystem;
+import Model.Exceptions.ExistingGeneratorException;
+import Model.Routing.NocRoutingPolicy;
+import Model.Routing.UnhandledRoutingPolicyException;
+import NocTopology.NOCDirections.ICoordinate;
 import NocTopology.NocTopology;
 
 import java.util.HashMap;
@@ -32,7 +32,7 @@ public class NOC2DimensionBuilder extends AbstractNOCBuilder<NOC2Dimension> {
     }
 
     @Override
-    public AbstractNOCBuilder withAGenerator(DEVSModel generator, ICoordinateSystem coordinate) throws ExistingGeneratorException {
+    public AbstractNOCBuilder withAGenerator(DEVSModel generator, ICoordinate coordinate) throws ExistingGeneratorException {
 
         if( generators == null ) { generators = new HashMap<>(); }
 
@@ -61,13 +61,6 @@ public class NOC2DimensionBuilder extends AbstractNOCBuilder<NOC2Dimension> {
         NOC2Dimension instance = new NOC2Dimension( topology, routingPolicy, generators );
 
         return instance;
-    }
-
-
-    public class ExistingGeneratorException extends Exception {
-        public ExistingGeneratorException(String msg) {
-            super(msg);
-        }
     }
 
 }

@@ -1,8 +1,9 @@
-package NOCUnit;
+package Model.NOCUnit;
 
 
-import NOCRoutingPolicy.NocRoutingPolicy;
-import NocTopology.NOCDirections.ICoordinateSystem;
+import Model.Routing.NocRoutingPolicy;
+import NOCUnit.NOCUnit;
+import NocTopology.NOCDirections.ICoordinate;
 import NocTopology.NocTopology;
 
 public class NOCUnitDirector {
@@ -17,14 +18,14 @@ public class NOCUnitDirector {
 
 
 
-    public NOCUnit buildNocUnit(ICoordinateSystem coordinate) {
+    public NOCUnit buildNocUnit(ICoordinate coordinate) {
         NOCUnit nocUnit = null;
 
         try {
 
             nocUnit = new NOCUnitBuilder()
                     .withInPorts()
-                    .withOutPorts(" ", " ")
+                    .withOutPorts(" a ", " b ")
                     .withQueuePerInPortRatio(1)
                     .withQueuePerOutPortRatio(0)
                     .withRoutingPolicy(routingPolicy)

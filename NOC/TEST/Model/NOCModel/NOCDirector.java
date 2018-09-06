@@ -1,13 +1,11 @@
-package NOC;
+package Model.NOCModel;
 
 
-import DEVSModel.DEVSModel;
-import NOCRoutingPolicy.NocRoutingPolicy;
-import NOCRoutingPolicy.UnhandledRoutingPolicyException;
-import NOCUnit.*;
+
+import Model.Exceptions.ExistingGeneratorException;
+import Model.Routing.NocRoutingPolicy;
+import Model.Routing.UnhandledRoutingPolicyException;
 import NocTopology.NocTopology;
-
-import java.util.HashMap;
 
 public class NOCDirector {
 
@@ -25,11 +23,11 @@ public class NOCDirector {
                     .withNumberOfVirtualChannel(1)
                     .build();
 
-        } catch (NOC2DimensionBuilder.ExistingGeneratorException e) {
-            e.printStackTrace();
         } catch (UnhandledRoutingPolicyException e) {
             e.printStackTrace();
         } catch (NocTopology.UnhandledTopologyException e) {
+            e.printStackTrace();
+        } catch (ExistingGeneratorException e) {
             e.printStackTrace();
         }
 
