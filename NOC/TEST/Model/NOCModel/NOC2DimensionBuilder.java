@@ -5,17 +5,17 @@ import DEVSModel.DEVSModel;
 import Model.Exceptions.ExistingGeneratorException;
 import Model.Routing.NocRoutingPolicy;
 import Model.Routing.UnhandledRoutingPolicyException;
-import NocTopology.NOCDirections.ICoordinate;
+import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
 
 import java.util.HashMap;
 
-public class NOC2DimensionBuilder extends AbstractNOCBuilder<NOC2Dimension> {
+public class NOC2DimensionBuilder extends AbstractNOCBuilder {
 
 
     @Override
-    public AbstractNOCBuilder withTopology(NocTopology.Topology topology) throws NocTopology.UnhandledTopologyException {
-        this.topology = NocTopology.buildTopology(topology, size);
+    public AbstractNOCBuilder withTopology(NocTopology topology)  {
+        this.topology = topology;
         return this;
     }
 
@@ -32,11 +32,11 @@ public class NOC2DimensionBuilder extends AbstractNOCBuilder<NOC2Dimension> {
     }
 
     @Override
-    public AbstractNOCBuilder withAGenerator(DEVSModel generator, ICoordinate coordinate) throws ExistingGeneratorException {
+    public AbstractNOCBuilder withAGenerator(DEVSModel generator, IPoint coordinate) throws ExistingGeneratorException {
 
         if( generators == null ) { generators = new HashMap<>(); }
 
-        DEVSModel hasBeenAdded = generators.putIfAbsent(coordinate, generator);
+        Object hasBeenAdded = generators.putIfAbsent(coordinate, generator);
 
         if (hasBeenAdded != null) {
             throw new ExistingGeneratorException( "The added generator (ie. name = "

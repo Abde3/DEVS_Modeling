@@ -1,6 +1,5 @@
 package Model.Routing;
 
-import Model.Routing.NocRoutingPolicy;
 
 public class AdaptiveRouting extends NocRoutingPolicy {
 

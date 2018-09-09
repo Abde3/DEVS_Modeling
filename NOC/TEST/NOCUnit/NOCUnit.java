@@ -5,10 +5,10 @@ import BaseModel.Queue;
 import BaseModel.Switch;
 import DEVSModel.DEVSCoupled;
 import DEVSModel.Port;
+import NocTopology.NOCDirections.IPoint;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
 
 public class NOCUnit extends DEVSCoupled {
@@ -21,12 +21,14 @@ public class NOCUnit extends DEVSCoupled {
     protected final ProcessingElement aProcessingElement;
 
 
-    public NOCUnit(Set<String> v_in_ports_names, Set<String> v_out_ports_names,
-                   Set<Queue> v_in_queue,        Set<Queue> v_out_queue,
-                   Switch aSwitch,                  ProcessingElement aProcessingElement)
+    public NOCUnit(IPoint coordinate, Set<String> v_in_ports_names, Set<String> v_out_ports_names,
+                   Set<Queue> v_in_queue, Set<Queue> v_out_queue,
+                   Switch aSwitch, ProcessingElement aProcessingElement)
     {
 
         super();
+
+        this.name = coordinate.toString();
 
         this.v_in_ports = new HashSet<>();
         this.v_out_ports = new HashSet<>();

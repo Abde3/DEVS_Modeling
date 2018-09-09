@@ -1,48 +1,38 @@
 package NocTopology.NOCDirections;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
-public abstract class ICoordinate {
+public class ICoordinate {
 
-    private LinkedHashMap<String, Integer> coordinate;
-    private HashMap< String, Function<ICoordinate, ICoordinate>> directionToTransformations;
+    private String[] axisNames;
 
-    protected ICoordinate(String... systemAxesName ) {
-        coordinate = new LinkedHashMap<>(systemAxesName.length);
-        directionToTransformations = new HashMap<>();
-        Arrays.stream(systemAxesName).distinct().forEachOrdered(axe -> coordinate.put(axe, 0));
+    public ICoordinate(String ... axisNames ) {
+        this.axisNames = axisNames;
     }
 
-    protected final void bind(String direction, Function<ICoordinate, ICoordinate> pointTransformation) {
-        directionToTransformations.put(direction, pointTransformation);
+    public IPoint newPoint(Integer ... values) {
+        return new IPoint(axisNames, values);
     }
 
-    protected Collection<String> getAxesNames() {
-        return coordinate.keySet();
+    private static <E> Stream<List<E>> combinationsDupl(List<E> list, int size) {
+        if (size == 0) {
+            return Stream.of(Collections.emptyList());
+        } else {
+            return list.stream().flatMap( head -> combinationsDupl(list, size - 1).map(
+                    tail -> {
+                        List<E> newList = new ArrayList(tail);
+                        newList.add(0, head);
+                        return newList;
+                    }
+                    )
+            );
+        }
     }
 
-    protected int getValueOnAxe(String axe) {
-        return coordinate.get(axe);
+    public int getNuberOfAxis() {
+        return axisNames.length;
     }
-
-    protected void setValueOnAxe(String axe, int value) {
-        coordinate.put(axe, value);
-    }
-
-    protected ICoordinate incrementValueOnAxe(String axe) {
-        coordinate.put(axe, coordinate.get(axe) + 1);
-        return this;
-    }
-
-    protected ICoordinate decrementValueOnAxe(String axe) {
-        coordinate.put(axe, coordinate.get(axe) - 1);
-        return this;
-    }
-
-
 
 }

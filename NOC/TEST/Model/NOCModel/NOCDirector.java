@@ -5,7 +5,7 @@ package Model.NOCModel;
 import Model.Exceptions.ExistingGeneratorException;
 import Model.Routing.NocRoutingPolicy;
 import Model.Routing.UnhandledRoutingPolicyException;
-import NocTopology.NocTopology;
+import NocTopology.*;
 
 public class NOCDirector {
 
@@ -17,15 +17,13 @@ public class NOCDirector {
 
             NOCMesh = new NOC2DimensionBuilder()
                     .withSize( 4 )
-                    .withTopology( NocTopology.Topology.MESH )
+                    .withTopology( NocTopologyDirector.buildMeshTopology( 4) )
                     .withRoutingPolicy( NocRoutingPolicy.RoutingPolicy.DETERMINISTIC )
                     .withAGenerator( null , null )
                     .withNumberOfVirtualChannel(1)
                     .build();
 
         } catch (UnhandledRoutingPolicyException e) {
-            e.printStackTrace();
-        } catch (NocTopology.UnhandledTopologyException e) {
             e.printStackTrace();
         } catch (ExistingGeneratorException e) {
             e.printStackTrace();

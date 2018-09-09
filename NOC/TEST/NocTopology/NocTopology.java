@@ -2,34 +2,68 @@ package NocTopology;
 
 
 import Model.NOCModel.INocNetwork;
+import NocTopology.NOCDirections.IPoint;
 
-public abstract class NocTopology {
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-    public enum Topology {LINEAR, MESH}
-
+public class NocTopology {
 
     protected INocNetwork nocNetwork;                       /***** Represent all the units in the model *********/
-    protected int size;                                     /***** Represent the size of the model **************/
+    protected HashMap< Map.Entry<String, String>, Function<Integer, Integer>> directionToTransformations;
+    /***** Represent the size of the model **************/
 
 
-    public static NocTopology buildTopology(Topology topology, int size) throws UnhandledTopologyException {
-        NocTopology nocTopology = null;
-        switch(topology)
-        {
-            case MESH: nocTopology = new MeshTopology(size); break;
-            case LINEAR: nocTopology = new LinearTopology(size); break;
-            default: throw new UnhandledTopologyException("The topology : " + topology + " is not supported yet.");
+    protected NocTopology(INocNetwork nocNetwork,
+                       HashMap< Map.Entry<String, String>, Function<Integer, Integer>> directionToTransformations) {
+        this.nocNetwork = nocNetwork;
+        this.directionToTransformations = directionToTransformations;
+    }
 
+    public List<String> getAllDirections() {
+        return directionToTransformations.keySet().stream().map(entry -> entry.getValue() ).collect(Collectors.toList());
+    }
+
+    public List<String> getInputDirections(IPoint coodinate) {
+
+        ArrayList<String> result = new ArrayList<>();
+
+        for ( Map.Entry<String, String> entry : directionToTransformations.keySet() ) {
+            String axis = entry.getKey();
+            String direction = entry.getValue();
+
+            Function<Integer, Integer> function = directionToTransformations.get(entry);
+            Integer newValueOfAxis = function.apply(coodinate.getValueOnAxis(axis));
+
+            if ( nocNetwork.isValidPointOnAxis( axis, newValueOfAxis) ) {
+                result.add(direction);
+            }
         }
 
-        return nocTopology;
+        return result;
+    }
+
+    public List<String> getOutputDirections(IPoint coodinate) {
+        ArrayList<String> result = new ArrayList<>();
+
+        for ( Map.Entry<String, String> entry : directionToTransformations.keySet() ) {
+            String axis = entry.getKey();
+            String direction = entry.getValue();
+
+            Function<Integer, Integer> function = directionToTransformations.get(entry);
+            if ( nocNetwork.isValidPointOnAxis( axis, function.apply( coodinate.getValueOnAxis(axis))) ) {
+                result.add(direction);
+            }
+        }
+
+        return result;
+    }
+
+    public INocNetwork getNocNetwork() {
+        return nocNetwork;
     }
 
 
 
-    public static class UnhandledTopologyException extends Exception {
-        public UnhandledTopologyException(String message) {
-            super(message);
-        }
-    }
 }

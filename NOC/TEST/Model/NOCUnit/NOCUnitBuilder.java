@@ -5,6 +5,7 @@ import BaseModel.Queue;
 import BaseModel.Switch;
 import Model.Routing.NocRoutingPolicy;
 import NOCUnit.NOCUnit;
+import NocTopology.NOCDirections.IPoint;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -78,13 +79,19 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
         return this;
     }
 
+    @Override
+    public AbstractNOCUnitBuilder withCoordinate(IPoint coordinate) {
+        this.coordinate = coordinate;
+        return this;
+    }
+
 
     @Override
     public NOCUnit build() {
         aSwitch = new Switch();
         aProcessingElement = new ProcessingElement();
 
-        NOCUnit nocUnit = new NOCUnit(v_in_ports_names, v_out_ports_names, v_in_queue, v_out_queue, aSwitch, aProcessingElement);
+        NOCUnit nocUnit = new NOCUnit(coordinate, v_in_ports_names, v_out_ports_names, v_in_queue, v_out_queue, aSwitch, aProcessingElement);
 
         return nocUnit;
     }

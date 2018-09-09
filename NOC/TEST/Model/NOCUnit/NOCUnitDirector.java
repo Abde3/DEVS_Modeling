@@ -3,7 +3,7 @@ package Model.NOCUnit;
 
 import Model.Routing.NocRoutingPolicy;
 import NOCUnit.NOCUnit;
-import NocTopology.NOCDirections.ICoordinate;
+import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
 
 public class NOCUnitDirector {
@@ -18,14 +18,18 @@ public class NOCUnitDirector {
 
 
 
-    public NOCUnit buildNocUnit(ICoordinate coordinate) {
+    public NOCUnit buildNocUnit(IPoint coordinate) {
         NOCUnit nocUnit = null;
 
         try {
 
+            String[] inPorts  = topology.getInputDirections(coordinate).toArray(new String[0]);
+            String[] outPorts = topology.getOutputDirections(coordinate).toArray(new String[0]);
+
             nocUnit = new NOCUnitBuilder()
-                    .withInPorts()
-                    .withOutPorts(" a ", " b ")
+                    .withInPorts(inPorts)
+                    .withOutPorts(outPorts)
+                    .withCoordinate(coordinate)
                     .withQueuePerInPortRatio(1)
                     .withQueuePerOutPortRatio(0)
                     .withRoutingPolicy(routingPolicy)
@@ -35,6 +39,7 @@ public class NOCUnitDirector {
             e.printStackTrace();
         }
 
+        System.out.println(nocUnit);
 
         return nocUnit;
     }

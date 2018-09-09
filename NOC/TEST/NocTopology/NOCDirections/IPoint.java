@@ -1,8 +1,35 @@
 package NocTopology.NOCDirections;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public abstract class IPoint <T extends ICoordinate> {
+public class IPoint {
+    private LinkedHashMap<String, Integer> valueOnAxis;
 
-   protected T coordinate;
+    public IPoint(String[] axisNames, Integer[] values) {
 
+        if (values.length != axisNames.length) {
+            System.out.println("ERREUR nb coordinate != axisNames");
+        } else {
+
+            valueOnAxis =  IntStream.range(0, values.length).
+                    collect(LinkedHashMap::new, (axis, value) -> axis.put(axisNames[value], values[value]), Map::putAll);
+        }
+
+    }
+
+    public Integer getValueOnAxis(String axis) {
+        return valueOnAxis.get(axis);
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+        valueOnAxis.forEach( (axis, value) -> sb.append(axis).append("=").append(value).append(" ") );
+
+        return sb.toString();
+    }
 }

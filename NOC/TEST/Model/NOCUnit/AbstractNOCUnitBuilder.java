@@ -5,6 +5,8 @@ import BaseModel.Queue;
 import BaseModel.Switch;
 import Model.Routing.NocRoutingPolicy;
 import NOCUnit.NOCUnit;
+import NocTopology.NOCDirections.IPoint;
+import org.omg.CORBA.INV_POLICY;
 
 import java.util.Set;
 
@@ -18,6 +20,7 @@ public abstract class AbstractNOCUnitBuilder<TNOCUnit extends NOCUnit> {
     protected Switch            aSwitch;
     protected ProcessingElement aProcessingElement;
     protected NocRoutingPolicy  routingPolicy;
+    protected IPoint            coordinate;
 
 
     public abstract AbstractNOCUnitBuilder withInPorts( String ... inPorts) throws NOCUnit.ExistingPortException;
@@ -25,6 +28,7 @@ public abstract class AbstractNOCUnitBuilder<TNOCUnit extends NOCUnit> {
     public abstract AbstractNOCUnitBuilder withQueuePerInPortRatio( int queuePerInPortRatio );
     public abstract AbstractNOCUnitBuilder withQueuePerOutPortRatio( int queuePerOutPortRatio );
     public abstract AbstractNOCUnitBuilder withRoutingPolicy(NocRoutingPolicy routingPolicy);
+    public abstract AbstractNOCUnitBuilder withCoordinate(IPoint coordinate);
     public abstract TNOCUnit build();
 
 
