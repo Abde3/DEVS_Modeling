@@ -16,26 +16,26 @@ public class INocNetwork implements Iterable<DEVSModel>  {
 
     protected HashMap<IPoint, DEVSModel> units;    /***** Represent all the units in the model ***************/
     protected int size;
+    protected ICoordinate coordinateSpace;
 
-    public INocNetwork( int size , ICoordinate coordinate) {
+    public INocNetwork( int size, ICoordinate coordinate ) {
         this.units = new LinkedHashMap<IPoint, DEVSModel>();
         this.size = size;
+        this.coordinateSpace = coordinate;
 
         List<List<Integer>> allCoordinates = combinationsDupl(IntStream.range(0, size).boxed().collect(Collectors.toList()), coordinate.getNuberOfAxis()).collect(Collectors.toList());
-
         allCoordinates.stream().forEach( coordinatesValues -> addUnitAt(null, coordinate.newPoint( coordinatesValues.toArray(new Integer[0]))) );
-
     }
 
-    public Collection<DEVSModel>   getAllUnits() {
+    public Collection<DEVSModel> getAllUnits() {
         return units.values();
     }
 
-    public DEVSModel               getUnitAt( IPoint position ) {
+    public DEVSModel getUnitAt( IPoint position ) {
         return units.get(position);
     }
 
-    public boolean                 addUnitAt( DEVSModel model, IPoint position ) {
+    public boolean addUnitAt( DEVSModel model, IPoint position ) {
         return null == units.put(position, model);
     }
 
@@ -43,7 +43,7 @@ public class INocNetwork implements Iterable<DEVSModel>  {
         return units.keySet();
     }
 
-    public DEVSModel               getUnitFromPosition( IPoint position, String direction ){
+    public DEVSModel getUnitFromPosition( IPoint position, String direction ){
         return null;
     }
 
@@ -71,6 +71,9 @@ public class INocNetwork implements Iterable<DEVSModel>  {
         }
     }
 
+    public ICoordinate getCoordinateSpace() {
+        return coordinateSpace;
+    }
 
     @Override
     public Iterator<DEVSModel> iterator() {
