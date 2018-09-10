@@ -1,7 +1,5 @@
 package NocTopology;
 
-import java.util.function.Function;
-
 public class NocTopologyDirector {
 
     public static NocTopology buildMeshTopology(int size) {

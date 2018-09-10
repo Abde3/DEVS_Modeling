@@ -1,16 +1,14 @@
 package Model.NOCUnit;
 
-import BaseModel.ProcessingElement;
+import BaseModel.*;
 import BaseModel.Queue;
-import BaseModel.Switch;
+import DEVSModel.DEVSModel;
 import Model.Routing.NocRoutingPolicy;
 import NOCUnit.NOCUnit;
 import NocTopology.NOCDirections.IPoint;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Vector;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
@@ -49,7 +47,14 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
         for ( String inPortName : v_in_ports_names) {
 
             for (int i = 0; i < queuePerInPortRatio; i++) {
-                Queue tmpInQueue = new Queue();
+                Queue tmpInQueue = new QueueBuilder()
+                        .withCorrespondingPort(inPortName)
+                        .withQueueNumber(i)
+                        .withCoordinate(coordinate)
+                        .withInputPorts("in")
+                        .withOutputPorts("out")
+                        .build();
+
                 v_in_queue.add(tmpInQueue);
             }
         }
@@ -65,7 +70,7 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
         for ( String outPortName : v_out_ports_names) {
 
             for (int i = 0; i < queuePerOutPortRatio; i++) {
-                Queue tmpOutQueue = new Queue();
+                Queue tmpOutQueue = new QueueBuilder().withCoordinate(coordinate).withOutputPorts(outPortName).build();
                 v_out_queue.add(tmpOutQueue);
             }
         }
@@ -85,11 +90,50 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
         return this;
     }
 
+    @Override
+    public AbstractNOCUnitBuilder withGenerator(DEVSModel generator) {
+        
+        return this;
+    }
+
 
     @Override
     public NOCUnit build() {
-        aSwitch = new Switch();
-        aProcessingElement = new ProcessingElement();
+
+        Set<String> switchInputPortsNames  = new HashSet<>();
+        Set<String> switchOutputPortsNames = new HashSet<>();
+
+        if ( v_out_queue == null || v_out_queue.isEmpty() ) {
+            switchOutputPortsNames.addAll(this.v_out_ports_names);
+        } else {
+            switchOutputPortsNames.addAll(v_out_queue.stream().map(Queue::getName).collect(Collectors.toCollection( HashSet::new )));
+        }
+        switchOutputPortsNames.add("PE");
+
+        if ( v_in_queue == null || v_in_queue.isEmpty() ) {
+            switchInputPortsNames.addAll(this.v_in_ports_names);
+        } else {
+            switchInputPortsNames.addAll(v_in_queue.stream().map(Queue::getName).collect(Collectors.toCollection( HashSet::new )));
+        }
+        switchInputPortsNames.add("PE");
+
+
+        aSwitch = new SwitchBuilder()
+                .withCoordinate(coordinate)
+                .withInputPorts(switchInputPortsNames.toArray( new String[0] ))
+                .withOutputPorts(switchOutputPortsNames.toArray( new String[0] ))
+                .build();
+
+        aProcessingElement = new ProcessingElementBuilder()
+                .withCoordinate(coordinate)
+                .withInputPorts("in")
+                .withOutputPorts("out")
+                .build();
+
+        System.out.println( "\n\n\n---------------------" );
+        System.out.println( aProcessingElement.toString() );
+        System.out.println( aSwitch.toString() );
+        System.out.println( "---------------------\n\n\n" );
 
         NOCUnit nocUnit = new NOCUnit(coordinate, v_in_ports_names, v_out_ports_names, v_in_queue, v_out_queue, aSwitch, aProcessingElement);
 

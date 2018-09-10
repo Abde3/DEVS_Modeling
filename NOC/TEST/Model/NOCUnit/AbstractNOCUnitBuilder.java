@@ -3,6 +3,7 @@ package Model.NOCUnit;
 import BaseModel.ProcessingElement;
 import BaseModel.Queue;
 import BaseModel.Switch;
+import DEVSModel.DEVSModel;
 import Model.Routing.NocRoutingPolicy;
 import NOCUnit.NOCUnit;
 import NocTopology.NOCDirections.IPoint;
@@ -29,8 +30,8 @@ public abstract class AbstractNOCUnitBuilder<TNOCUnit extends NOCUnit> {
     public abstract AbstractNOCUnitBuilder withQueuePerOutPortRatio( int queuePerOutPortRatio );
     public abstract AbstractNOCUnitBuilder withRoutingPolicy(NocRoutingPolicy routingPolicy);
     public abstract AbstractNOCUnitBuilder withCoordinate(IPoint coordinate);
+    public abstract AbstractNOCUnitBuilder withGenerator(DEVSModel generator);
+
     public abstract TNOCUnit build();
-
-
 
 }

@@ -2,6 +2,7 @@ package NocTopology;
 
 
 import Model.NOCModel.INocNetwork;
+import NocTopology.NOCDirections.ICoordinate;
 import NocTopology.NOCDirections.IPoint;
 
 import java.util.*;
@@ -12,7 +13,6 @@ public class NocTopology {
 
     protected INocNetwork nocNetwork;                       /***** Represent all the units in the model *********/
     protected HashMap< Map.Entry<String, String>, Function<Integer, Integer>> directionToTransformations;
-    /***** Represent the size of the model **************/
 
 
     protected NocTopology(INocNetwork nocNetwork,

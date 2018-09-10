@@ -41,11 +41,11 @@ public abstract class NOC extends DEVSCoupled {
 
     protected void buildNetwork() {
 
-        NOCUnitDirector nocUnitDirector = new NOCUnitDirector(topology, routingPolicy);
+        NOCUnitDirector nocUnitDirector = new NOCUnitDirector(topology, routingPolicy, generators);
         Collection<IPoint> positions = topology.getNocNetwork().getAllPositions();
-        positions.stream().forEach( point -> topology.getNocNetwork().addUnitAt( nocUnitDirector.buildNocUnit(point), point ));
-
-
+        positions.stream().forEach(
+                point -> topology.getNocNetwork().addUnitAt( nocUnitDirector.buildNocUnit(point), point )
+        );
 
     }
 
