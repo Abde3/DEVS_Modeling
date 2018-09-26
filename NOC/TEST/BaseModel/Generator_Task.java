@@ -4,6 +4,7 @@ import java.util.Random;
 import DEVSModel.DEVSAtomic;
 import DEVSModel.Port;
 import NOCUnit.NodeCoordinate;
+import NocTopology.NOCDirections.IPoint;
 
 
 public class Generator_Task extends DEVSAtomic {
@@ -42,14 +43,17 @@ public class Generator_Task extends DEVSAtomic {
 		if (state.equals(State.WAIT)) {
             int id = random_generator.nextInt(99) + 1;
             int computation_requirement = random_generator.nextInt(4) + 1;
-            NodeCoordinate destination = new NodeCoordinate(random_generator.nextInt(3) + 1, random_generator.nextInt(3) + 1);
+            IPoint destination = new IPoint (
+            			new String[] {"x", "y"},
+						new Integer[]{ random_generator.nextInt(1) + 1, random_generator.nextInt(1) + 1}
+					);
 
             value_out = new Task(id, computation_requirement, destination);
 			state     = State.GENERATE;
 			rho       = 0F;
 		} else if (state.equals(State.GENERATE)) {
 			state = State.WAIT;
-			rho   = random_generator.nextInt(2)+1;
+			rho   = Float.POSITIVE_INFINITY;//random_generator.nextInt(2)+1;
 		}
 
 	}
@@ -63,7 +67,7 @@ public class Generator_Task extends DEVSAtomic {
 	public void init() {
 		state = State.WAIT;
 		rho   =  0F;
-//		System.out.println("STARTING GENERATOR");
+		System.out.println("STARTING GENERATOR");
 	}
 
 	@Override

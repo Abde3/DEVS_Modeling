@@ -1,6 +1,7 @@
 package BaseModel;
 
 import NOCUnit.NodeCoordinate;
+import NocTopology.NOCDirections.IPoint;
 
 public class Task {
 	
@@ -9,10 +10,10 @@ public class Task {
 	private String 	name;
 	private int id;
 	private int age;
-	private NodeCoordinate destination;
+	private IPoint destination;
 	private float 	computation_requirement;
 
-	public Task(int id, int computation_requirement, NodeCoordinate destination) {
+	public Task(int id, int computation_requirement, IPoint destination) {
 		
 		this.id = id;
 		this.name = "TASK-" + id;
@@ -45,11 +46,11 @@ public class Task {
 		return computation_requirement;
 	}
 
-	public NodeCoordinate getDestination() {
+	public IPoint getDestination() {
 		return destination;
 	}
 
-	public void setDestination(NodeCoordinate destination) {
+	public void setDestination(IPoint destination) {
 		this.destination = destination;
 	}
 	

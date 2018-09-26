@@ -16,6 +16,7 @@ public class Queue extends DEVSAtomic {
 	Vector<Port> inputPorts;
 	Vector<Port> outputPorts;
 
+
 	public Queue(IPoint coordinate, String correspondingPort, int queueNumber, Vector<String> inputPortsNames, Vector<String> outputPortsNames) {
 
 		this.name = NODETYPE + "-" + correspondingPort + "-" + queueNumber + " " + "[" + coordinate.toString().trim() + "]";
@@ -55,7 +56,7 @@ public class Queue extends DEVSAtomic {
 
 	@Override
 	public float getDuration() {
-		return 0;
+		return 4;
 	}
 
 

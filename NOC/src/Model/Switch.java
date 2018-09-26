@@ -244,6 +244,7 @@ public class Switch extends DEVSAtomic {
             case SENDING_TO_PE:
             {
                 state = SWITCH_STATE.WAITING_PE;
+                States.getInstance().addVisitedState(this.getElapsedTime(), this.name, state.toString());
                 PEIsBusy = true;
                 Pretty_print.trace( this.name , "SENDING_TO_PE -> WAITING_PE(ρ = +inf)");
                 break;
@@ -251,6 +252,8 @@ public class Switch extends DEVSAtomic {
             case SENDING_CMD_TO_QUEUE:
             {
                 state = SWITCH_STATE.IDLE;
+                States.getInstance().addVisitedState(this.getElapsedTime(), this.name, state.toString());
+
                 break;
             }
             case WAITING_PE:
@@ -260,6 +263,8 @@ public class Switch extends DEVSAtomic {
             case SENDING_TO_NEXT:
             {
                 state = SWITCH_STATE.SENDING_CMD_TO_QUEUE;
+                States.getInstance().addVisitedState(this.getElapsedTime(), this.name, state.toString());
+
                 Pretty_print.trace( this.name , "SENDING_TO_NEXT -> SENDING_CMD_TO_QUEUE(ρ = 0)");
                 break;
             }

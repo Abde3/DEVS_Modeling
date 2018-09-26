@@ -42,7 +42,9 @@ public class ProcessingElement extends DEVSAtomic {
 	public void init() { }
 
 	@Override
-	public void deltaExt(Port port, Object o, float v) { }
+	public void deltaExt(Port port, Object o, float v) {
+		System.out.println( o );
+	}
 
 	@Override
 	public void deltaInt() { }
@@ -54,7 +56,7 @@ public class ProcessingElement extends DEVSAtomic {
 
 	@Override
 	public float getDuration() {
-		return 0;
+		return 1;
 	}
 
     public String toString() {

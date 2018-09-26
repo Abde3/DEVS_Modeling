@@ -1,54 +1,42 @@
 package Model.NOCUnit;
 
 
-import BaseModel.Generator_Task;
-import DEVSModel.DEVSModel;
 import Model.Routing.NocRoutingPolicy;
 import NOCUnit.NOCUnit;
-import NocTopology.NOCDirections.ICoordinate;
 import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class NOCUnitDirector {
 
     private final NocTopology topology;
     private final NocRoutingPolicy routingPolicy;
-    private final HashMap<ICoordinate,DEVSModel> generators;
 
-    public NOCUnitDirector(NocTopology topology, NocRoutingPolicy routingPolicy, HashMap<ICoordinate,DEVSModel> generators) {
+    public NOCUnitDirector(NocTopology topology, NocRoutingPolicy routingPolicy) {
         this.topology = topology;
         this.routingPolicy = routingPolicy;
-        this.generators = generators;
     }
-
-
 
     public NOCUnit buildNocUnit(IPoint coordinate) {
 
-        DEVSModel generator = null;
         NOCUnit nocUnit = null;
         AbstractNOCUnitBuilder builder = null;
 
         try {
 
-            List<String> inPorts  = topology.getInputDirections(coordinate);
-            List<String> outPorts = topology.getOutputDirections(coordinate);
-            generator =  generators.get(coordinate);
+            List<String> inDirections  = topology.getInputDirections(coordinate);
+            List<String> outDirections = topology.getOutputDirections(coordinate);
 
             builder = new NOCUnitBuilder()
-                    .withCoordinate(coordinate)
-                    .withQueuePerInPortRatio(1)
-                    .withQueuePerOutPortRatio(0)
-                    .withRoutingPolicy(routingPolicy)
-                    .withInPorts(inPorts.toArray(new String[0]))
-                    .withOutPorts(outPorts.toArray(new String[0]));
-
-            if( generator != null ) {
-                builder = builder.withGenerator(generator);
-            }
+                    .withDataInPorts( inDirections )
+                    .withDataOutPorts( outDirections )
+                    .withCmdInPorts( inDirections )
+                    .withCmdOutPorts( outDirections )
+                    .withCoordinate( coordinate )
+                    .withQueuePerInPortRatio( 1 )
+                    .withQueuePerOutPortRatio( 0 )
+                    .withRoutingPolicy( routingPolicy );
 
             nocUnit = builder.build();
 

@@ -1,16 +1,19 @@
 package NOCUnit;
 
 import BaseModel.ProcessingElement;
-import BaseModel.Queue;
 import BaseModel.Switch;
 import DEVSModel.DEVSCoupled;
 import DEVSModel.DEVSModel;
 import DEVSModel.Port;
 import Model.NOCModel.NOC;
+import Model.NOCUnit.Type;
 import NocTopology.NOCDirections.IPoint;
+import Util.NocUtil;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 import java.util.stream.Collectors;
 
 
@@ -18,43 +21,49 @@ public class NOCUnit extends DEVSCoupled {
 
     static NOC.NodeType NODETYPE = NOC.NodeType.NODE;
 
-    protected final Set<Port>         v_in_ports;
-    protected final Set<Port>         v_out_ports;
-    protected final Set<Queue>        v_in_queue;
-    protected final Set<Queue>        v_out_queue;
-    protected final Switch            aSwitch;
-    protected final ProcessingElement aProcessingElement;
+    protected final HashMap<Port, Type> v_in_ports;
+    protected final HashMap<Port,Type> v_out_ports;
+    protected final Switch             aSwitch;
+    protected final ProcessingElement  aProcessingElement;
 
 
-    public NOCUnit(IPoint coordinate, Set<String> v_in_ports_names, Set<String> v_out_ports_names,
-                   Set<Queue> v_in_queue, Set<Queue> v_out_queue,
-                   Switch aSwitch, ProcessingElement aProcessingElement)
+    public NOCUnit(IPoint coordinate,
+                   Set<String>  v_in_data_ports_names,
+                   Set<String>  v_out_data_ports_names,
+                   Set<String>  v_in_cmd_ports_names,
+                   Set<String>  v_out_cmd_ports_names,
+                   Switch       aSwitch,
+                   ProcessingElement aProcessingElement)
     {
 
         super();
 
         this.name = NODETYPE + "[" + coordinate.toString().trim() + "]";
 
-        this.v_in_ports = new HashSet<>();
-        this.v_out_ports = new HashSet<>();
+        this.v_in_ports = new HashMap<>();
+        this.v_out_ports = new HashMap<>();
 
-        this.v_in_queue = v_in_queue;
-        this.v_out_queue = v_out_queue;
         this.aSwitch = aSwitch;
         this.aProcessingElement = aProcessingElement;
 
 
-
-
         /** Add the input/output ports to the model */
-        for (String inPortName  : v_in_ports_names  ) { addInPort(inPortName); }
-        for (String outPortName : v_out_ports_names ) { addOutPort(outPortName); }
+        for (String inPortName  : v_in_data_ports_names  ) {
+            addDataInPort(inPortName);
+        }
 
-        /** Add the input queues as submodels */
-        for (Queue inQueue : v_in_queue) { this.addSubModel(inQueue); }
+        for (String outPortName : v_out_data_ports_names ) {
+            addDataOutPort(outPortName);
+        }
 
-        /** Add the output queues as submodels */
-        for (Queue outQueue : v_out_queue) { this.addSubModel(outQueue); }
+        for (String inPortName  : v_in_cmd_ports_names  ) {
+            addCmdInPort(inPortName);
+        }
+
+        for (String outPortName : v_out_cmd_ports_names ) {
+            addCmdOutPort(outPortName);
+        }
+
 
         /** Add the switch as a submodel */
         this.addSubModel(aSwitch);
@@ -65,19 +74,11 @@ public class NOCUnit extends DEVSCoupled {
         buildEIC();
         buildEOC();
         buildIC();
+
+        this.setSelectPriority();
     }
 
     private void buildIC() {
-
-        this.aSwitch.getInPorts().stream().forEach(
-                switchPort -> v_in_queue.stream().forEach(
-                        queue -> queue.getOutPorts().stream().filter(
-                                queuePort -> queue.getName().contains(switchPort.getName())
-                        ).forEach(
-                                correspondingPort -> addIC(correspondingPort, switchPort)
-                        )
-                )
-        );
 
         addIC(aSwitch.getOutPort("PE"), aProcessingElement.getInPort("in"));
         addIC(aProcessingElement.getOutPort("out"), aSwitch.getInPort("PE"));
@@ -87,10 +88,10 @@ public class NOCUnit extends DEVSCoupled {
     private void buildEIC() {
 
         this.getInPorts().stream().forEach(
-                unitPort -> v_in_queue.stream().forEach(
-                        queue -> queue.getInPorts().stream().filter(
-                                queuePort -> queue.getName().contains(unitPort.getName())
-                        ).forEach( correspondingPort -> addEIC(unitPort, correspondingPort))
+                unitPort -> aSwitch.getInPorts().stream().filter(
+                        switchPort -> switchPort.getName().equals(unitPort.getName())
+                ).forEach(
+                        correspondingPort -> addEIC( unitPort, correspondingPort )
                 )
         );
 
@@ -111,44 +112,87 @@ public class NOCUnit extends DEVSCoupled {
 
 
 
-    private boolean addPort(boolean isInPort, String portName)  {
+    private boolean addPort(boolean isInPort, String portName, Type dataType)  {
+
 
         if (isInPort) {
 
-            Port inPort = new Port(this, portName);
-            boolean isAdded = v_in_ports.add(inPort);
+            Port inPort = new Port(this, portName );
+            boolean isAdded = ( v_in_ports.put(inPort, dataType) == null);
             this.addInPort(inPort);
 
-            return (this.getInPort(portName) != null && isAdded);
+            return (this.getInPort(name) != null && isAdded);
 
         } else {
 
-            Port outPort = new Port(this, portName);
-            boolean isAdded = v_out_ports.add(outPort);
+            Port outPort =  new Port(this, portName);
+            boolean isAdded = ( v_out_ports.put(outPort, dataType) == null);
             this.addOutPort(outPort);
 
-            return (this.getOutPort(portName) != null && isAdded);
+            return (this.getOutPort(name) != null && isAdded);
 
         }
 
     }
 
-    private boolean addOutPort(String portName) {
-        return addPort(false, portName);
+    private boolean addDataOutPort(String portName) {
+        boolean isAdded = addPort(false, portName, Type.DATA);
+        return isAdded;
     }
 
-    private boolean addInPort(String portName) {
-        return  addPort(true, portName);
+    private boolean addDataInPort(String portName) {
+        boolean isAdded = addPort(true, portName, Type.DATA);
+        return isAdded;
+    }
+
+    private boolean addCmdOutPort(String portName) {
+        boolean isAdded = addPort(false, portName, Type.COMMAND);
+        return isAdded;
+    }
+
+    private boolean addCmdInPort(String portName) {
+        boolean isAdded = addPort(true, portName, Type.COMMAND);
+        return isAdded;
     }
 
 
+    public List<Port> getInDataPorts() {
+        return v_in_ports.entrySet().stream().filter(
+                entry ->  entry.getValue() == Type.DATA
+        ).map( entry -> entry.getKey() ).collect( Collectors.toList() );
+    }
+
+    public List<Port> getOutDataPorts() {
+        return v_out_ports.entrySet().stream().filter(
+                entry ->  entry.getValue() == Type.DATA
+        ).map( entry -> entry.getKey() ).collect( Collectors.toList() );
+    }
+
+    public List<Port> getInCmdPorts() {
+        return v_in_ports.entrySet().stream().filter(
+                entry ->  entry.getValue() == Type.COMMAND
+        ).map( entry -> entry.getKey() ).collect( Collectors.toList() );
+    }
+
+    public List<Port> getOutCmdPorts() {
+        return v_out_ports.entrySet().stream().filter(
+                entry ->  entry.getValue() == Type.COMMAND
+        ).map( entry -> entry.getKey() ).collect( Collectors.toList() );
+    }
 
 
     @Override
     public void setSelectPriority() {
 
-    }
+        NocUtil.combinationsNoDupl( getSubModels() ).forEach(
+                sameSizeLists -> sameSizeLists.forEach(
+                        devsModels -> this.selectPriority.put(
+                                new Vector<DEVSModel>( devsModels ), devsModels.get( devsModels.size() - 1 )
+                        )
+                )
+        );
 
+    }
 
     public String toString() {
         String CoupledModelString = "{ "

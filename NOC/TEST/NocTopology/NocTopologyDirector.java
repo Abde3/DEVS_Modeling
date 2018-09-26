@@ -6,8 +6,8 @@ public class NocTopologyDirector {
 
         NocTopology meshTopology = new NocTopologyBuilder()
                 .withAxisNames("x", "y")
-                .withActionForAxis("NORTH", "y", value -> value + 1)
-                .withActionForAxis("SOUTH", "y", value -> value - 1)
+                .withActionForAxis("NORTH", "y", value -> value - 1)
+                .withActionForAxis("SOUTH", "y", value -> value + 1)
                 .withActionForAxis("EAST",  "x", value -> value + 1)
                 .withActionForAxis("WEST",  "x", value -> value - 1)
                 .withSize(size)

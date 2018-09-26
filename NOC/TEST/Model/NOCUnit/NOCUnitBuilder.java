@@ -1,13 +1,13 @@
 package Model.NOCUnit;
 
 import BaseModel.*;
-import BaseModel.Queue;
-import DEVSModel.DEVSModel;
 import Model.Routing.NocRoutingPolicy;
 import NOCUnit.NOCUnit;
 import NocTopology.NOCDirections.IPoint;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -15,11 +15,14 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
 
     @Override
-    public AbstractNOCUnitBuilder withInPorts(String... inPorts) throws NOCUnit.ExistingPortException {
+    public AbstractNOCUnitBuilder withDataInPorts(List<String> inDirections) throws NOCUnit.ExistingPortException {
 
-        v_in_ports_names = new HashSet<>(Arrays.asList(inPorts));
+        v_data_in_ports_names = inDirections
+                .stream()
+                .map( direction -> Util.NocUtil.directionsToPortsName(direction, true, Type.DATA) )
+                .collect( Collectors.toCollection( HashSet::new ) );
 
-        if (v_in_ports_names.size() != inPorts.length) {
+        if (v_data_in_ports_names.size() != inDirections.size()) {
             throw new NOCUnit.ExistingPortException("The given list of input ports names contains duplicate") ;
         }
 
@@ -27,12 +30,46 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
     }
 
+
     @Override
-    public AbstractNOCUnitBuilder withOutPorts(String... outPorts) throws NOCUnit.ExistingPortException {
+    public AbstractNOCUnitBuilder withDataOutPorts(List<String> outDirections) throws NOCUnit.ExistingPortException {
 
-        v_out_ports_names = new HashSet<>(Arrays.asList(outPorts));
+        v_data_out_ports_names = outDirections
+                .stream()
+                .map( direction -> Util.NocUtil.directionsToPortsName(direction, false, Type.DATA) )
+                .collect( Collectors.toCollection( HashSet::new ) );
 
-        if (v_out_ports_names.size() != outPorts.length) {
+        if (v_data_out_ports_names.size() != outDirections.size()) {
+            throw new NOCUnit.ExistingPortException("The given list of output ports names contains duplicate") ;
+        }
+
+        return this;
+    }
+
+
+    @Override
+    public AbstractNOCUnitBuilder withCmdInPorts(List<String> inDirections) throws NOCUnit.ExistingPortException {
+        v_cmd_in_ports_names = inDirections
+                .stream()
+                .map( direction -> Util.NocUtil.directionsToPortsName(direction, true, Type.COMMAND) )
+                .collect( Collectors.toCollection( HashSet::new ) );
+
+        if (v_cmd_in_ports_names.size() != inDirections.size()) {
+            throw new NOCUnit.ExistingPortException("The given list of input ports names contains duplicate") ;
+        }
+
+        return this;
+
+    }
+
+
+    @Override
+    public AbstractNOCUnitBuilder withCmdOutPorts(List<String> outDirections) throws NOCUnit.ExistingPortException {
+        v_cmd_out_ports_names = new HashSet<String>(
+                Util.NocUtil.directionsToPortsName(outDirections, false, Type.COMMAND)
+        );
+
+        if (v_cmd_out_ports_names.size() != outDirections.size()) {
             throw new NOCUnit.ExistingPortException("The given list of output ports names contains duplicate") ;
         }
 
@@ -41,42 +78,17 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
     @Override
     public AbstractNOCUnitBuilder withQueuePerInPortRatio(int queuePerInPortRatio) {
-
-        v_in_queue = new LinkedHashSet<>();
-
-        for ( String inPortName : v_in_ports_names) {
-
-            for (int i = 0; i < queuePerInPortRatio; i++) {
-                Queue tmpInQueue = new QueueBuilder()
-                        .withCorrespondingPort(inPortName)
-                        .withQueueNumber(i)
-                        .withCoordinate(coordinate)
-                        .withInputPorts("in")
-                        .withOutputPorts("out")
-                        .build();
-
-                v_in_queue.add(tmpInQueue);
-            }
-        }
-
+        this.queuePerInPortRatio = queuePerInPortRatio;
         return this;
     }
+
 
     @Override
     public AbstractNOCUnitBuilder withQueuePerOutPortRatio(int queuePerOutPortRatio) {
-
-        v_out_queue = new LinkedHashSet<>();
-
-        for ( String outPortName : v_out_ports_names) {
-
-            for (int i = 0; i < queuePerOutPortRatio; i++) {
-                Queue tmpOutQueue = new QueueBuilder().withCoordinate(coordinate).withOutputPorts(outPortName).build();
-                v_out_queue.add(tmpOutQueue);
-            }
-        }
-
+        this.queuePerOutPortRatio = queuePerOutPortRatio;
         return this;
     }
+
 
     @Override
     public AbstractNOCUnitBuilder withRoutingPolicy(NocRoutingPolicy routingPolicy) {
@@ -84,15 +96,10 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
         return this;
     }
 
+
     @Override
     public AbstractNOCUnitBuilder withCoordinate(IPoint coordinate) {
         this.coordinate = coordinate;
-        return this;
-    }
-
-    @Override
-    public AbstractNOCUnitBuilder withGenerator(DEVSModel generator) {
-        
         return this;
     }
 
@@ -100,28 +107,22 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
     @Override
     public NOCUnit build() {
 
-        Set<String> switchInputPortsNames  = new HashSet<>();
-        Set<String> switchOutputPortsNames = new HashSet<>();
+        Set<String> switchDataInputPortsNames  = new HashSet<>( v_data_in_ports_names );
+        Set<String> switchDataOutputPortsNames = new HashSet<>( v_data_out_ports_names );
+        Set<String> switchCmdInputPortsNames   = new HashSet<>( v_cmd_in_ports_names );
+        Set<String> switchCmdOutputPortsNames  = new HashSet<>( v_cmd_out_ports_names );
 
-        if ( v_out_queue == null || v_out_queue.isEmpty() ) {
-            switchOutputPortsNames.addAll(this.v_out_ports_names);
-        } else {
-            switchOutputPortsNames.addAll(v_out_queue.stream().map(Queue::getName).collect(Collectors.toCollection( HashSet::new )));
-        }
-        switchOutputPortsNames.add("PE");
 
-        if ( v_in_queue == null || v_in_queue.isEmpty() ) {
-            switchInputPortsNames.addAll(this.v_in_ports_names);
-        } else {
-            switchInputPortsNames.addAll(v_in_queue.stream().map(Queue::getName).collect(Collectors.toCollection( HashSet::new )));
-        }
-        switchInputPortsNames.add("PE");
+        switchDataOutputPortsNames.add("PE");
+        switchDataInputPortsNames.add("PE");
 
 
         aSwitch = new SwitchBuilder()
                 .withCoordinate(coordinate)
-                .withInputPorts(switchInputPortsNames.toArray( new String[0] ))
-                .withOutputPorts(switchOutputPortsNames.toArray( new String[0] ))
+                .withDataInputPorts( switchDataInputPortsNames )
+                .withDataOutputPorts( switchDataOutputPortsNames )
+                .withCmdInputPorts( switchCmdInputPortsNames )
+                .withCmdOutputPorts( switchCmdOutputPortsNames )
                 .build();
 
         aProcessingElement = new ProcessingElementBuilder()
@@ -135,7 +136,13 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
         System.out.println( aSwitch.toString() );
         System.out.println( "---------------------\n\n\n" );
 
-        NOCUnit nocUnit = new NOCUnit(coordinate, v_in_ports_names, v_out_ports_names, v_in_queue, v_out_queue, aSwitch, aProcessingElement);
+        NOCUnit nocUnit = new NOCUnit(coordinate,
+                v_data_in_ports_names,
+                v_data_out_ports_names,
+                v_cmd_in_ports_names,
+                v_cmd_out_ports_names,
+                aSwitch,
+                aProcessingElement);
 
         return nocUnit;
     }

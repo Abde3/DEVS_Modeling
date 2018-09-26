@@ -1,18 +1,18 @@
-import DEVSSimulator.Root;
 import Model.NOCModel.NOC;
 import Model.NOCModel.NOCDirector;
 
-
 public class Test {
 
+    private static final int SIZE_OF_THE_NETWORK = 2;
+    private static final float SIMULATION_TIME = 50;
+
     public static void main(String[] args){
-        System.out.println("ooow ");
 
-        NOC MESH_4_DETERMINISTIC = NOCDirector.buildNOCMesh();
+        NOC MESH_2_DETERMINISTIC = NOCDirector.buildNOCMesh( SIZE_OF_THE_NETWORK );
 
-        Root root = new Root(MESH_4_DETERMINISTIC, 40);
+        DEVSSimulator.Root root = new DEVSSimulator.Root(MESH_2_DETERMINISTIC, SIMULATION_TIME);
+
 		root.startSimulation();
-
     }
 
 }

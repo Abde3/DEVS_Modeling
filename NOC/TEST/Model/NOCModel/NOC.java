@@ -3,31 +3,35 @@ package Model.NOCModel;
 import DEVSModel.*;
 import Model.Routing.NocRoutingPolicy;
 import Model.NOCUnit.NOCUnitDirector;
+import NOCUnit.NOCUnit;
 import NocTopology.NOCDirections.ICoordinate;
 import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
+import Util.NocUtil;
 
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Vector;
 
 public abstract class NOC extends DEVSCoupled {
 
-    public enum NodeType {NOC, NODE, QUEUE, SWITCH, QUEUE_SWITCH, PE}
+    public enum NodeType {NOC, NODE, QUEUE, SWITCH, PE}
 
 
-    protected final NodeType nodeType;                            /***** Represent the type of the element ************/
-    protected final HashMap<ICoordinate, DEVSModel> generators;   /***** Represent all the generators of the model ****/
-    protected final NocTopology topology;                         /***** Represent the topology of the model **********/
-    protected final NocRoutingPolicy routingPolicy;               /***** Represent routing policy applied *************/
-    protected final int numberOfVirtualChannel;                   /***** Represent the number of virtual channel ******/
+    protected final NodeType nodeType;                       /***** Represent the type of the element ************/
+    protected final HashMap<IPoint, DEVSModel> generators;   /***** Represent all the generators of the model ****/
+    protected final NocTopology topology;                    /***** Represent the topology of the model **********/
+    protected final NocRoutingPolicy routingPolicy;          /***** Represent routing policy applied *************/
+    protected final int numberOfVirtualChannel;              /***** Represent the number of virtual channel ******/
 
 
 
     /********************************************* GETTERS AND SETTERS ************************************************/
 
 
-    protected NOC(NocTopology topology, NocRoutingPolicy routingPolicy, HashMap<ICoordinate,DEVSModel> generators ) {
+    protected NOC(NocTopology topology, NocRoutingPolicy routingPolicy, HashMap<IPoint,DEVSModel> generators ) {
         super();
 
         this.nodeType = NodeType.NOC;
@@ -37,17 +41,47 @@ public abstract class NOC extends DEVSCoupled {
         this.numberOfVirtualChannel = 1;
 
         buildNetwork();
+
+        this.setSelectPriority();
     }
 
     protected void buildNetwork() {
 
-        NOCUnitDirector nocUnitDirector = new NOCUnitDirector(topology, routingPolicy, generators);
+        NOCUnitDirector nocUnitDirector = new NOCUnitDirector(topology, routingPolicy);
+
         Collection<IPoint> positions = topology.getNocNetwork().getAllPositions();
+
         positions.stream().forEach(
                 point -> topology.getNocNetwork().addUnitAt( nocUnitDirector.buildNocUnit(point), point )
         );
 
+        generators.forEach((coordinate, devsModel) ->
+                addGenerator(
+                    topology.getNocNetwork().getUnitAt( coordinate ),
+                    devsModel
+                )
+        );
+
+        topology.getNocNetwork().forEach( devsModel -> addSubModel(devsModel) );
+
+        // BUILD IC
     }
 
+    protected void addGenerator(DEVSModel unit, DEVSModel generator) {
+        addSubModel(generator);
+        addIC(generator.getOutPorts().firstElement(), unit.getInPorts().firstElement());
+    }
 
+    @Override
+    public void setSelectPriority() {
+
+        NocUtil.combinationsNoDupl( getSubModels() ).forEach(
+                sameSizeLists -> sameSizeLists.forEach(
+                        devsModels -> this.selectPriority.put(
+                                new Vector<DEVSModel>( devsModels ), devsModels.get( devsModels.size() - 1)
+                        )
+                )
+        );
+
+    }
 }

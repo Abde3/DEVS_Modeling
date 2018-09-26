@@ -2,7 +2,6 @@ package NocTopology;
 
 
 import Model.NOCModel.INocNetwork;
-import NocTopology.NOCDirections.ICoordinate;
 import NocTopology.NOCDirections.IPoint;
 
 import java.util.*;

@@ -15,6 +15,10 @@ public class ICoordinate {
         return new IPoint(axisNames, values);
     }
 
+    public Comparator<IPoint> getComparator() {
+        return IPoint::compareTo;
+    }
+
     private static <E> Stream<List<E>> combinationsDupl(List<E> list, int size) {
         if (size == 0) {
             return Stream.of(Collections.emptyList());
