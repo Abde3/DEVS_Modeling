@@ -157,7 +157,7 @@ public class Switch extends DEVSAtomic {
 
                     destPoint = inputDataQueue.get(currentPort).firstElement().getDestination();
                     //destPort  = routeTable.get(destPoint);
-                    destPort = outputDataPorts.firstElement();
+                    destPort = outputDataPorts.stream().filter(port -> !port.getName().contains("PE")).findFirst().get();
                     sendTail = true;
 
                 }

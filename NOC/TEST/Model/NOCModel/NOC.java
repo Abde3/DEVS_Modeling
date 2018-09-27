@@ -3,17 +3,14 @@ package Model.NOCModel;
 import DEVSModel.*;
 import Model.Routing.NocRoutingPolicy;
 import Model.NOCUnit.NOCUnitDirector;
-import NOCUnit.NOCUnit;
-import NocTopology.NOCDirections.ICoordinate;
 import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
 import Util.NocUtil;
 
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Vector;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public abstract class NOC extends DEVSCoupled {
 
@@ -64,7 +61,18 @@ public abstract class NOC extends DEVSCoupled {
 
         topology.getNocNetwork().forEach( devsModel -> addSubModel(devsModel) );
 
-        // BUILD IC
+        buildIC();
+    }
+
+    protected void buildIC() {
+        topology.getNocNetwork().getAllUnits().stream().forEach(
+                srcModel -> srcModel.getOutPorts().forEach(
+                        port -> {
+                            System.err.println( port.getModel().getName() + ":" + port.getName() + " ==> " + topology.getCorrespondingPort(port).getModel().getName() + ":" +  topology.getCorrespondingPort(port).getName());
+                            addIC(port , topology.getCorrespondingPort(port));
+                        }
+                )
+        );
     }
 
     protected void addGenerator(DEVSModel unit, DEVSModel generator) {

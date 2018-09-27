@@ -38,25 +38,85 @@ public class ProcessingElement extends DEVSAtomic {
 		this.outputPorts.forEach( outputPort -> addOutPort(outputPort) );
 	}
 
+	private enum STATE{ WAITING, PROCESSING, SENDING;}
+    private STATE state;
+    private Task currentTask;
+    private float rho;
+
 	@Override
-	public void init() { }
+	public void init() {
+	    state = STATE.WAITING;
+    }
 
 	@Override
 	public void deltaExt(Port port, Object o, float v) {
-		System.out.println( o );
+		switch ( state ) {
+            case WAITING: {
+                 currentTask = (Task) o;
+                 state = STATE.PROCESSING;
+            } break;
+
+            case PROCESSING: {
+                System.err.println( " ERROR RECEIVED EVENT IN PROCESSING STATE " );
+            } break;
+
+            case SENDING: {
+                System.err.println( " ERROR RECEIVED EVENT IN SENDING STATE " );
+            } break;
+        }
 	}
 
 	@Override
-	public void deltaInt() { }
+	public void deltaInt() {
+        switch ( state ) {
+            case WAITING: {
+            } break;
+
+            case PROCESSING: {
+                state = STATE.PROCESSING;
+            } break;
+
+            case SENDING: {
+                state = STATE.WAITING;
+                currentTask = null;
+            } break;
+        }
+    }
 
 	@Override
 	public Object[] lambda() {
-		return null;
+
+        Object[] output = null;
+
+        switch ( state ) {
+            case WAITING: {
+            }
+            break;
+
+            case PROCESSING: {
+            }
+            break;
+
+            case SENDING: {
+                output = new Object[2];
+                output[0] = this.getOutPorts().firstElement();
+                output[1] = currentTask;
+            }
+            break;
+        }
+
+        return output;
 	}
 
 	@Override
 	public float getDuration() {
-		return 1;
+        switch ( state ) {
+            case WAITING:       rho = Float.POSITIVE_INFINITY; break;
+            case PROCESSING:    rho = currentTask.getComputation_requirement(); break;
+            case SENDING:       rho = 0; break;
+        }
+
+        return rho;
 	}
 
     public String toString() {

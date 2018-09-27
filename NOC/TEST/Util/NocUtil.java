@@ -76,7 +76,7 @@ public class NocUtil {
     }
 
     public static Boolean alwaysFalse(Object o) {
-        return true;
+        return false;
     }
 
 }

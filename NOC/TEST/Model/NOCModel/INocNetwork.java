@@ -10,7 +10,6 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 
 public class INocNetwork implements Iterable<DEVSModel>  {
@@ -50,11 +49,6 @@ public class INocNetwork implements Iterable<DEVSModel>  {
         return units.keySet();
     }
 
-    public DEVSModel getUnitFromPosition( IPoint position, String direction ){
-        return null;
-    }
-
-
     public boolean isValidPoint(IPoint position) {
         return getAllPositions().contains( position );
     }
@@ -63,6 +57,9 @@ public class INocNetwork implements Iterable<DEVSModel>  {
         return getAllPositions().stream().anyMatch( point -> point.getValueOnAxis(axis) == value );
     }
 
+    public IPoint getPositionOfUnit ( DEVSModel unit ) {
+        return units.entrySet().stream().filter( entry -> entry.getValue().equals( unit ) ).findFirst().get().getKey();
+    }
 
     public ICoordinate getCoordinateSpace() {
         return coordinateSpace;
