@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public abstract class NOC extends DEVSCoupled {
 
-    public enum NodeType {NOC, NODE, QUEUE, SWITCH, PE}
+    public enum NodeType {NOC, NODE, QUEUE, SWITCH, PE, NETWORK_INTERFACE}
 
 
     protected final NodeType nodeType;                       /***** Represent the type of the element ************/
@@ -68,7 +68,6 @@ public abstract class NOC extends DEVSCoupled {
         topology.getNocNetwork().getAllUnits().stream().forEach(
                 srcModel -> srcModel.getOutPorts().forEach(
                         port -> {
-                            System.err.println( port.getModel().getName() + ":" + port.getName() + " ==> " + topology.getCorrespondingPort(port).getModel().getName() + ":" +  topology.getCorrespondingPort(port).getName());
                             addIC(port , topology.getCorrespondingPort(port));
                         }
                 )

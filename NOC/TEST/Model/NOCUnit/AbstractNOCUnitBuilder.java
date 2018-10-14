@@ -1,5 +1,6 @@
 package Model.NOCUnit;
 
+import BaseModel.NetworkInterface;
 import BaseModel.ProcessingElement;
 import BaseModel.Switch;
 import Model.Routing.NocRoutingPolicy;
@@ -20,6 +21,7 @@ public abstract class AbstractNOCUnitBuilder<TNOCUnit extends NOCUnit> {
     protected int               queuePerOutPortRatio;
     protected Switch            aSwitch;
     protected ProcessingElement aProcessingElement;
+    protected NetworkInterface aNetworkInterface;
     protected NocRoutingPolicy  routingPolicy;
     protected IPoint            coordinate;
 

@@ -53,7 +53,7 @@ public class Generator_Task extends DEVSAtomic {
 			rho       = 0F;
 		} else if (state.equals(State.GENERATE)) {
 			state = State.WAIT;
-			rho   = Float.POSITIVE_INFINITY;//random_generator.nextInt(2)+1;
+			rho   = 10;//random_generator.nextInt(2)+1;
 		}
 
 	}
@@ -77,13 +77,13 @@ public class Generator_Task extends DEVSAtomic {
 		if (state.equals(State.GENERATE)) {
 			output = setOutputLambda(out, value_out);
 //			Pretty_print.trace(this.name,  " TASK " + value_out + " created!");
+			System.out.println(this.name +  " TASK " + value_out + " created!");
 		} else {
 			output = null;
 		}
 
 		return output;
 	}
-
 
 	private Object[] setOutputLambda(Port port, Object value) {
         Object[] output = new Object[2];

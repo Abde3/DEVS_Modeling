@@ -4,7 +4,7 @@ import Model.NOCModel.NOCDirector;
 public class Test {
 
     private static final int SIZE_OF_THE_NETWORK = 2;
-    private static final float SIMULATION_TIME = 50;
+    private static final float SIMULATION_TIME = 100;
 
     public static void main(String[] args){
 

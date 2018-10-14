@@ -65,7 +65,7 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
     @Override
     public AbstractNOCUnitBuilder withCmdOutPorts(List<String> outDirections) throws NOCUnit.ExistingPortException {
-        v_cmd_out_ports_names = new HashSet<String>(
+        v_cmd_out_ports_names = new HashSet<>(
                 Util.NocUtil.directionsToPortsName(outDirections, false, Type.COMMAND)
         );
 
@@ -115,6 +115,7 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
         switchDataOutputPortsNames.add("PE");
         switchDataInputPortsNames.add("PE");
+        switchCmdOutputPortsNames.add("cmdToPE");
 
 
         aSwitch = new SwitchBuilder()
@@ -125,15 +126,20 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
                 .withCmdOutputPorts( switchCmdOutputPortsNames )
                 .build();
 
+        aNetworkInterface = new NetworkInterface( coordinate.toString() );
+
+
         aProcessingElement = new ProcessingElementBuilder()
                 .withCoordinate(coordinate)
                 .withInputPorts("in")
                 .withOutputPorts("out")
                 .build();
 
+
         System.out.println( "\n\n\n---------------------" );
-        System.out.println( aProcessingElement.toString() );
-        System.out.println( aSwitch.toString() );
+//        System.out.println( aProcessingElement.toString() );
+ //       System.out.println( aSwitch.toString() );
+  //      System.out.println( aNetworkInterface.toString() );
         System.out.println( "---------------------\n\n\n" );
 
         NOCUnit nocUnit = new NOCUnit(coordinate,
@@ -141,8 +147,12 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
                 v_data_out_ports_names,
                 v_cmd_in_ports_names,
                 v_cmd_out_ports_names,
+                aNetworkInterface,
                 aSwitch,
                 aProcessingElement);
+
+              System.out.println( nocUnit.toString() );
+
 
         return nocUnit;
     }

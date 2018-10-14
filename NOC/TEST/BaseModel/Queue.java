@@ -59,7 +59,6 @@ public class Queue extends DEVSAtomic {
 		return 4;
 	}
 
-
     public String toString() {
         String inports = "";
         String outports = "";

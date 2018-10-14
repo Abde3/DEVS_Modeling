@@ -1,5 +1,6 @@
 package NOCUnit;
 
+import BaseModel.NetworkInterface;
 import BaseModel.ProcessingElement;
 import BaseModel.Switch;
 import DEVSModel.DEVSCoupled;
@@ -25,14 +26,16 @@ public class NOCUnit extends DEVSCoupled {
     protected final HashMap<Port,Type> v_out_ports;
     protected final Switch             aSwitch;
     protected final ProcessingElement  aProcessingElement;
+    protected final NetworkInterface aNetworkInterface;
 
 
     public NOCUnit(IPoint coordinate,
-                   Set<String>  v_in_data_ports_names,
-                   Set<String>  v_out_data_ports_names,
-                   Set<String>  v_in_cmd_ports_names,
-                   Set<String>  v_out_cmd_ports_names,
-                   Switch       aSwitch,
+                   Set<String> v_in_data_ports_names,
+                   Set<String> v_out_data_ports_names,
+                   Set<String> v_in_cmd_ports_names,
+                   Set<String> v_out_cmd_ports_names,
+                   NetworkInterface aNetworkInterface,
+                   Switch aSwitch,
                    ProcessingElement aProcessingElement)
     {
 
@@ -44,6 +47,7 @@ public class NOCUnit extends DEVSCoupled {
         this.v_out_ports = new HashMap<>();
 
         this.aSwitch = aSwitch;
+        this.aNetworkInterface = aNetworkInterface;
         this.aProcessingElement = aProcessingElement;
 
 
@@ -71,17 +75,27 @@ public class NOCUnit extends DEVSCoupled {
         /** Add the processing element as a submodel */
         this.addSubModel(aProcessingElement);
 
+        /** Add the network interface element as a submodel */
+        this.addSubModel(aNetworkInterface);
+
         buildEIC();
         buildEOC();
         buildIC();
 
         this.setSelectPriority();
+
+
+
     }
 
     private void buildIC() {
 
-        addIC(aSwitch.getOutPort("PE"), aProcessingElement.getInPort("in"));
-        addIC(aProcessingElement.getOutPort("out"), aSwitch.getInPort("PE"));
+        addIC(aSwitch.getOutPort("PE"), aNetworkInterface.getInPort("dataFromSW"));
+        addIC(aNetworkInterface.getOutPort("dataToPE"), aProcessingElement.getInPort("in"));
+        addIC(aProcessingElement.getOutPort("out"), aNetworkInterface.getInPort("dataFromPE"));
+        addIC(aNetworkInterface.getOutPort("dataToSW"), aSwitch.getInPort("PE"));
+        addIC(aSwitch.getOutPort("cmdToPE"), aNetworkInterface.getInPort("cmdFromSW"));
+
     }
 
 

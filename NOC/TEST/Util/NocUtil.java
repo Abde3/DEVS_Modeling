@@ -64,7 +64,7 @@ public class NocUtil {
     }
 
     public static String portsNameToDirection(String portName) {
-        return  portName.split("-", -1)[2];
+        return  (portName.toUpperCase().contains("PE")) ? "PE" : portName.split("-", -1)[2];
     }
 
     public static boolean isCorrespondingPort(String fistPortName, String secondPortName) {

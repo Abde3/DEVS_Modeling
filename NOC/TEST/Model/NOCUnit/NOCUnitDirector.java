@@ -44,8 +44,6 @@ public class NOCUnitDirector {
             e.printStackTrace();
         }
 
-        System.out.println(nocUnit);
-
         return nocUnit;
     }
 
