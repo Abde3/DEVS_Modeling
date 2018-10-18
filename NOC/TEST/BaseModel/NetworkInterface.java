@@ -26,7 +26,7 @@ public class NetworkInterface extends DEVSCoupled {
     public NetworkInterface(String name) {
         super();
 
-        this.name = NODETYPE + "[" + name.trim() + "]";
+        this.name = NODETYPE.name() + "[" + name.trim() + "]";
         this.packetizer = new Packetize(name);
         this.depacketizer = new Depacketize(name);
 
@@ -45,8 +45,6 @@ public class NetworkInterface extends DEVSCoupled {
         cmdToSW    = new Port(this, "cmdToSW");
 
 
-
-
         addInPort( dataFromPE );
         addOutPort( dataToPE );
         addInPort( cmdFromPE );
@@ -59,6 +57,8 @@ public class NetworkInterface extends DEVSCoupled {
 
 
         addEIC( dataFromPE, packetizer.dataPE );
+        addEIC( dataFromSW, depacketizer.dataSwitch);
+
         addEIC( cmdFromSW, packetizer.commandSwitch);
         addEOC( dataToPE, depacketizer.dataPE);
 

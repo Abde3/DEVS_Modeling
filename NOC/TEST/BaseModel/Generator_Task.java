@@ -1,28 +1,37 @@
 package BaseModel;
 
 import java.util.Random;
+
 import DEVSModel.DEVSAtomic;
 import DEVSModel.Port;
-import NOCUnit.NodeCoordinate;
 import NocTopology.NOCDirections.IPoint;
 
 
 public class Generator_Task extends DEVSAtomic {
 
-	private enum State {WAIT, GENERATE;}
+	private enum State {WAIT, SENDOUT;}
 	private Random random_generator;
 
 	/******************************************************************************************************************/
 	private Port 	out;			/**************************** OutPort of the model ********************************/
-	private Task 	value_out;		/**************************** Represent the value in the OutPort ******************/
+	private Flit 	value_out;		/**************************** Represent the value in the OutPort ******************/
 
 	private State 	state;			/***************************  Represent the state     *****************************/
 	private float 	rho;			/***************************  Time elapsed in a state *****************************/
 
+	Packet currentPacket;
+	Message currentMessage;
+	String data;
 
-	public Generator_Task(String name) {
+	boolean isTailFlit = false;
+	int currentFlitIndex = 0;
+	int currentPacketIndex = 0;
+
+
+	public Generator_Task(String name, String data) {
 		super();
         random_generator = new Random();
+        this.data = data;
 
         this.name = name;
         this.out = new Port(this, "out");
@@ -41,19 +50,58 @@ public class Generator_Task extends DEVSAtomic {
 	public void deltaInt() {
 
 		if (state.equals(State.WAIT)) {
-            int id = random_generator.nextInt(99) + 1;
             int computation_requirement = random_generator.nextInt(4) + 1;
             IPoint destination = new IPoint (
             			new String[] {"x", "y"},
-						new Integer[]{ random_generator.nextInt(1) + 1, random_generator.nextInt(1) + 1}
+						new Integer[]{  1,  1}
 					);
 
-            value_out = new Task(id, computation_requirement, destination);
-			state     = State.GENERATE;
-			rho       = 0F;
-		} else if (state.equals(State.GENERATE)) {
-			state = State.WAIT;
-			rho   = 10;//random_generator.nextInt(2)+1;
+            if (currentMessage == null || currentPacketIndex == currentMessage.packets.size() - 1) {
+				currentMessage = new Message( data, destination );
+				currentPacket = currentMessage.packets.elementAt(currentPacketIndex);
+				currentPacketIndex = 0;
+
+				if (currentMessage != null) {
+					rho = Float.POSITIVE_INFINITY;
+				}
+
+			} else {
+				currentPacketIndex++;
+				currentPacket = currentMessage.packets.elementAt(currentPacketIndex);
+
+			}
+
+			System.out.println(this.name +  " PACKET " + currentPacket + " created!");
+
+			state     = State.SENDOUT;
+			currentFlitIndex = 0;
+			value_out = currentPacket.flits.get(currentFlitIndex);
+			isTailFlit = false;
+			rho = 1F;
+
+		} else if (state.equals(State.SENDOUT)) {
+
+			if (isTailFlit) {
+
+				state = State.WAIT;
+				isTailFlit = false;
+
+				if (currentPacketIndex == currentMessage.packets.size() - 1) {
+					rho = Float.POSITIVE_INFINITY;
+				} else {
+					rho       = 100F;
+				}
+
+			} else {
+
+				currentFlitIndex++;
+				value_out = currentPacket.flits.get(currentFlitIndex);
+				isTailFlit = value_out.isTail;
+
+				state = State.SENDOUT;
+				rho = 1;
+
+			}
 		}
 
 	}
@@ -67,6 +115,7 @@ public class Generator_Task extends DEVSAtomic {
 	public void init() {
 		state = State.WAIT;
 		rho   =  0F;
+		isTailFlit = true;
 		System.out.println("STARTING GENERATOR");
 	}
 
@@ -74,10 +123,9 @@ public class Generator_Task extends DEVSAtomic {
 	public Object[] lambda() {
 		Object[] output;
 
-		if (state.equals(State.GENERATE)) {
+		if (state.equals(State.SENDOUT)) {
 			output = setOutputLambda(out, value_out);
-//			Pretty_print.trace(this.name,  " TASK " + value_out + " created!");
-			System.out.println(this.name +  " TASK " + value_out + " created!");
+			System.out.println(this.name +  " Flit " + value_out + " sent!");
 		} else {
 			output = null;
 		}

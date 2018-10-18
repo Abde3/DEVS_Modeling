@@ -5,6 +5,7 @@ import DEVSModel.DEVSModel;
 import DEVSModel.Port;
 import Model.NOCModel.INocNetwork;
 import NocTopology.NOCDirections.IPoint;
+import Util.NocUtil;
 
 import java.util.*;
 import java.util.function.Function;
@@ -128,5 +129,17 @@ public class NocTopology {
     }
 
 
+    public String getDirectionToReachPoint(IPoint source, IPoint destination, String selectedAxis) {
+        return getOutputDirections( source )
+                .stream()
+                .filter( direction -> getAxisFromDirection( direction ).equals( selectedAxis ))
+                .filter( direction ->
+                        Math.abs(directionToTransformations
+                                .get(new AbstractMap.SimpleEntry(selectedAxis, direction))
+                                .apply( source.getValueOnAxis(selectedAxis) ) - destination.getValueOnAxis(selectedAxis))
+                                <= Math.abs( source.getValueOnAxis(selectedAxis) - destination.getValueOnAxis(selectedAxis) )
+                        )
+                .findFirst().get();
 
+    }
 }

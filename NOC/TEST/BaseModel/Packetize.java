@@ -2,12 +2,15 @@ package BaseModel;
 
 import DEVSModel.DEVSAtomic;
 import DEVSModel.Port;
+import Model.NOCModel.NOC;
 
 import java.util.Vector;
 
 public class Packetize extends DEVSAtomic {
 
     private static final int PACKET_SIZE = 64;
+    private static final NOC.NodeType NODETYPE = NOC.NodeType.PACKETIZER;
+
 
     Port dataPE;
     Port dataSwitch;
@@ -16,12 +19,13 @@ public class Packetize extends DEVSAtomic {
     boolean outQstatus;
     private int sentFlit;
     private int maxFlit;
+    private float rho;
 
 
     public Packetize(String name) {
         super();
+        this.name = NODETYPE.name() + "[" + name.trim() + "]";
 
-        this.name = name;
         queue = new Vector<>();
 
         dataPE = new Port(this, "dataPE");
@@ -34,17 +38,16 @@ public class Packetize extends DEVSAtomic {
     }
 
 
-    private enum STATE{ PASSIVE, PACKETIZE, WAIT4OK, SEND_OUT_FLIT;}
+    private enum STATE{ PASSIVE, PACKETIZE, WAIT4OK, SEND_OUT_FLIT}
     private STATE state;
-    private Vector<Task> queue;
+    private Vector<Packet> queue;
 
     @Override
     public void init() {
         state = STATE.PASSIVE;
-        queue = new Vector<>();
+        queue = new Vector<>(5);
         outQstatus = true;
         sentFlit = 0;
-
     }
 
     @Override
@@ -126,6 +129,13 @@ public class Packetize extends DEVSAtomic {
 
     @Override
     public float getDuration() {
-        return 2;
+        switch (state)  {
+            case WAIT4OK: rho =  Float.POSITIVE_INFINITY;
+            case SEND_OUT_FLIT: rho =  1;
+            case PASSIVE: rho =  Float.POSITIVE_INFINITY;
+            case PACKETIZE: rho = 10;
+        }
+
+        return rho;
     }
 }

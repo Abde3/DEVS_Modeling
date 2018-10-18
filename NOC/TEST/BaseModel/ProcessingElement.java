@@ -5,7 +5,6 @@ import DEVSModel.Port;
 import Model.NOCModel.NOC;
 import NocTopology.NOCDirections.IPoint;
 
-import java.util.Random;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
@@ -40,7 +39,7 @@ public class ProcessingElement extends DEVSAtomic {
 
 	private enum STATE{ WAITING, PROCESSING, SENDING;}
     private STATE state;
-    private Task currentTask;
+    private Packet currentPacket;
     private float rho;
 
 	@Override
@@ -52,7 +51,7 @@ public class ProcessingElement extends DEVSAtomic {
 	public void deltaExt(Port port, Object o, float v) {
 		switch ( state ) {
             case WAITING: {
-                 currentTask = (Task) o;
+                 currentPacket = (Packet) o;
                  state = STATE.PROCESSING;
             } break;
 
@@ -78,7 +77,7 @@ public class ProcessingElement extends DEVSAtomic {
 
             case SENDING: {
                 state = STATE.WAITING;
-                currentTask = null;
+                currentPacket = null;
             } break;
         }
     }
@@ -100,7 +99,7 @@ public class ProcessingElement extends DEVSAtomic {
             case SENDING: {
                 output = new Object[2];
                 output[0] = this.getOutPorts().firstElement();
-                output[1] = currentTask;
+                output[1] = currentPacket;
             }
             break;
         }
@@ -112,7 +111,7 @@ public class ProcessingElement extends DEVSAtomic {
 	public float getDuration() {
         switch ( state ) {
             case WAITING:       rho = Float.POSITIVE_INFINITY; break;
-            case PROCESSING:    rho = currentTask.getComputation_requirement(); break;
+            case PROCESSING:    rho = currentPacket.getComputation_requirement(); break;
             case SENDING:       rho = 0; break;
         }
 

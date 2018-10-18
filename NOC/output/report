@@ -1,0 +1,1374 @@
+
+time:0.0
+--conflict[]= {Generator[1, 0],Generator[0, 0],} --> Generator[0, 0]
+
+time:1.0
+--conflict[]= {Generator[0, 0],Generator[1, 0],} --> Generator[0, 0]
+--Generator[0, 0](out = {name: TASK-0 HEADER_FLIT})
+--NODE[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0 HEADER_FLIT})
+--SWITCH[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0 HEADER_FLIT})
+--Generator[1, 0](out = {name: TASK-18 HEADER_FLIT})
+--NODE[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18 HEADER_FLIT})
+--SWITCH[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18 HEADER_FLIT})
+
+time:2.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],Generator[0, 0],NODE[(0, 0)],Generator[1, 0],NODE[(0, 1)],} --> Generator[0, 0]
+--Generator[0, 0](out = {name: TASK-0, data:A})
+--NODE[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:A})
+--SWITCH[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:A})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],Generator[1, 0],NODE[(0, 1)],NODE[(0, 0)],} --> Generator[1, 0]
+--Generator[1, 0](out = {name: TASK-18, data:1})
+--NODE[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:1})
+--SWITCH[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:1})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:3.0
+--conflict[]= {Generator[0, 0],Generator[1, 0],NODE[(1, 0)],NODE[(1, 1)],} --> Generator[0, 0]
+--Generator[0, 0](out = {name: TASK-0, data:B})
+--NODE[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:B})
+--SWITCH[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:B})
+--conflict[]= {Generator[1, 0],NODE[(1, 0)],NODE[(1, 1)],} --> Generator[1, 0]
+--Generator[1, 0](out = {name: TASK-18, data:2})
+--NODE[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:2})
+--SWITCH[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:2})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:4.0
+--conflict[]= {Generator[0, 0],NODE[(0, 0)],Generator[1, 0],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> Generator[0, 0]
+--Generator[0, 0](out = {name: TASK-0, data:C})
+--NODE[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:C})
+--SWITCH[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:C})
+--conflict[]= {Generator[1, 0],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> Generator[1, 0]
+--Generator[1, 0](out = {name: TASK-18, data:3})
+--NODE[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:3})
+--SWITCH[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:3})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:5.0
+--conflict[]= {Generator[0, 0],Generator[1, 0],} --> Generator[0, 0]
+--Generator[0, 0](out = {name: TASK-0 TAIL_FLIT})
+--NODE[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0 TAIL_FLIT})
+--SWITCH[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0 TAIL_FLIT})
+--Generator[1, 0](out = {name: TASK-18 TAIL_FLIT})
+--NODE[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18 TAIL_FLIT})
+--SWITCH[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18 TAIL_FLIT})
+
+time:6.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:8.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:9.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:10.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:12.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:14.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:15.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:16.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:18.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:20.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:21.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:22.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:23.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--SWITCH[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0 HEADER_FLIT})
+--NODE[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0 HEADER_FLIT})
+--NODE[(1, 0)](INPUT-DATA-WEST = {name: TASK-0 HEADER_FLIT})
+--SWITCH[(1, 0)](INPUT-DATA-WEST = {name: TASK-0 HEADER_FLIT})
+--SWITCH[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18 HEADER_FLIT})
+--NODE[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18 HEADER_FLIT})
+--NODE[(1, 1)](INPUT-DATA-WEST = {name: TASK-18 HEADER_FLIT})
+--SWITCH[(1, 1)](INPUT-DATA-WEST = {name: TASK-18 HEADER_FLIT})
+
+time:24.0
+--conflict[]= {NODE[(0, 0)],NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:26.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:28.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--SWITCH[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:A})
+--NODE[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:A})
+--NODE[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:A})
+--SWITCH[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:A})
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--SWITCH[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:1})
+--NODE[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:1})
+--NODE[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:1})
+--SWITCH[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:1})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:30.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:32.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:33.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--SWITCH[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:B})
+--NODE[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:B})
+--NODE[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:B})
+--SWITCH[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:B})
+--SWITCH[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:2})
+--NODE[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:2})
+--NODE[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:2})
+--SWITCH[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:2})
+
+time:34.0
+--conflict[]= {NODE[(0, 0)],NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:36.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:38.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--SWITCH[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:C})
+--NODE[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:C})
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--SWITCH[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:3})
+--NODE[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:3})
+--NODE[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:3})
+--SWITCH[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:3})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--NODE[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:C})
+--SWITCH[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:C})
+
+time:40.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:42.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:43.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--SWITCH[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0 TAIL_FLIT})
+--NODE[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0 TAIL_FLIT})
+--NODE[(1, 0)](INPUT-DATA-WEST = {name: TASK-0 TAIL_FLIT})
+--SWITCH[(1, 0)](INPUT-DATA-WEST = {name: TASK-0 TAIL_FLIT})
+--SWITCH[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18 TAIL_FLIT})
+--NODE[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18 TAIL_FLIT})
+--NODE[(1, 1)](INPUT-DATA-WEST = {name: TASK-18 TAIL_FLIT})
+--SWITCH[(1, 1)](INPUT-DATA-WEST = {name: TASK-18 TAIL_FLIT})
+
+time:44.0
+--conflict[]= {NODE[(0, 0)],NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:46.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:48.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:49.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+
+time:50.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:52.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:53.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:54.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:55.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+
+time:56.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:58.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--SWITCH[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0 HEADER_FLIT})
+--NODE[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0 HEADER_FLIT})
+--NODE[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0 HEADER_FLIT})
+--deltaconf:SWITCH[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-18 HEADER_FLIT})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-18 HEADER_FLIT})
+--SWITCH[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0 HEADER_FLIT})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-18 HEADER_FLIT})
+
+time:55.0
+
+time:57.0
+
+time:59.0
+
+time:60.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:61.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+
+time:62.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+
+time:63.0
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--SWITCH[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:A})
+--NODE[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:A})
+--NODE[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:A})
+--deltaconf:SWITCH[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-18, data:1})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-18, data:1})
+--SWITCH[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:A})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-18, data:1})
+
+time:60.0
+
+time:62.0
+
+time:64.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:66.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:67.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+
+time:68.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--SWITCH[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:B})
+--NODE[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:B})
+--NODE[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:B})
+--deltaconf:SWITCH[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-0 HEADER_FLIT})
+--SWITCH[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:B})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-0 HEADER_FLIT})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-0 HEADER_FLIT})
+
+time:65.0
+
+time:67.0
+
+time:69.0
+
+time:70.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:71.0
+
+time:72.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+
+time:73.0
+--conflict[]= {NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--SWITCH[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:C})
+--NODE[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:C})
+--NODE[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:C})
+--deltaconf:SWITCH[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-0, data:A})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-0, data:A})
+--SWITCH[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:C})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-0, data:A})
+
+time:70.0
+
+time:72.0
+
+time:74.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:76.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:78.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--SWITCH[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0 TAIL_FLIT})
+--NODE[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0 TAIL_FLIT})
+--NODE[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0 TAIL_FLIT})
+--deltaconf:SWITCH[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-0, data:B})
+--SWITCH[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0 TAIL_FLIT})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-0, data:B})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-0, data:B})
+
+time:75.0
+
+time:77.0
+
+time:79.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+
+time:80.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:81.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:82.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+
+time:83.0
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-0, data:C})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-0, data:C})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-0, data:C})
+
+time:84.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+
+time:85.0
+--conflict[]= {NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+
+time:86.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+
+time:87.0
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:88.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--SWITCH[(1, 1)](PE = {name: TASK-0 TAIL_FLIT})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-0 TAIL_FLIT})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-0 TAIL_FLIT})
+
+time:90.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:91.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+
+time:92.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:93.0
+
+time:94.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:96.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:97.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+
+time:98.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:99.0
+
+time:100.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:102.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:103.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+
+time:104.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:105.0
+--conflict[]= {Generator[0, 0],Generator[1, 0],NODE[(1, 0)],} --> Generator[0, 0]
+--conflict[]= {Generator[1, 0],NODE[(1, 0)],} --> Generator[1, 0]
+
+time:106.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],Generator[0, 0],Generator[1, 0],NODE[(1, 0)],} --> Generator[0, 0]
+--Generator[0, 0](out = {name: TASK-0 HEADER_FLIT})
+--NODE[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0 HEADER_FLIT})
+--deltaconf:SWITCH[(0, 0)]
+--SWITCH[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0 HEADER_FLIT})
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],Generator[1, 0],NODE[(1, 0)],NODE[(0, 0)],} --> Generator[1, 0]
+--Generator[1, 0](out = {name: TASK-18 HEADER_FLIT})
+--NODE[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18 HEADER_FLIT})
+--deltaconf:SWITCH[(0, 1)]
+--SWITCH[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18 HEADER_FLIT})
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:107.0
+--conflict[]= {Generator[0, 0],Generator[1, 0],} --> Generator[0, 0]
+--Generator[0, 0](out = {name: TASK-0, data:D})
+--NODE[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:D})
+--SWITCH[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:D})
+--Generator[1, 0](out = {name: TASK-18, data:4})
+--NODE[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:4})
+--SWITCH[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:4})
+
+time:108.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],Generator[0, 0],NODE[(0, 0)],Generator[1, 0],NODE[(0, 1)],} --> Generator[0, 0]
+--Generator[0, 0](out = {name: TASK-0, data:E})
+--NODE[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:E})
+--SWITCH[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:E})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],Generator[1, 0],NODE[(0, 1)],NODE[(0, 0)],} --> Generator[1, 0]
+--Generator[1, 0](out = {name: TASK-18, data:5})
+--NODE[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:5})
+--SWITCH[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:5})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:109.0
+--conflict[]= {Generator[0, 0],Generator[1, 0],NODE[(1, 1)],} --> Generator[0, 0]
+--Generator[0, 0](out = {name: TASK-0, data:F})
+--NODE[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:F})
+--SWITCH[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0, data:F})
+--conflict[]= {Generator[1, 0],NODE[(1, 1)],} --> Generator[1, 0]
+--Generator[1, 0](out = {name: TASK-18, data:6})
+--NODE[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:6})
+--SWITCH[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18, data:6})
+
+time:110.0
+--conflict[]= {NODE[(1, 0)],Generator[0, 0],NODE[(0, 0)],Generator[1, 0],NODE[(0, 1)],NODE[(1, 1)],} --> Generator[0, 0]
+--Generator[0, 0](out = {name: TASK-0 TAIL_FLIT})
+--NODE[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0 TAIL_FLIT})
+--SWITCH[(0, 0)](INPUT-DATA-SOUTH = {name: TASK-0 TAIL_FLIT})
+--conflict[]= {NODE[(1, 0)],Generator[1, 0],NODE[(0, 1)],NODE[(1, 1)],NODE[(0, 0)],} --> Generator[1, 0]
+--Generator[1, 0](out = {name: TASK-18 TAIL_FLIT})
+--NODE[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18 TAIL_FLIT})
+--SWITCH[(0, 1)](INPUT-DATA-NORTH = {name: TASK-18 TAIL_FLIT})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:111.0
+
+time:112.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:113.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+
+time:114.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:115.0
+
+time:116.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:117.0
+
+time:118.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:120.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:121.0
+
+time:122.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:123.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+
+time:124.0
+--conflict[]= {NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:126.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:127.0
+
+time:128.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--SWITCH[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0 HEADER_FLIT})
+--NODE[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0 HEADER_FLIT})
+--NODE[(1, 0)](INPUT-DATA-WEST = {name: TASK-0 HEADER_FLIT})
+--SWITCH[(1, 0)](INPUT-DATA-WEST = {name: TASK-0 HEADER_FLIT})
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--SWITCH[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18 HEADER_FLIT})
+--NODE[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18 HEADER_FLIT})
+--NODE[(1, 1)](INPUT-DATA-WEST = {name: TASK-18 HEADER_FLIT})
+--SWITCH[(1, 1)](INPUT-DATA-WEST = {name: TASK-18 HEADER_FLIT})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:130.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:131.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:132.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:133.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--SWITCH[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:D})
+--NODE[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:D})
+--NODE[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:D})
+--SWITCH[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:D})
+--SWITCH[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:4})
+--NODE[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:4})
+--NODE[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:4})
+--SWITCH[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:4})
+
+time:134.0
+--conflict[]= {NODE[(0, 0)],NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:136.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:138.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--SWITCH[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:E})
+--NODE[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:E})
+--NODE[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:E})
+--SWITCH[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:E})
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--SWITCH[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:5})
+--NODE[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:5})
+--NODE[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:5})
+--SWITCH[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:5})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {NETWORK_INTERFACE[(1, 1)],SWITCH[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+--SWITCH[(1, 1)](OUTPUT-COMMAND-WEST = nok)
+--NODE[(1, 1)](OUTPUT-COMMAND-WEST = nok)
+--NODE[(0, 1)](INPUT-COMMAND-EAST = nok)
+--SWITCH[(0, 1)](INPUT-COMMAND-EAST = nok)
+
+time:140.0
+--conflict[]= {NODE[(0, 0)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:142.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:143.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--SWITCH[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:F})
+--NODE[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0, data:F})
+--NODE[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:F})
+--SWITCH[(1, 0)](INPUT-DATA-WEST = {name: TASK-0, data:F})
+--SWITCH[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:6})
+--NODE[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18, data:6})
+--NODE[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:6})
+--SWITCH[(1, 1)](INPUT-DATA-WEST = {name: TASK-18, data:6})
+--SWITCH[(1, 1)](OUTPUT-COMMAND-WEST = nok)
+--NODE[(1, 1)](OUTPUT-COMMAND-WEST = nok)
+--NODE[(0, 1)](INPUT-COMMAND-EAST = nok)
+--SWITCH[(0, 1)](INPUT-COMMAND-EAST = nok)
+
+time:144.0
+--conflict[]= {NODE[(0, 0)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:146.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:148.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--SWITCH[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0 TAIL_FLIT})
+--NODE[(0, 0)](OUTPUT-DATA-EAST = {name: TASK-0 TAIL_FLIT})
+--NODE[(1, 0)](INPUT-DATA-WEST = {name: TASK-0 TAIL_FLIT})
+--SWITCH[(1, 0)](INPUT-DATA-WEST = {name: TASK-0 TAIL_FLIT})
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--SWITCH[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18 TAIL_FLIT})
+--NODE[(0, 1)](OUTPUT-DATA-EAST = {name: TASK-18 TAIL_FLIT})
+--NODE[(1, 1)](INPUT-DATA-WEST = {name: TASK-18 TAIL_FLIT})
+--SWITCH[(1, 1)](INPUT-DATA-WEST = {name: TASK-18 TAIL_FLIT})
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {NETWORK_INTERFACE[(1, 1)],SWITCH[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+--SWITCH[(1, 1)](OUTPUT-COMMAND-WEST = nok)
+--NODE[(1, 1)](OUTPUT-COMMAND-WEST = nok)
+--NODE[(0, 1)](INPUT-COMMAND-EAST = nok)
+--SWITCH[(0, 1)](INPUT-COMMAND-EAST = nok)
+
+time:150.0
+--conflict[]= {NODE[(0, 0)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:151.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+
+time:152.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:154.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:156.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:157.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+
+time:158.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:160.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:162.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:163.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--SWITCH[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0 HEADER_FLIT})
+--NODE[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0 HEADER_FLIT})
+--NODE[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0 HEADER_FLIT})
+--deltaconf:SWITCH[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-18, data:2})
+--SWITCH[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0 HEADER_FLIT})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-18, data:2})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-18, data:2})
+
+time:160.0
+
+time:162.0
+
+time:164.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:166.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:168.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--SWITCH[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:D})
+--NODE[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:D})
+--NODE[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:D})
+--deltaconf:SWITCH[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-18, data:3})
+--SWITCH[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:D})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-18, data:3})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-18, data:3})
+
+time:165.0
+
+time:167.0
+
+time:169.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+
+time:170.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:171.0
+
+time:172.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+
+time:173.0
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--SWITCH[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:E})
+--NODE[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:E})
+--NODE[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:E})
+--deltaconf:SWITCH[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-0 HEADER_FLIT})
+--SWITCH[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:E})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-0 HEADER_FLIT})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-0 HEADER_FLIT})
+
+time:170.0
+
+time:172.0
+
+time:174.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:175.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+
+time:176.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:178.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--SWITCH[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:F})
+--NODE[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0, data:F})
+--NODE[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:F})
+--deltaconf:SWITCH[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-0, data:D})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-0, data:D})
+--SWITCH[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0, data:F})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-0, data:D})
+
+time:175.0
+
+time:177.0
+
+time:179.0
+
+time:180.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:181.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+
+time:182.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+
+time:183.0
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--SWITCH[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0 TAIL_FLIT})
+--NODE[(1, 0)](OUTPUT-DATA-SOUTH = {name: TASK-0 TAIL_FLIT})
+--NODE[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0 TAIL_FLIT})
+--deltaconf:SWITCH[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-0, data:E})
+--SWITCH[(1, 1)](INPUT-DATA-NORTH = {name: TASK-0 TAIL_FLIT})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-0, data:E})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-0, data:E})
+
+time:180.0
+
+time:182.0
+
+time:184.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:186.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:187.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+
+time:188.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-0, data:F})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-0, data:F})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-0, data:F})
+
+time:189.0
+
+time:190.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 1)]]= {PACKETIZER[(1, 1)],DEPACKETIZER[(1, 1)],} --> null
+
+time:192.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:193.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--SWITCH[(1, 1)](PE = {name: TASK-0 TAIL_FLIT})
+--NETWORK_INTERFACE[(1, 1)](dataFromSW = {name: TASK-0 TAIL_FLIT})
+--DEPACKETIZER[(1, 1)](dataSwitch = {name: TASK-0 TAIL_FLIT})
+
+time:194.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+
+time:195.0
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:196.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:197.0
+
+time:198.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+
+time:199.0
+--conflict[]= {NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:200.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:201.0
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:202.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:203.0
+
+time:204.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+
+time:205.0
+--conflict[]= {NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:206.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+
+time:207.0
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:208.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:209.0
+
+time:210.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NETWORK_INTERFACE[(0, 1)]]= {PACKETIZER[(0, 1)],DEPACKETIZER[(0, 1)],} --> null
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[NETWORK_INTERFACE[(1, 0)]]= {PACKETIZER[(1, 0)],DEPACKETIZER[(1, 0)],} --> null
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:211.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:212.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+
+time:213.0
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:214.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(0, 1)]]= {SWITCH[(0, 1)],NETWORK_INTERFACE[(0, 1)],} --> NETWORK_INTERFACE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[]= {NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(1, 0)]
+
+time:215.0
+
+time:216.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],} --> NODE[(0, 1)]
+--conflict[NODE[(1, 0)]]= {SWITCH[(1, 0)],NETWORK_INTERFACE[(1, 0)],} --> NETWORK_INTERFACE[(1, 0)]
+
+time:217.0
+--conflict[]= {NODE[(1, 1)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 1)],NODE[(0, 1)],} --> NODE[(0, 1)]
+--conflict[NODE[(1, 1)]]= {SWITCH[(1, 1)],NETWORK_INTERFACE[(1, 1)],} --> NETWORK_INTERFACE[(1, 1)]
+
+time:218.0
+--conflict[]= {NODE[(1, 0)],NODE[(0, 0)],NODE[(0, 1)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(1, 0)],NODE[(0, 1)],} --> NODE[(0, 1)]
+
+time:219.0
+--conflict[]= {NODE[(1, 1)],NODE[(1, 0)],} --> NODE[(1, 0)]
+
+time:220.0
+--conflict[]= {NODE[(0, 0)],NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[NETWORK_INTERFACE[(0, 0)]]= {PACKETIZER[(0, 0)],DEPACKETIZER[(0, 0)],} --> null
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[NODE[(0, 0)]]= {SWITCH[(0, 0)],NETWORK_INTERFACE[(0, 0)],} --> NETWORK_INTERFACE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE[(1, 1)],NODE[(0, 0)],} --> NODE[(0, 0)]
+--conflict[]= {NODE[(0, 1)],NODE[(1, 0)],NODE

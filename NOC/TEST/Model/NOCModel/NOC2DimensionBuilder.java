@@ -21,7 +21,10 @@ public class NOC2DimensionBuilder extends AbstractNOCBuilder {
 
     @Override
     public AbstractNOCBuilder withRoutingPolicy(NocRoutingPolicy.RoutingPolicy routingPolicy) throws UnhandledRoutingPolicyException {
-        this.routingPolicy = NocRoutingPolicy.buildRoutingPolicy(routingPolicy);
+        if ( topology == null ) {
+            System.err.println( "ERROR : The topology have to be set before the Routing Policy!" );
+        }
+        this.routingPolicy = NocRoutingPolicy.buildRoutingPolicy(routingPolicy, topology);
         return this;
     }
 

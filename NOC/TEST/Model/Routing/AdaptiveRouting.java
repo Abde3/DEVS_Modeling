@@ -1,14 +1,31 @@
 package Model.Routing;
 
 
+import BaseModel.Switch;
+import DEVSModel.Port;
+import NocTopology.NOCDirections.IPoint;
+import NocTopology.NocTopology;
+
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class AdaptiveRouting extends NocRoutingPolicy {
 
-    public AdaptiveRouting() {
+    NocTopology topology;
 
+    public AdaptiveRouting(NocTopology topology) {
+        this.topology = topology;
     }
 
-    public Object computeNextStep() throws Exception {
-        throw new Exception("Not implemented yet !");
+    @Override
+    public Map<IPoint, Port> getRouteTable() {
+        return null;
+    }
+
+    public Port computeNextRouteStep(Switch sourceModel, IPoint destination) {
+        IPoint source = sourceModel.position;
+
+        return null;
     }
 
 

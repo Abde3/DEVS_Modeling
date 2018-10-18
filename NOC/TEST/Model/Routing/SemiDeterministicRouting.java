@@ -1,15 +1,29 @@
 package Model.Routing;
 
-import Model.Routing.NocRoutingPolicy;
+import BaseModel.Switch;
+import DEVSModel.Port;
+import NocTopology.NOCDirections.IPoint;
+import NocTopology.NocTopology;
+
+import java.util.Map;
 
 public class SemiDeterministicRouting extends NocRoutingPolicy {
 
-    public SemiDeterministicRouting() {
+    NocTopology topology;
 
+    public SemiDeterministicRouting(NocTopology topology) {
+        this.topology = topology;
     }
 
-    public Object computeNextStep() throws Exception {
-        throw new Exception("Not implemented yet !");
+    @Override
+    public Map<IPoint, Port> getRouteTable() {
+        return null;
+    }
+
+    public Port computeNextRouteStep(Switch sourceModel, IPoint destination) {
+        IPoint source = sourceModel.position;
+
+        return null;
     }
 
 

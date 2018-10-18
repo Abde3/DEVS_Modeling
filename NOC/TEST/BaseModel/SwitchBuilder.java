@@ -1,6 +1,7 @@
 package BaseModel;
 
 
+import Model.Routing.NocRoutingPolicy;
 import NocTopology.NOCDirections.IPoint;
 
 import java.util.Arrays;
@@ -12,7 +13,14 @@ public class SwitchBuilder {
     private Vector<String> outputDataPortsNames;
     private Vector<String> inputCmdPortsNames;
     private Vector<String> outputCmdPortsNames;
+    private NocRoutingPolicy routingPolicy;
     private IPoint coordinate;
+
+    public SwitchBuilder withRoutingPolicy(NocRoutingPolicy routingPolicy) {
+        this.routingPolicy = routingPolicy;
+        return this;
+    }
+
 
     public SwitchBuilder withDataInputPorts(Set<String> inputPorts) {
         this.inputDataPortsNames = new Vector<>(inputPorts);
@@ -40,6 +48,6 @@ public class SwitchBuilder {
     }
 
     public Switch build() {
-        return new Switch(coordinate, inputDataPortsNames, outputDataPortsNames, inputCmdPortsNames, outputCmdPortsNames);
+        return new Switch(coordinate, routingPolicy, inputDataPortsNames, outputDataPortsNames, inputCmdPortsNames, outputCmdPortsNames);
     }
 }

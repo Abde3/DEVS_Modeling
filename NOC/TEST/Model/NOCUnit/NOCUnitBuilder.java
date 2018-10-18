@@ -120,6 +120,7 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
         aSwitch = new SwitchBuilder()
                 .withCoordinate(coordinate)
+                .withRoutingPolicy( routingPolicy )
                 .withDataInputPorts( switchDataInputPortsNames )
                 .withDataOutputPorts( switchDataOutputPortsNames )
                 .withCmdInputPorts( switchCmdInputPortsNames )
@@ -138,8 +139,8 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
 
         System.out.println( "\n\n\n---------------------" );
 //        System.out.println( aProcessingElement.toString() );
- //       System.out.println( aSwitch.toString() );
-  //      System.out.println( aNetworkInterface.toString() );
+//        System.out.println( aSwitch.toString() );
+//        System.out.println( aNetworkInterface.toString() );
         System.out.println( "---------------------\n\n\n" );
 
         NOCUnit nocUnit = new NOCUnit(coordinate,

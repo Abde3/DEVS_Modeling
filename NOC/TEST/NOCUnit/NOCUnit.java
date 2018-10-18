@@ -84,8 +84,6 @@ public class NOCUnit extends DEVSCoupled {
 
         this.setSelectPriority();
 
-
-
     }
 
     private void buildIC() {
