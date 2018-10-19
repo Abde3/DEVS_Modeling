@@ -60,7 +60,7 @@ public class NetworkInterface extends DEVSCoupled {
         addEIC( dataFromSW, depacketizer.dataSwitch);
 
         addEIC( cmdFromSW, packetizer.commandSwitch);
-        addEOC( dataToPE, depacketizer.dataPE);
+        addEOC( depacketizer.dataPE, dataToPE);
 
         this.setSelectPriority();
 

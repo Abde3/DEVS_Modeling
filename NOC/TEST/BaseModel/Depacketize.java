@@ -9,15 +9,18 @@ import java.util.Vector;
 public class Depacketize extends DEVSAtomic {
 
     private static final NOC.NodeType NODETYPE = NOC.NodeType.DEPACKETIZER;
+    private static final int PACKET_SIZE = 64;
     private static final int DATA_SIZE = 64;
 
     Port dataPE; // ToPE
     Port dataSwitch; // fromSwitch
     Port commandSwitch;
 
+    private float rho;
 
 
     Packet outDataBuffer;
+
     boolean outQstatus;
     private int sentFlit;
     private int maxFlit;
@@ -26,47 +29,60 @@ public class Depacketize extends DEVSAtomic {
         super();
         this.name = NODETYPE.name() + "[" + name.trim() + "]";
 
-        incomingFlitQueue = new Vector<>();
+        queue = new Vector<>();
 
         dataPE = new Port(this, "dataPE");
         dataSwitch = new Port(this, "dataSwitch");
         commandSwitch = new Port(this, "commandSwitch");
     }
 
-    private enum STATE{ IDLE, DEPACKETIZE, TRANSMISSION}
-    private STATE state;
-    private Vector<Flit> incomingFlitQueue;
+
+    private enum STATE{ PASSIVE, PACKETIZE, WAIT4OK, SEND_OUT_FLIT}
+    private Depacketize.STATE state;
+    private Vector<Flit> queue;
 
     @Override
     public void init() {
-        state = STATE.IDLE;
+        state = Depacketize.STATE.PASSIVE;
+        queue = new Vector<>(5);
         outQstatus = true;
         sentFlit = 0;
-        outDataBuffer = null;
     }
 
     @Override
     public void deltaExt(Port port, Object o, float v) {
 
         switch (state) {
-            case IDLE: {
-                if ( port.equals(dataSwitch) ) {
-                    state = STATE.DEPACKETIZE;
+            case PASSIVE: {
+                if ( port.equals(dataSwitch) &&  queue.size() < PACKET_SIZE / 8) {
+                    queue.add((Flit) o);
+
+                } else if ( port.equals(dataSwitch) &&  queue.size() >= PACKET_SIZE / 8) {
+                    state = Depacketize.STATE.PACKETIZE;
+
+                } else if ( port.equals(commandSwitch) ) {
+                    outQstatus = (Boolean) o;
                 }
             } break;
 
-            case DEPACKETIZE: {
-                    if ( ! incomingFlitQueue.isEmpty() ) {
-                        state = STATE.DEPACKETIZE;
-                    } else if (  outDataBuffer != null) {
-                        state = STATE.TRANSMISSION;
-                    }
+            case WAIT4OK: {
+                if ( port.equals(dataSwitch) ) { state = Depacketize.STATE.WAIT4OK; }
+                else if ( port.equals(commandSwitch) && o.equals("ok")) {
+                    outQstatus = true;
+                    state = Depacketize.STATE.SEND_OUT_FLIT;
+                }
+
             } break;
 
-            case TRANSMISSION: {
-                if ( outDataBuffer != null) {
-                    state = STATE.TRANSMISSION;
+            case PACKETIZE: {
+                if ( port.equals(commandSwitch) ) {
+                    outQstatus = (Boolean) o;
                 }
+            } break;
+
+            case SEND_OUT_FLIT: {
+                if ( port.equals(commandSwitch) && o.equals("ok") ) { state = Depacketize.STATE.SEND_OUT_FLIT; }
+                if ( port.equals(dataSwitch) ) { state = Depacketize.STATE.SEND_OUT_FLIT; }
             } break;
         }
 
@@ -75,22 +91,35 @@ public class Depacketize extends DEVSAtomic {
     @Override
     public void deltaInt() {
         switch (state) {
-            case IDLE: {
+            case PASSIVE: {
 
             } break;
 
-            case DEPACKETIZE: {
-                if ( ! incomingFlitQueue.isEmpty() ) {
-                    state = STATE.DEPACKETIZE;
-                    outDataBuffer = null;
-                } else if (  outDataBuffer != null) {
-                    state = STATE.TRANSMISSION;
+            case WAIT4OK: {
+
+            } break;
+
+            case PACKETIZE: {
+
+                if ( ! outQstatus ) {
+                    state = Depacketize.STATE.WAIT4OK;
+                } else {
+                    outDataBuffer = new Packet( queue );
+                    queue.clear();
+                    state = Depacketize.STATE.SEND_OUT_FLIT;
                 }
             } break;
 
-            case TRANSMISSION: {
-                if ( outDataBuffer != null) {
-                    state = STATE.TRANSMISSION;
+            case SEND_OUT_FLIT: {
+                if ( (! outQstatus) && sentFlit < maxFlit) {
+                    state = Depacketize.STATE.WAIT4OK;
+                } else if ( sentFlit >= maxFlit && queue.size() >= PACKET_SIZE / 8 ) {
+                    state = Depacketize.STATE.PACKETIZE;
+                } else if ( sentFlit >= maxFlit && queue.size() < PACKET_SIZE / 8 ) {
+                    state = Depacketize.STATE.PASSIVE;
+                    outDataBuffer = null;
+                } else if ( outQstatus && sentFlit < maxFlit ) {
+                    ;
                 }
             } break;
         }
@@ -102,7 +131,7 @@ public class Depacketize extends DEVSAtomic {
         Object[] output = null;
 
         switch (state) {
-            case TRANSMISSION: {
+            case SEND_OUT_FLIT: {
                 output = new Object[ 2 ];
                 output[0] = dataPE;
                 output[1] = outDataBuffer;
@@ -114,6 +143,13 @@ public class Depacketize extends DEVSAtomic {
 
     @Override
     public float getDuration() {
-        return 2;
+        switch (state)  {
+            case WAIT4OK: rho =  Float.POSITIVE_INFINITY;
+            case SEND_OUT_FLIT: rho =  1;
+            case PASSIVE: rho =  Float.POSITIVE_INFINITY;
+            case PACKETIZE: rho = 10;
+        }
+
+        return rho;
     }
 }

@@ -44,6 +44,10 @@ public class Packet {
         this.flits.add( queue.lastElement() );
     }
 
+    public Packet() {
+        this.flits = new Vector<>();
+    }
+
     @Override
     public String toString() {
         return

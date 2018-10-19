@@ -37,7 +37,7 @@ public class ProcessingElement extends DEVSAtomic {
 		this.outputPorts.forEach( outputPort -> addOutPort(outputPort) );
 	}
 
-	private enum STATE{ WAITING, PROCESSING, SENDING;}
+	private enum STATE{ WAITING, PROCESSING, SENDING}
     private STATE state;
     private Packet currentPacket;
     private float rho;
@@ -52,15 +52,17 @@ public class ProcessingElement extends DEVSAtomic {
 		switch ( state ) {
             case WAITING: {
                  currentPacket = (Packet) o;
-                 state = STATE.PROCESSING;
+                    System.err.println( " ERROR RECEIVED PACKET " + o);
+
+                state = STATE.PROCESSING;
             } break;
 
             case PROCESSING: {
-                System.err.println( " ERROR RECEIVED EVENT IN PROCESSING STATE " );
+                System.err.println( " ERROR RECEIVED PACKET " + o);
             } break;
 
             case SENDING: {
-                System.err.println( " ERROR RECEIVED EVENT IN SENDING STATE " );
+                System.err.println( " ERROR RECEIVED PACKET " + o);
             } break;
         }
 	}
@@ -111,7 +113,7 @@ public class ProcessingElement extends DEVSAtomic {
 	public float getDuration() {
         switch ( state ) {
             case WAITING:       rho = Float.POSITIVE_INFINITY; break;
-            case PROCESSING:    rho = currentPacket.getComputation_requirement(); break;
+            case PROCESSING:    rho = 2; break;
             case SENDING:       rho = 0; break;
         }
 
