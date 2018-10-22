@@ -1,7 +1,6 @@
 import Model.NOCModel.NOC;
 import Model.NOCModel.NOCDirector;
 
-
 public class Test {
 
     private static final int SIZE_OF_THE_NETWORK = 2;
@@ -13,7 +12,7 @@ public class Test {
 
         DEVSSimulator.Root root = new DEVSSimulator.Root(MESH_2_DETERMINISTIC, SIMULATION_TIME);
 
-		root.startSimulation();
+        root.startSimulation();
 
     }
 

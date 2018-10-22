@@ -100,7 +100,7 @@ public class Switch extends DEVSAtomic {
     private boolean sendTail;                           /** Represents whether the flits is a tail or not          */
     private Port destPort;                              /** Represents the selected output port                    */
     private IPoint destPoint;                           /** Represents the destination of the current task         */
-    private Map<IPoint, Port> routeTable;           /** Represents the output port selected for a destPoint    */
+    private Map<IPoint, Port> routeTable;               /** Represents the output port selected for a destPoint    */
     private Map.Entry<STATE, Port> savedState;          /** Represents the state as it was before "setStatus"      */
     private Map<Port, Boolean> extStatus;               /** Represents the queue state of the input queue "i" -    */
                                                         /** connected to each output port "i"                      */
@@ -122,7 +122,7 @@ public class Switch extends DEVSAtomic {
        intStatus  = inputDataPorts
                 .stream()
                 .collect( Collectors.toMap( Function.identity(), Util.NocUtil::alwaysTrue) );
-        intStatusConsistent  = inputDataPorts
+       intStatusConsistent  = inputDataPorts
                 .stream()
                 .collect( Collectors.toMap( Function.identity(), Util.NocUtil::alwaysTrue) );
 
@@ -131,6 +131,10 @@ public class Switch extends DEVSAtomic {
 
 	@Override
 	public void deltaExt(Port port, Object o, float v) {
+
+/*	    if ( this.getName().contains("1, 1") ) {
+	        System.out.println("ook 1,1 ");
+        }*/
 
         if ( inputDataPorts.contains( port ) ) {
 
@@ -148,9 +152,23 @@ public class Switch extends DEVSAtomic {
 
 	    switch ( state ) {
 
-            case CHECK: case ROUTE: case SEND_OUT: {
+            case CHECK: {
                 if ( inputDataPorts.contains( port ) ) {
                     currentPort = port;
+                    inputDataQueue.get(port).add((Flit) o);
+                    System.err.println("IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
+                }
+            } break;
+
+            case ROUTE: {
+                if ( inputDataPorts.contains( port ) ) {
+                    inputDataQueue.get(port).add((Flit) o);
+                    System.err.println("IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
+                }
+            } break;
+
+	        case SEND_OUT: {
+                if ( inputDataPorts.contains( port ) ) {
                     inputDataQueue.get(port).add((Flit) o);
                     System.err.println("IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
                 }
@@ -177,6 +195,7 @@ public class Switch extends DEVSAtomic {
 
 	@Override
 	public void deltaInt() {
+
         switch (state) {
 
             case CHECK: {
@@ -249,6 +268,8 @@ public class Switch extends DEVSAtomic {
 
     @Override
 	public Object[] lambda() {
+
+
         Object[] output = null;
 
 		switch ( state ) {
@@ -295,7 +316,7 @@ public class Switch extends DEVSAtomic {
 	public float getDuration() {
 
 		switch (state) {
-            case CHECK:         rho = CHECK_TIME;       break;
+            case CHECK:         rho =  CHECK_TIME;       break;
             case ROUTE:         rho =  ROUTE_TIME;      break;
             case SEND_OUT:      rho =  SEND_OUT_TIME;   break;
             case WAIT4OK:       rho =  WAIT4OK_TIME;    break;
