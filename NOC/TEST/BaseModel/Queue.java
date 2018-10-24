@@ -1,7 +1,7 @@
 package BaseModel;
 
-import DEVSModel.DEVSAtomic;
-import DEVSModel.Port;
+import Library.DEVSModel.DEVSAtomic;
+import Library.DEVSModel.Port;
 import Model.NOCModel.NOC;
 import NocTopology.NOCDirections.IPoint;
 
@@ -65,11 +65,11 @@ public class Queue extends DEVSAtomic {
 
         int i;
         for(i = 0; i < this.inPorts.size(); ++i) {
-            inports = inports + ((Port)this.inPorts.get(i)).getName() + "-";
+            inports = inports + this.inPorts.get(i).getName() + "-";
         }
 
         for(i = 0; i < this.outPorts.size(); ++i) {
-            outports = outports + ((Port)this.outPorts.get(i)).getName() + "-";
+            outports = outports + this.outPorts.get(i).getName() + "-";
         }
 
         return this.getClass().toString() + '@' + Integer.toHexString(this.hashCode()) + " Inports: " + inports + " Outports: " + outports;

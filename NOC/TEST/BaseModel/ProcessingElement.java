@@ -1,7 +1,7 @@
 package BaseModel;
 
-import DEVSModel.DEVSAtomic;
-import DEVSModel.Port;
+import Library.DEVSModel.DEVSAtomic;
+import Library.DEVSModel.Port;
 import Model.NOCModel.NOC;
 import NocTopology.NOCDirections.IPoint;
 

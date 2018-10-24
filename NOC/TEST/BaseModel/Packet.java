@@ -35,9 +35,10 @@ public class Packet {
     }
 
     public Packet(Vector<Flit> queue) {
+
         this.flits.add( queue.get(0) );
 
-        for ( Flit f : queue.subList(0, queue.size()-1) ) {
+        for ( Flit f : queue.subList(1, queue.size()-1) ) {
             this.flits.add( f );
         }
 

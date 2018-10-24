@@ -9,7 +9,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="fwkdevs-v0.7" level="project" />
     <orderEntry type="module-library">
       <library name="JUnit5.2">
         <CLASSES>

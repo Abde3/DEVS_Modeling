@@ -137,11 +137,11 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
                 .build();
 
 
-        System.out.println( "\n\n\n---------------------" );
+//        System.out.println( "\n\n\n---------------------" );
 //        System.out.println( aProcessingElement.toString() );
 //        System.out.println( aSwitch.toString() );
 //        System.out.println( aNetworkInterface.toString() );
-        System.out.println( "---------------------\n\n\n" );
+//        System.out.println( "---------------------\n\n\n" );
 
         NOCUnit nocUnit = new NOCUnit(coordinate,
                 v_data_in_ports_names,
@@ -152,7 +152,7 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
                 aSwitch,
                 aProcessingElement);
 
-              System.out.println( nocUnit.toString() );
+        // System.out.println( nocUnit.toString() );
 
 
         return nocUnit;

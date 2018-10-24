@@ -1,7 +1,7 @@
 package Model.NOCModel;
 
 
-import DEVSModel.DEVSModel;
+import Library.DEVSModel.DEVSModel;
 import Model.Exceptions.ExistingGeneratorException;
 import Model.Routing.NocRoutingPolicy;
 import Model.Routing.UnhandledRoutingPolicyException;
@@ -65,5 +65,6 @@ public class NOC2DimensionBuilder extends AbstractNOCBuilder {
 
         return instance;
     }
+
 
 }

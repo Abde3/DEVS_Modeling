@@ -1,11 +1,6 @@
 package NOCUnit;
 
-import java.util.Arrays;
-import java.util.Vector;
-
-import DEVSModel.DEVSCoupled;
-import DEVSModel.DEVSModel;
-import DEVSModel.Port;
+import Library.DEVSModel.DEVSCoupled;
 
 public class QueueSwitch extends DEVSCoupled {
 

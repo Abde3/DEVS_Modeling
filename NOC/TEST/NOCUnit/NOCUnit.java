@@ -3,9 +3,10 @@ package NOCUnit;
 import BaseModel.NetworkInterface;
 import BaseModel.ProcessingElement;
 import BaseModel.Switch;
-import DEVSModel.DEVSCoupled;
-import DEVSModel.DEVSModel;
-import DEVSModel.Port;
+
+import Library.DEVSModel.DEVSCoupled;
+import Library.DEVSModel.DEVSModel;
+import Library.DEVSModel.Port;
 import Model.NOCModel.NOC;
 import Model.NOCUnit.Type;
 import NocTopology.NOCDirections.IPoint;

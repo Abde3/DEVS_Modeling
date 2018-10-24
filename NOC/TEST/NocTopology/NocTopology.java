@@ -1,11 +1,10 @@
 package NocTopology;
 
 
-import DEVSModel.DEVSModel;
-import DEVSModel.Port;
+import Library.DEVSModel.DEVSModel;
+import Library.DEVSModel.Port;
 import Model.NOCModel.INocNetwork;
 import NocTopology.NOCDirections.IPoint;
-import Util.NocUtil;
 
 import java.util.*;
 import java.util.function.Function;

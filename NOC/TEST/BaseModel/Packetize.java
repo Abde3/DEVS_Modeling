@@ -1,7 +1,8 @@
 package BaseModel;
 
-import DEVSModel.DEVSAtomic;
-import DEVSModel.Port;
+
+import Library.DEVSModel.DEVSAtomic;
+import Library.DEVSModel.Port;
 import Model.NOCModel.NOC;
 
 import java.util.Vector;
@@ -56,7 +57,6 @@ public class Packetize extends DEVSAtomic {
         switch (state) {
             case PASSIVE: {
                 if ( port.equals(dataPE) &&  queue.size() < PACKET_SIZE / 8) {
-                    ;
 
                 } else if ( port.equals(dataPE) &&  queue.size() >= PACKET_SIZE / 8) {
                     state = STATE.PACKETIZE;
@@ -116,7 +116,6 @@ public class Packetize extends DEVSAtomic {
                 } else if ( sentFlit >= maxFlit && queue.size() < PACKET_SIZE / 8 ) {
                     state = STATE.PASSIVE;
                 } else if ( outQstatus && sentFlit < maxFlit ) {
-                    ;
                 }
             } break;
         }

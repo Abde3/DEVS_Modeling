@@ -1,12 +1,10 @@
 package Model.NOCModel;
 
-import DEVSModel.DEVSModel;
+import Library.DEVSModel.DEVSModel;
 import Model.Routing.NocRoutingPolicy;
-import NocTopology.NOCDirections.ICoordinate;
 import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
 import Util.NocUtil;
-
 
 import java.util.HashMap;
 import java.util.Vector;

@@ -1,13 +1,17 @@
 package BaseModel;
 
 
-import DEVSModel.DEVSAtomic;
-import DEVSModel.Port;
+import Library.DEVSModel.DEVSAtomic;
+import Library.DEVSModel.Port;
 import Model.NOCModel.NOC;
 import Model.Routing.NocRoutingPolicy;
 import NocTopology.NOCDirections.IPoint;
+import Verification.StateRepresentation;
 
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -24,7 +28,7 @@ public class Switch extends DEVSAtomic {
 
     Vector<Port> inputCmdPorts;                         /** Responsible for getting available buffer information-  */
     Vector<Port> outputCmdPorts;                        /** of neighboring switches and announcing the available-  */
-                                                        /** buffer information of the input queues.                */
+    /** buffer information of the input queues.                */
     float rho;
 
     public Switch(IPoint thisCoordinate,
@@ -37,7 +41,7 @@ public class Switch extends DEVSAtomic {
 
         this.position = thisCoordinate;
         this.routingPolicy = routingPolicy;
-	    this.name = NODETYPE + "[" + thisCoordinate.toString().trim() + "]";
+        this.name = NODETYPE + "[" + thisCoordinate.toString().trim() + "]";
 
 
         /** Create input data ports from names */
@@ -77,7 +81,7 @@ public class Switch extends DEVSAtomic {
         for (Port p : inputDataPorts) {
             inputDataQueue.computeIfAbsent(p, k -> new Vector<>());
         }
-	}
+    }
 
 
 
@@ -85,11 +89,11 @@ public class Switch extends DEVSAtomic {
     /********************************************* MODEL REPRESENTATION ********************************************/
 
     private enum STATE
-        {CHECK, ROUTE, SEND_OUT, WAIT4OK, SET_STATUS}   /** Represents all possibles states of the switch model    */
+    {CHECK, ROUTE, SEND_OUT, WAIT4OK, SET_STATUS}   /** Represents all possibles states of the switch model    */
 
-    private static final int CHECK_TIME  = 3;           /** Period for the “check” state                           */
-    private static final int ROUTE_TIME  = 10;          /** Period for the “route” state                           */
-    private static final int BUFFER_SIZE = 5;           /** Size of the input buffers                              */
+    private static final int   ROUTE_TIME  = 10;          /** Period for the “route” state                         */
+    private static final int   CHECK_TIME  = 3;           /** Period for the “check” state                         */
+    private static final int   BUFFER_SIZE = 5;           /** Size of the input buffers                            */
     private static final float SEND_OUT_TIME = 5;
     private static final float SET_STATUS_TIME = 0;
     private static final float WAIT4OK_TIME = Float.POSITIVE_INFINITY;
@@ -103,34 +107,36 @@ public class Switch extends DEVSAtomic {
     private Map<IPoint, Port> routeTable;               /** Represents the output port selected for a destPoint    */
     private Map.Entry<STATE, Port> savedState;          /** Represents the state as it was before "setStatus"      */
     private Map<Port, Boolean> extStatus;               /** Represents the queue state of the input queue "i" -    */
-                                                        /** connected to each output port "i"                      */
+    /** connected to each output port "i"                      */
     private Map<Port, Boolean> intStatus;               /** Represents the queue state of the output queue "i" -   */
-                                                        /** connected to each output port "i"                      */
+    /** connected to each output port "i"                      */
     private Map<Port, Boolean> intStatusConsistent;     /** Represents the queue state of the output queue "i" -   */
-                                                        /** connected to each output port "i"                      */
+    /** connected to each output port "i"                      */
+
+
 
     @Override                                           /** The model starts in the “check” state in which each-   */
-	public void init() {                                /** input queue is checked for incoming flits periodically */
-       state = STATE.CHECK;
-       currentPort = inputDataPorts.firstElement();
-       sendTail   = false;
-       routeTable = routingPolicy.getRouteTable();
+    public void init() {                                /** input queue is checked for incoming flits periodically */
+        changeStateTo( STATE.CHECK );
+        currentPort = inputDataPorts.firstElement();
+        sendTail   = false;
+        routeTable = routingPolicy.getRouteTable();
 
-       extStatus  = outputDataPorts
-               .stream()
-               .collect( Collectors.toMap( Function.identity(), Util.NocUtil::alwaysTrue) );
-       intStatus  = inputDataPorts
+        extStatus  = outputDataPorts
                 .stream()
                 .collect( Collectors.toMap( Function.identity(), Util.NocUtil::alwaysTrue) );
-       intStatusConsistent  = inputDataPorts
+        intStatus  = inputDataPorts
+                .stream()
+                .collect( Collectors.toMap( Function.identity(), Util.NocUtil::alwaysTrue) );
+        intStatusConsistent  = inputDataPorts
                 .stream()
                 .collect( Collectors.toMap( Function.identity(), Util.NocUtil::alwaysTrue) );
 
 
     }
 
-	@Override
-	public void deltaExt(Port port, Object o, float v) {
+    @Override
+    public void deltaExt(Port port, Object o, float v) {
 
 /*	    if ( this.getName().contains("1, 1") ) {
 	        System.out.println("ook 1,1 ");
@@ -150,27 +156,27 @@ public class Switch extends DEVSAtomic {
             System.err.println( getName() + " : " + o + " INPUT COMMAND RECEIVED !!" );
         }
 
-	    switch ( state ) {
+        switch ( state ) {
 
             case CHECK: {
                 if ( inputDataPorts.contains( port ) ) {
                     currentPort = port;
                     inputDataQueue.get(port).add((Flit) o);
-                    System.err.println("IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
+                    //System.err.println("IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
                 }
             } break;
 
             case ROUTE: {
                 if ( inputDataPorts.contains( port ) ) {
                     inputDataQueue.get(port).add((Flit) o);
-                    System.err.println("IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
+                    //System.err.println("IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
                 }
             } break;
 
-	        case SEND_OUT: {
+            case SEND_OUT: {
                 if ( inputDataPorts.contains( port ) ) {
                     inputDataQueue.get(port).add((Flit) o);
-                    System.err.println("IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
+                    //System.err.println("IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
                 }
             } break;
 
@@ -193,8 +199,8 @@ public class Switch extends DEVSAtomic {
 
     }
 
-	@Override
-	public void deltaInt() {
+    @Override
+    public void deltaInt() {
 
         switch (state) {
 
@@ -203,7 +209,7 @@ public class Switch extends DEVSAtomic {
                 if ( inputDataQueue.get(currentPort).isEmpty() ) {
                     currentPort = getNextInputDataPort();
                 } else {
-                    state = STATE.ROUTE;
+                    changeStateTo( STATE.ROUTE );
 
                     destPoint = inputDataQueue.get(currentPort).firstElement().getDestination();
                     destPort  = routingPolicy.computeNextRouteStep(this, destPoint);
@@ -215,14 +221,14 @@ public class Switch extends DEVSAtomic {
             case ROUTE: {
 
                 if ( extStatus.get(destPort) ) {
-                    state = STATE.SEND_OUT;
+                    changeStateTo( STATE.SEND_OUT );
                     flit = inputDataQueue.get(currentPort).firstElement();
                     inputDataQueue.get( currentPort ).removeElementAt(0);
-                    System.err.println( "POPOUT[" + flit + "] - Queue of port : " + getName() + "@" + currentPort.getName() + " = " +  inputDataQueue.get(currentPort).size() );
+                    //System.err.println( "POPOUT[" + flit + "] - Queue of port : " + getName() + "@" + currentPort.getName() + " = " +  inputDataQueue.get(currentPort).size() );
 
                     callToSetStatusState();
                 } else {
-                    state = STATE.CHECK;
+                    changeStateTo( STATE.CHECK );
                 }
 
             } break;
@@ -232,20 +238,20 @@ public class Switch extends DEVSAtomic {
 
                 if ( extStatus.get(destPort) ) {
                     if ( sendTail ) {
-                        state = STATE.CHECK;
+                        changeStateTo( STATE.CHECK );
                         sendTail = false;
                         currentPort = getNextInputDataPort();
                     } else {
-                        state = STATE.SEND_OUT;
+                        changeStateTo( STATE.SEND_OUT );
                         flit = inputDataQueue.get(currentPort).firstElement();
                         inputDataQueue.get( currentPort ).removeElementAt(0);
                         sendTail = flit.isTail;
-                        System.err.println( "POPOUT[" + flit + "] - Queue of port : " + getName() + "@" + currentPort.getName() + " = " +  inputDataQueue.get(currentPort).size() );
+                        //System.err.println( "POPOUT[" + flit + "] - Queue of port : " + getName() + "@" + currentPort.getName() + " = " +  inputDataQueue.get(currentPort).size() );
 
                         callToSetStatusState();
                     }
                 } else {
-                    state = STATE.WAIT4OK;
+                    changeStateTo( STATE.WAIT4OK );
                 }
 
             } break;
@@ -267,12 +273,12 @@ public class Switch extends DEVSAtomic {
 
 
     @Override
-	public Object[] lambda() {
+    public Object[] lambda() {
 
 
         Object[] output = null;
 
-		switch ( state ) {
+        switch ( state ) {
             case CHECK: {
 
             } break;
@@ -290,7 +296,7 @@ public class Switch extends DEVSAtomic {
                 output[0] = destPort;
                 output[1] = flit;
 
-                System.err.println( "OUT_FLIT[" + ( (Flit) output[1]) + "] through " + destPort);
+                //System.err.println( "OUT_FLIT[" + ( (Flit) output[1]) + "] through " + destPort);
             } break;
 
             case SET_STATUS: {
@@ -305,18 +311,18 @@ public class Switch extends DEVSAtomic {
                         .get();
 
                 output[1] = inputDataQueue.get( currentPort ).size() < BUFFER_SIZE ? "ok" : "nok";
-                System.err.println( getName() + " SEND : " + output[1] );
+                //System.err.println( getName() + " SEND : " + output[1] );
             } break;
         }
 
         return output;
-	}
+    }
 
-	@Override
-	public float getDuration() {
+    @Override
+    public float getDuration() {
 
-		switch (state) {
-            case CHECK:         rho =  CHECK_TIME;       break;
+        switch (state) {
+            case CHECK:         rho =  CHECK_TIME;      break;
             case ROUTE:         rho =  ROUTE_TIME;      break;
             case SEND_OUT:      rho =  SEND_OUT_TIME;   break;
             case WAIT4OK:       rho =  WAIT4OK_TIME;    break;
@@ -325,7 +331,7 @@ public class Switch extends DEVSAtomic {
         }
 
         return rho;
-	}
+    }
 
     private Port getNextInputDataPort() {
         Port next = null;
@@ -340,14 +346,19 @@ public class Switch extends DEVSAtomic {
     private void callToSetStatusState() {
         if ( inputDataQueue.get(currentPort).size() >= BUFFER_SIZE ) {
             savedState = new AbstractMap.SimpleEntry<>(state, currentPort);
-            state = STATE.SET_STATUS;
+            changeStateTo( STATE.SET_STATUS );
         }
     }
 
     private void callbackFromSetStatusState() {
-        state = savedState.getKey();
+        changeStateTo( savedState.getKey() );
         currentPort = savedState.getValue();
         savedState = null;
+    }
+
+    private void changeStateTo(STATE key) {
+        state = key;
+        StateRepresentation.addState( this.name, String.valueOf(state));
     }
 
     public String toString() {
@@ -356,11 +367,11 @@ public class Switch extends DEVSAtomic {
 
         int i;
         for(i = 0; i < this.inPorts.size(); ++i) {
-            inports = inports + ((Port)this.inPorts.get(i)).getName() + "-";
+            inports = inports + this.inPorts.get(i).getName() + "-";
         }
 
         for(i = 0; i < this.outPorts.size(); ++i) {
-            outports = outports + ((Port)this.outPorts.get(i)).getName() + "-";
+            outports = outports + this.outPorts.get(i).getName() + "-";
         }
 
         return this.getClass().toString() + '@' + Integer.toHexString(this.hashCode()) + " Inports: " + inports + " Outports: " + outports;

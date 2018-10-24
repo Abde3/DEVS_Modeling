@@ -1,7 +1,7 @@
 package BaseModel;
 
-import DEVSModel.DEVSCoupled;
-import DEVSModel.Port;
+import Library.DEVSModel.DEVSCoupled;
+import Library.DEVSModel.Port;
 import Model.NOCModel.NOC;
 
 public class NetworkInterface extends DEVSCoupled {

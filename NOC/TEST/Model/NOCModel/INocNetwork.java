@@ -1,7 +1,7 @@
 package Model.NOCModel;
 
 
-import DEVSModel.DEVSModel;
+import Library.DEVSModel.DEVSModel;
 import NocTopology.NOCDirections.ICoordinate;
 import NocTopology.NOCDirections.IPoint;
 import Util.NocUtil;

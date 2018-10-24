@@ -1,19 +1,20 @@
 package BaseModel;
 
-import java.util.Random;
 
-import DEVSModel.DEVSAtomic;
-import DEVSModel.Port;
+import Library.DEVSModel.DEVSAtomic;
+import Library.DEVSModel.Port;
 import NocTopology.NOCDirections.IPoint;
+
+import java.util.Random;
 
 
 public class Generator_Task extends DEVSAtomic {
 
-	private enum State {WAIT, SENDOUT;}
+	private enum State {WAIT, SENDOUT}
 	private Random random_generator;
 
 	/******************************************************************************************************************/
-	private Port 	out;			/**************************** OutPort of the model ********************************/
+	private Port out;			/**************************** OutPort of the model ********************************/
 	private Flit 	value_out;		/**************************** Represent the value in the OutPort ******************/
 
 	private State 	state;			/***************************  Represent the state     *****************************/
@@ -53,7 +54,7 @@ public class Generator_Task extends DEVSAtomic {
             int computation_requirement = random_generator.nextInt(4) + 1;
             IPoint destination = new IPoint (
             			new String[] {"x", "y"},
-						new Integer[]{  1,  1}
+						new Integer[]{  new Random().nextInt(4),  new Random().nextInt(4)}
 					);
 
             if (currentMessage == null || currentPacketIndex == currentMessage.packets.size() - 1) {
