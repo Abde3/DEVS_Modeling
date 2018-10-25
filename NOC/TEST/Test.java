@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 public class Test {
 
     private static final int SIZE_OF_THE_NETWORK = 4;
-    private static final float SIMULATION_TIME = 50;
+    private static final float SIMULATION_TIME = 3000;
 
     public static void main(String[] args){
 
@@ -22,7 +22,7 @@ public class Test {
 
         try {
 
-            TimeUnit.SECONDS.sleep(10);
+            TimeUnit.SECONDS.sleep(600);
             StateRepresentation.writeFile("/home/mofed/Bureau/result/out.txt");
             System.out.println( "OOOOOOOW" );
 

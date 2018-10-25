@@ -4,18 +4,25 @@ package BaseModel;
 import Library.DEVSModel.DEVSAtomic;
 import Library.DEVSModel.Port;
 import NocTopology.NOCDirections.IPoint;
+import Verification.StateRepresentation;
 
 import java.util.Random;
 
 
 public class Generator_Task extends DEVSAtomic {
 
+	public void setState(State state) {
+		this.state = state;
+		StateRepresentation.addState( this.name, String.valueOf(state));
+
+	}
+
 	private enum State {WAIT, SENDOUT}
 	private Random random_generator;
 
 	/******************************************************************************************************************/
 	private Port out;			/**************************** OutPort of the model ********************************/
-	private Flit 	value_out;		/**************************** Represent the value in the OutPort ******************/
+	private Flit 	value_out;
 
 	private State 	state;			/***************************  Represent the state     *****************************/
 	private float 	rho;			/***************************  Time elapsed in a state *****************************/
@@ -74,7 +81,7 @@ public class Generator_Task extends DEVSAtomic {
 
 			System.out.println(this.name +  " PACKET " + currentPacket + " created!");
 
-			state     = State.SENDOUT;
+			setState(State.SENDOUT);
 			currentFlitIndex = 0;
 			value_out = currentPacket.flits.get(currentFlitIndex);
 			isTailFlit = false;
@@ -84,7 +91,7 @@ public class Generator_Task extends DEVSAtomic {
 
 			if (isTailFlit) {
 
-				state = State.WAIT;
+				setState(State.WAIT);
 				isTailFlit = false;
 
 				if (currentPacketIndex == currentMessage.packets.size() - 1) {
@@ -99,7 +106,7 @@ public class Generator_Task extends DEVSAtomic {
 				value_out = currentPacket.flits.get(currentFlitIndex);
 				isTailFlit = value_out.isTail;
 
-				state = State.SENDOUT;
+				setState(State.SENDOUT);
 				rho = 1;
 
 			}
@@ -114,7 +121,7 @@ public class Generator_Task extends DEVSAtomic {
 
 	@Override
 	public void init() {
-		state = State.WAIT;
+		setState(State.WAIT);
 		rho   =  0F;
 		isTailFlit = true;
 		System.out.println("STARTING GENERATOR");
