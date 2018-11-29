@@ -43,8 +43,7 @@ public class DeterministicRouting extends NocRoutingPolicy {
         if (selectedAxis.isPresent()) {
             outputPort = sourceModel.getOutPort(NocUtil.directionsToPortsName(
                     topology.getDirectionToReachPoint(source, destination, selectedAxis.get()),
-                    false,
-                    Type.DATA));
+                    false, Type.DATA));
         } else {
             outputPort = sourceModel.outPorts
                     .stream()

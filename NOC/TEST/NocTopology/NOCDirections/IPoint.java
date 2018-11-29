@@ -71,6 +71,16 @@ public class IPoint implements Comparable<IPoint>{
         return sb.toString();
     }
 
+    public String toSimpleString() {
+
+        StringBuilder sb = new StringBuilder();
+        valueOnAxis.forEach( (axis, value) -> {
+            sb.append(value);
+        } );
+        
+        return sb.toString();
+    }
+
     @Override
     public int compareTo(IPoint point) {
         for (Map.Entry<String, Integer> entry: valueOnAxis.entrySet() ) {

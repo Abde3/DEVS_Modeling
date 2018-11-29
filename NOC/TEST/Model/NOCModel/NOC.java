@@ -5,6 +5,7 @@ import Library.DEVSModel.DEVSCoupled;
 import Library.DEVSModel.DEVSModel;
 import Model.Routing.NocRoutingPolicy;
 import Model.NOCUnit.NOCUnitDirector;
+import NOCUnit.NOCUnit;
 import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
 import Util.NocUtil;
@@ -12,8 +13,11 @@ import Util.NocUtil;
 
 import java.util.*;
 
+import static Util.NocUtil.portsNameToDataType;
+
 
 public abstract class NOC extends DEVSCoupled {
+
 
     public enum NodeType {NOC, NODE, QUEUE, SWITCH, PE, NETWORK_INTERFACE, PACKETIZER, DEPACKETIZER}
 
@@ -60,18 +64,18 @@ public abstract class NOC extends DEVSCoupled {
                 )
         );
 
-        topology.getNocNetwork().forEach( devsModel -> addSubModel(devsModel) );
+        topology.getNocNetwork().forEach(this::addSubModel);
 
         buildIC();
     }
 
     protected void buildIC() {
         topology.getNocNetwork().getAllUnits().stream().forEach(
-                srcModel -> srcModel.getOutPorts().forEach(
-                        port -> {
-                            addIC(port , topology.getCorrespondingPort(port));
-                        }
-                )
+            srcModel -> srcModel.getOutPorts().forEach(
+                port -> {
+                    addIC(port , topology.getCorrespondingPort(port));
+                }
+            )
         );
     }
 
@@ -84,13 +88,43 @@ public abstract class NOC extends DEVSCoupled {
     public void setSelectPriority() {
 
         NocUtil.combinationsNoDupl( getSubModels() ).forEach(
-                sameSizeLists -> sameSizeLists.forEach(
-                        devsModels -> this.selectPriority.put(
-                                new Vector<DEVSModel>( devsModels ), devsModels.get( devsModels.size() - 1)
-                        )
+            sameSizeLists -> sameSizeLists.forEach(
+                devsModels -> this.selectPriority.put(
+                        new Vector<DEVSModel>( devsModels ), devsModels.get( devsModels.size() - 1)
                 )
+            )
         );
 
+    }
+
+    public void print_promela_channels() {
+        topology.getNocNetwork().getAllUnits().forEach(
+            srcModel -> srcModel.getOutPorts().forEach(
+                port -> {
+                    System.out.println(
+                        "chan "
+                        + portsNameToDataType(port.getName())
+                        + topology.getNocNetwork().getPositionOfUnit(port.getModel()).toSimpleString()
+                        + "TO"
+                        + topology.getNocNetwork().getPositionOfUnit(topology.getCorrespondingPort(port).getModel()).toSimpleString()
+                        + "= [QSZ] of { byte };"
+                    );
+                }
+            )
+        );
+    }
+
+    public void print_switches() {
+        topology.getNocNetwork().forEach(
+                unit-> System.out.println(
+                        "proctype NODE"
+                        + topology.getNocNetwork().getPositionOfUnit(unit).toSimpleString()
+                        + "()"
+                        + " { \n"
+                        + "\tmtype state = CHECK"
+                        + "\n}"
+                )
+        );
     }
 
 

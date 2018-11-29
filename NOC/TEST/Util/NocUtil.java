@@ -60,11 +60,15 @@ public class NocUtil {
     }
 
     public static String directionsToPortsName(String direction, boolean isInput, Type dataType) {
-        return  (isInput ? "INPUT-" : "OUTPUT-") + dataType.toString() + "-" + direction;
+        return (isInput ? "INPUT-" : "OUTPUT-") + dataType.toString() + "-" + direction;
     }
 
     public static String portsNameToDirection(String portName) {
         return  (portName.toUpperCase().contains("PE")) ? "PE" : portName.split("-", -1)[2];
+    }
+
+    public static Type portsNameToDataType(String portName) {
+        return  (portName.toUpperCase().contains("PE")) ? Type.DATA : Type.valueOf(portName.split("-", -1)[1]);
     }
 
     public static boolean isCorrespondingPort(String fistPortName, String secondPortName) {
@@ -78,5 +82,6 @@ public class NocUtil {
     public static Boolean alwaysFalse(Object o) {
         return false;
     }
+
 
 }

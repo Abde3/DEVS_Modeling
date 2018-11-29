@@ -107,11 +107,11 @@ public class Switch extends DEVSAtomic {
     private Map<IPoint, Port> routeTable;               /** Represents the output port selected for a destPoint    */
     private Map.Entry<STATE, Port> savedState;          /** Represents the state as it was before "setStatus"      */
     private Map<Port, Boolean> extStatus;               /** Represents the queue state of the input queue "i" -    */
-    /** connected to each output port "i"                      */
+                                                        /** connected to each output port "i"                      */
     private Map<Port, Boolean> intStatus;               /** Represents the queue state of the output queue "i" -   */
-    /** connected to each output port "i"                      */
+                                                        /** connected to each output port "i"                      */
     private Map<Port, Boolean> intStatusConsistent;     /** Represents the queue state of the output queue "i" -   */
-    /** connected to each output port "i"                      */
+                                                        /** connected to each output port "i"                      */
 
 
 
@@ -137,11 +137,7 @@ public class Switch extends DEVSAtomic {
 
     @Override
     public void deltaExt(Port port, Object o, float v) {
-
-/*	    if ( this.getName().contains("1, 1") ) {
-	        System.out.println("ook 1,1 ");
-        }*/
-
+        
         if ( inputDataPorts.contains( port ) ) {
 
             if ( inputDataQueue.get(port).size() >= BUFFER_SIZE ) {
