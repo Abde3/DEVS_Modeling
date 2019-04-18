@@ -1,7 +1,7 @@
 package Model.NOCModel;
 
 
-import Library.DEVSModel.DEVSModel;
+import DEVSModel.DEVSModel;
 import NocTopology.NOCDirections.ICoordinate;
 import NocTopology.NOCDirections.IPoint;
 import Util.NocUtil;
@@ -36,6 +36,16 @@ public class INocNetwork implements Iterable<DEVSModel>  {
     public Collection<DEVSModel> getAllUnits() {
         return units.values();
     }
+
+    public Collection<DEVSModel> getAllNodes() {
+        return units.values().stream().filter( devsModel -> ! devsModel.getName().contains("GEN") ).collect(Collectors.toSet());
+    }
+
+    public Collection<DEVSModel> getAllGenerators() {
+        return units.values().stream().filter( devsModel -> devsModel.getName().contains("GEN") ).collect(Collectors.toSet());
+    }
+
+
 
     public DEVSModel getUnitAt( IPoint position ) {
         return units.get(position);

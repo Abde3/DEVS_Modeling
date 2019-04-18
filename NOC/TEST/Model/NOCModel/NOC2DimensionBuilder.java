@@ -1,7 +1,7 @@
 package Model.NOCModel;
 
 
-import Library.DEVSModel.DEVSModel;
+import DEVSModel.DEVSModel;
 import Model.Exceptions.ExistingGeneratorException;
 import Model.Routing.NocRoutingPolicy;
 import Model.Routing.UnhandledRoutingPolicyException;

@@ -1,6 +1,6 @@
 package Verification;
 
-import Library.DEVSSimulator.Root;
+import DEVSSimulator.Root;
 
 import java.io.FileWriter;
 import java.io.IOException;

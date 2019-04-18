@@ -52,7 +52,15 @@ public class Flit {
         return destination;
     }
 
+    public void setDestination(IPoint destination) {
+        this.destination = destination;
+    }
+
     public Character getData() {
         return data;
+    }
+
+    public void updateDestination(IPoint new_destination) {
+        destination = new_destination;
     }
 }

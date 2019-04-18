@@ -1,25 +1,31 @@
 package BaseModel;
 
-import Library.DEVSModel.DEVSAtomic;
-import Library.DEVSModel.Port;
+import DEVSModel.DEVSAtomic;
+import DEVSModel.Port;
 import Model.NOCModel.NOC;
 import NocTopology.NOCDirections.IPoint;
+import org.junit.jupiter.api.Test;
 
+import java.io.*;
+import java.util.HashMap;
+import java.util.Random;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
 public class ProcessingElement extends DEVSAtomic {
 
-	private static final NOC.NodeType NODETYPE = NOC.NodeType.PE;
+    private static final NOC.NodeType NODETYPE = NOC.NodeType.PE;
 
 	Vector<Port> inputPorts;
 	Vector<Port> outputPorts;
+    IPoint coordinate;
 
 	public ProcessingElement(IPoint coordinate, Vector<String> inputPortsNames, Vector<String> outputPortsNames) {
 
 		this.name = NODETYPE + "[" + coordinate.toString().trim() + "]";
+        this.coordinate = coordinate;
 
-		/** Create input ports from names */
+        /** Create input ports from names */
 		this.inputPorts = inputPortsNames.stream().map(
 				portName -> new Port(this, portName)
 		).collect( Collectors.toCollection(Vector::new) );
@@ -39,7 +45,7 @@ public class ProcessingElement extends DEVSAtomic {
 
 	private enum STATE{ WAITING, PROCESSING, SENDING}
     private STATE state;
-    private Packet currentPacket;
+    private Flit currentData;
     private float rho;
 
 	@Override
@@ -51,18 +57,21 @@ public class ProcessingElement extends DEVSAtomic {
 	public void deltaExt(Port port, Object o, float v) {
 		switch ( state ) {
             case WAITING: {
-                 currentPacket = (Packet) o;
-                    System.err.println( " ERROR RECEIVED PACKET " + o);
+                 currentData = ((Flit) o) ;
 
-                state = STATE.PROCESSING;
+                 LOG.logThis(this.name, currentData);
+
+                 LOG.printThis(this.name,"(WAITING): RECEIVED DATA " + o);
+
+                 state = STATE.PROCESSING;
             } break;
 
             case PROCESSING: {
-                System.err.println( " ERROR RECEIVED PACKET " + o);
+                LOG.printThis(this.name,"(PROCESSING): ERROR RECEIVED PACKET " + o);
             } break;
 
             case SENDING: {
-                System.err.println( " ERROR RECEIVED PACKET " + o);
+                LOG.printThis(this.name,"(SENDING): ERROR RECEIVED PACKET " + o);
             } break;
         }
 	}
@@ -74,12 +83,12 @@ public class ProcessingElement extends DEVSAtomic {
             } break;
 
             case PROCESSING: {
-                state = STATE.PROCESSING;
+                state = STATE.SENDING;
             } break;
 
             case SENDING: {
                 state = STATE.WAITING;
-                currentPacket = null;
+                currentData = null;
             } break;
         }
     }
@@ -99,9 +108,7 @@ public class ProcessingElement extends DEVSAtomic {
             break;
 
             case SENDING: {
-                output = new Object[2];
-                output[0] = this.getOutPorts().firstElement();
-                output[1] = currentPacket;
+
             }
             break;
         }
@@ -113,7 +120,7 @@ public class ProcessingElement extends DEVSAtomic {
 	public float getDuration() {
         switch ( state ) {
             case WAITING:       rho = Float.POSITIVE_INFINITY; break;
-            case PROCESSING:    rho = 2; break;
+            case PROCESSING:    rho = 0; break;
             case SENDING:       rho = 0; break;
         }
 

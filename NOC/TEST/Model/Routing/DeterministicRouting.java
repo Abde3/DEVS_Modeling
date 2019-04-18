@@ -1,7 +1,7 @@
 package Model.Routing;
 
 import BaseModel.Switch;
-import Library.DEVSModel.Port;
+import DEVSModel.Port;
 import Model.NOCUnit.Type;
 import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;

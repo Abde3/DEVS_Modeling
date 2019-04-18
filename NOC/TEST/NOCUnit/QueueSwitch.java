@@ -1,6 +1,6 @@
 package NOCUnit;
 
-import Library.DEVSModel.DEVSCoupled;
+import DEVSModel.DEVSCoupled;
 
 public class QueueSwitch extends DEVSCoupled {
 

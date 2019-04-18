@@ -1,8 +1,13 @@
 package BaseModel;
 
-import Library.DEVSModel.DEVSCoupled;
-import Library.DEVSModel.Port;
+import DEVSModel.DEVSCoupled;
+import DEVSModel.DEVSModel;
+import DEVSModel.Port;
 import Model.NOCModel.NOC;
+import Util.NocUtil;
+
+import java.util.Arrays;
+import java.util.Vector;
 
 public class NetworkInterface extends DEVSCoupled {
 
@@ -57,10 +62,13 @@ public class NetworkInterface extends DEVSCoupled {
 
 
         addEIC( dataFromPE, packetizer.dataPE );
-        addEIC( dataFromSW, depacketizer.dataSwitch);
+        addEOC( packetizer.dataSwitch, dataToSW);
 
-        addEIC( cmdFromSW, packetizer.commandSwitch);
+        addEIC( dataFromSW, depacketizer.dataSwitch);
         addEOC( depacketizer.dataPE, dataToPE);
+
+        addEIC( cmdFromSW, depacketizer.commandSwitch);
+        addEOC( depacketizer.commandSwitch, cmdToSW);
 
         this.setSelectPriority();
 
@@ -68,6 +76,6 @@ public class NetworkInterface extends DEVSCoupled {
 
     @Override
     public void setSelectPriority() {
-
+        this.selectPriority.put(new Vector<>( Arrays.asList(packetizer, depacketizer)), packetizer );
     }
 }

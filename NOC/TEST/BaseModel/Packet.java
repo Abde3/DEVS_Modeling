@@ -1,17 +1,18 @@
 package BaseModel;
 
 import NocTopology.NOCDirections.IPoint;
-
 import java.util.Vector;
 
 public class Packet {
 
 	Vector<Flit> flits = new Vector<>();
+	IPoint destination;
     boolean header;
     boolean tail;
 
 	public Packet(int id, int computation_requirement, String data, IPoint destination, boolean header, boolean tail) {
 
+	    this.destination = destination;
 	    this.header = header;
 	    this.tail = tail;
 
@@ -25,6 +26,8 @@ public class Packet {
 	}
 
 	public Packet(Flit headerFlit, Flit[] flits, Flit tailFlit) {
+        this.destination = headerFlit.getDestination();
+
         this.flits.add( headerFlit );
 
         for ( Flit f : flits ) {
@@ -34,16 +37,16 @@ public class Packet {
         this.flits.add( tailFlit );
     }
 
+
     public Packet(Vector<Flit> queue) {
+        this.destination = queue.firstElement().getDestination();
 
-        this.flits.add( queue.get(0) );
-
-        for ( Flit f : queue.subList(1, queue.size()-1) ) {
+        for ( Flit f : queue.subList(0, queue.size()) ) {
             this.flits.add( f );
         }
 
-        this.flits.add( queue.lastElement() );
     }
+
 
     public Packet() {
         this.flits = new Vector<>();
@@ -56,6 +59,16 @@ public class Packet {
                     "flits=" + flits +
                     '}';
 
+    }
+
+    public void updateDestination(IPoint destination) {
+	    flits.forEach( flit -> flit.setDestination(destination) );
+        this.destination = destination;
+
+    }
+
+    public IPoint getDestination() {
+        return this.destination;
     }
 
     public float getComputation_requirement() {

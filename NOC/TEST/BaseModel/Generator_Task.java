@@ -1,15 +1,20 @@
 package BaseModel;
 
 
-import Library.DEVSModel.DEVSAtomic;
-import Library.DEVSModel.Port;
+import DEVSModel.DEVSAtomic;
+import DEVSModel.Port;
 import NocTopology.NOCDirections.IPoint;
 import Verification.StateRepresentation;
+
 
 import java.util.Random;
 
 
 public class Generator_Task extends DEVSAtomic {
+
+	private int networkSize;
+	private int dest_x;
+	private int dest_y;
 
 	public void setState(State state) {
 		this.state = state;
@@ -18,7 +23,7 @@ public class Generator_Task extends DEVSAtomic {
 	}
 
 	private enum State {WAIT, SENDOUT}
-	private Random random_generator;
+	public static Random random_generator = new Random();
 
 	/******************************************************************************************************************/
 	private Port out;			/**************************** OutPort of the model ********************************/
@@ -36,9 +41,12 @@ public class Generator_Task extends DEVSAtomic {
 	int currentPacketIndex = 0;
 
 
-	public Generator_Task(String name, String data) {
+	public Generator_Task(int networkSize, String name, String data, int dest_x, int dest_y) {
 		super();
-        random_generator = new Random();
+
+		this.networkSize = networkSize;
+		this.dest_x = dest_x;
+		this.dest_y = dest_y;
         this.data = data;
 
         this.name = name;
@@ -61,7 +69,7 @@ public class Generator_Task extends DEVSAtomic {
             int computation_requirement = random_generator.nextInt(4) + 1;
             IPoint destination = new IPoint (
             			new String[] {"x", "y"},
-						new Integer[]{  new Random().nextInt(4),  new Random().nextInt(4)}
+						new Integer[]{  (dest_x < 0) ? (new Random().nextInt(networkSize)) : dest_x,  dest_y < 0 ? (new Random().nextInt(networkSize)) : dest_y}
 					);
 
             if (currentMessage == null || currentPacketIndex == currentMessage.packets.size() - 1) {
@@ -79,7 +87,7 @@ public class Generator_Task extends DEVSAtomic {
 
 			}
 
-			System.out.println(this.name +  " PACKET " + currentPacket + " created!");
+			LOG.printThis(this.name, " PACKET " + currentPacket + " created!");
 
 			setState(State.SENDOUT);
 			currentFlitIndex = 0;
@@ -97,7 +105,7 @@ public class Generator_Task extends DEVSAtomic {
 				if (currentPacketIndex == currentMessage.packets.size() - 1) {
 					rho = Float.POSITIVE_INFINITY;
 				} else {
-					rho       = 100F;
+					rho = 100F;
 				}
 
 			} else {
@@ -111,7 +119,6 @@ public class Generator_Task extends DEVSAtomic {
 
 			}
 		}
-
 	}
 
 	@Override
@@ -124,7 +131,7 @@ public class Generator_Task extends DEVSAtomic {
 		setState(State.WAIT);
 		rho   =  0F;
 		isTailFlit = true;
-		System.out.println("STARTING GENERATOR");
+		LOG.printThis(this.name,"STARTING GENERATOR");
 	}
 
 	@Override
@@ -133,7 +140,7 @@ public class Generator_Task extends DEVSAtomic {
 
 		if (state.equals(State.SENDOUT)) {
 			output = setOutputLambda(out, value_out);
-			System.out.println(this.name +  " Flit " + value_out + " sent!");
+			LOG.printThis(this.name,  " Flit " + value_out + " sent!");
 		} else {
 			output = null;
 		}
@@ -146,6 +153,8 @@ public class Generator_Task extends DEVSAtomic {
 
         output[0] = port;
         output[1] = value;
+
+		LOG.logThis(this.name, value);
 
         return output;
     }

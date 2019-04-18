@@ -22,5 +22,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="fwkdevs-v0" level="project" />
   </component>
 </module>

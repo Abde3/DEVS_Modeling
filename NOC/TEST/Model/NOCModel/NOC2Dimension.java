@@ -1,6 +1,6 @@
 package Model.NOCModel;
 
-import Library.DEVSModel.DEVSModel;
+import DEVSModel.DEVSModel;
 import Model.Routing.NocRoutingPolicy;
 import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
@@ -21,9 +21,11 @@ public class NOC2Dimension extends NOC {
     public void setSelectPriority() {
 
         NocUtil.combinationsNoDupl( getSubModels() ).forEach(
-                sameSizeLists -> sameSizeLists.forEach(
-                        devsModels -> this.selectPriority.put(new Vector<DEVSModel>( devsModels ), devsModels.get(0) )
+            sameSizeLists -> sameSizeLists.forEach(
+                devsModels -> this.selectPriority.put(
+                    new Vector<DEVSModel>( devsModels ), devsModels.get(devsModels.size()-1)
                 )
+            )
         );
 
     }

@@ -1,8 +1,8 @@
 package NocTopology;
 
 
-import Library.DEVSModel.DEVSModel;
-import Library.DEVSModel.Port;
+import DEVSModel.DEVSModel;
+import DEVSModel.Port;
 import Model.NOCModel.INocNetwork;
 import NocTopology.NOCDirections.IPoint;
 
