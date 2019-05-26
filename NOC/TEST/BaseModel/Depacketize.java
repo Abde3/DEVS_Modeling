@@ -16,12 +16,14 @@ public class Depacketize extends DEVSAtomic {
     Port dataPE; // ToPE
     Port dataSwitch; // fromSwitch
     Port commandSwitch;
+    Port commandPE;
 
     private float rho;
 
     Vector<Flit> outDataBuffer;
+    private boolean outPEstatus;
 
-    private enum STATE{ IDLE, DEPACKETIZE, SEND_OUT_FLIT}
+    private enum STATE{ IDLE, DEPACKETIZE, WAIT4OK, SEND_OUT_FLIT}
     private Depacketize.STATE state;
     private Vector<Flit> queue;
 
@@ -35,6 +37,7 @@ public class Depacketize extends DEVSAtomic {
         dataPE = new Port(this, "dataPE");
         dataSwitch = new Port(this, "dataSwitch");
         commandSwitch = new Port(this, "commandSwitch");
+        commandPE = new Port(this, "commandPE");
     }
 
 
@@ -46,6 +49,7 @@ public class Depacketize extends DEVSAtomic {
     public void init() {
         setState(STATE.IDLE);
         queue = new Vector<>(PACKET_SIZE);
+        outPEstatus = true;
     }
 
     @Override
@@ -65,6 +69,15 @@ public class Depacketize extends DEVSAtomic {
                     queue.add((Flit) o);
                     LOG.printThis(this.name, queue.toString());
                 }
+            } break;
+
+            case WAIT4OK: {
+                if ( port.equals(dataPE) ) { state = STATE.WAIT4OK; }
+                else if ( port.equals(dataPE) && o.equals("ok")) {
+                    outPEstatus = true;
+                    state = STATE.SEND_OUT_FLIT;
+                }
+
             } break;
 
             case SEND_OUT_FLIT: {

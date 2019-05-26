@@ -93,8 +93,7 @@ public class Switch extends DEVSAtomic {
 
     private static final int   ROUTE_TIME  = 10;        /** Period for the “route” state                          */
     private static final int   CHECK_TIME  = 3;         /** Period for the “check” state                          */
-    private static final int   BUFFER_SIZE =
-            Constants.BUFFER_SIZE;                      /** Size of the input buffers                             */
+    private static final int   BUFFER_SIZE = Constants.BUFFER_SIZE;                      /** Size of the input buffers                             */
     private static final float SEND_OUT_TIME = 5;
     private static final float SET_STATUS_TIME = 0;
     private static final float WAIT4OK_TIME = Float.POSITIVE_INFINITY;
@@ -117,6 +116,7 @@ public class Switch extends DEVSAtomic {
 
     @Override                                           /** The model starts in the “check” state in which each-   */
     public void init() {                                /** input queue is checked for incoming flits periodically */
+
         changeStateTo( STATE.CHECK );
         currentPort = inputDataPorts.firstElement();
         sendTail   = false;
@@ -136,11 +136,11 @@ public class Switch extends DEVSAtomic {
 
     @Override
     public void deltaExt(Port port, Object o, float v) {
-        
+
         if ( inputDataPorts.contains( port ) ) {
-            inputDataQueue.get(port).add((Flit) o);
             LOG.printThis(this.name,"IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
-//System.out.println(this.name + " --> " + o);
+            inputDataQueue.get(port).add((Flit) o);
+            //System.out.println(this.name + " --> " + o);
             if ( inputDataQueue.get(port).size() >= BUFFER_SIZE ) {
 
                 intStatusConsistent.put(port, false);
@@ -149,15 +149,25 @@ public class Switch extends DEVSAtomic {
             }
 
         } else if ( inputCmdPorts.contains( port ) ) {
-            extStatus.put( port, o.equals("ok"));
-            LOG.printThis(this.name, o + " INPUT COMMAND RECEIVED from " + port + "!!" );
+
+            Port correspondingPort = outputDataPorts
+                    .stream()
+                    .filter( outputPort
+                            -> Util.NocUtil.isCorrespondingPort( port.getName(), outputPort.getName() )
+                    )
+                    .findFirst()
+                    .get();
+
+            extStatus.put( correspondingPort, o.equals("ok") );
+
+            LOG.printThis(this.name, o + " INPUT COMMAND RECEIVED from " + port.getModel().getName() + " while in state " + state + "!!" + "do not send msg from " + correspondingPort );
+
         }
 
         switch ( state ) {
 
             case CHECK: {
                 if ( inputDataPorts.contains( port ) ) {
-
                     //LOG.printThis(this.name,"IN_TASK[" + (o) + "] - Queue of port : " + port.getModel().getName() + "@" + port.getName() + " = " + inputDataQueue.get(port).size());
                 }
             } break;
@@ -186,8 +196,12 @@ public class Switch extends DEVSAtomic {
                             .get();
 
                     extStatus.put( correspondingPort, o.equals("ok") );
-                    intStatusConsistent.put( correspondingPort , true );
-                    changeStateTo(STATE.SEND_OUT);
+                    intStatusConsistent.put( correspondingPort , o.equals("ok") );
+
+                    if (o.equals("ok")) {
+                        changeStateTo(STATE.SEND_OUT);
+                        LOG.printThis(this.name, "---------- NOT IN WAITING STATE ANYMORE ---------- ");
+                    }
                 }
 
             } break;
@@ -219,11 +233,11 @@ public class Switch extends DEVSAtomic {
                     changeStateTo( STATE.SEND_OUT );
                     flit = inputDataQueue.get(currentPort).firstElement();
                     inputDataQueue.get( currentPort ).removeElementAt(0);
-                    //LOG.printThis(this.name, "POPOUT[" + flit + "] - Queue of port : " + getName() + "@" + currentPort.getName() + " = " +  inputDataQueue.get(currentPort).size() );
+                    LOG.printThis(this.name, "POPOUT[" + flit + "] - Queue of port : " + getName() + "@" + currentPort.getName() + " = " +  inputDataQueue.get(currentPort).size() );
 
-                    if(this.position.getValueOnAxis("x") == this.position.getValueOnAxis("y") && this.position.getValueOnAxis("x") == 0) {
-                        extStatus.put(this.getOutPort("PE"), false);
-                    }
+                    //if(this.position.getValueOnAxis("x") == this.position.getValueOnAxis("y") && this.position.getValueOnAxis("x") == 0) {
+                    //    extStatus.put(this.getOutPort("PE"), false);
+                    //}
 
                     callToSetStatusState();
                 } else {
@@ -233,7 +247,6 @@ public class Switch extends DEVSAtomic {
             } break;
 
             case SEND_OUT: {
-
 
                 if ( extStatus.get(destPort) ) {
                     if ( sendTail  /* || inputDataQueue.get(currentPort).isEmpty() */) {
@@ -248,13 +261,15 @@ public class Switch extends DEVSAtomic {
                             flit = inputDataQueue.get(currentPort).firstElement();
                             inputDataQueue.get( currentPort ).removeElementAt(0);
                             sendTail = flit.isTail;
-                            //LOG.printThis(this.name, "POPOUT[" + flit + "] - Queue of port : " + getName() + "@" + currentPort.getName() + " = " +  inputDataQueue.get(currentPort).size() );
+                            LOG.printThis(this.name, "POPOUT[" + flit + "] - Queue of port : " + getName() + "@" + currentPort.getName() + " = " +  inputDataQueue.get(currentPort).size() );
 
                             callToSetStatusState();
                         }
                     }
                 } else {
                     changeStateTo( STATE.WAIT4OK );
+                    LOG.printThis(this.name, "---------- IN WAITING STATE ---------- ");
+
                 }
 
             } break;
@@ -303,7 +318,13 @@ public class Switch extends DEVSAtomic {
                 output[0] = destPort;
                 output[1] = flit;
 
-                LOG.printThis(this.name, "OUT_FLIT[" + ( (Flit) output[1]) + "] through " + destPort);
+                LOG.printThis(this.name, "lambda sendout : OUT_FLIT[" + ( (Flit) output[1]) + "] through " + destPort);
+
+
+                if (this.name.contains("0, 0") && flit.getData() == null && flit.isHeader) {
+                    System.err.println("ook");
+                }
+
             } break;
 
             case SET_STATUS: {
@@ -334,7 +355,7 @@ public class Switch extends DEVSAtomic {
             case SEND_OUT:      rho =  SEND_OUT_TIME;   break;
             case WAIT4OK:       rho =  WAIT4OK_TIME;    break;
             case SET_STATUS:    rho =  SET_STATUS_TIME; break;
-            default:            rho =  -1;              break;
+            default:            rho =  0;              break;
         }
 
         return rho;

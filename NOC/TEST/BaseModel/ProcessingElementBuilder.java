@@ -10,7 +10,7 @@ public class ProcessingElementBuilder {
     private Vector<String> inputPortsNames;
     private Vector<String> outputPortsNames;
 
-    public ProcessingElementBuilder withInputPorts(String... inputPorts) {
+    public ProcessingElementBuilder withInputPorts(String ... inputPorts) {
         this.inputPortsNames = new Vector<>(Arrays.asList(inputPorts));
         return this;
     }
@@ -26,6 +26,12 @@ public class ProcessingElementBuilder {
         return this;
     }
     public ProcessingElement build() {
-        return new ProcessingElement(coordinate, inputPortsNames, outputPortsNames);
+        boolean isDefective = false;
+
+        if (coordinate.getValueOnAxis("x")== 0 && coordinate.getValueOnAxis("y") == 0) {
+         isDefective = true;
+        }
+
+        return new ProcessingElement(coordinate, inputPortsNames, outputPortsNames, isDefective);
     }
 }

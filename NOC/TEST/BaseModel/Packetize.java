@@ -42,8 +42,7 @@ public class Packetize extends DEVSAtomic {
 
     private enum STATE{ PASSIVE, PACKETIZE, WAIT4OK, SEND_OUT_FLIT}
     private STATE state;
-    private Vector<Flit> inputQueue;
-    private Packet PacketToSend;
+    private Vector<String> inputQueue;
 
     @Override
     public void init() {
@@ -58,7 +57,7 @@ public class Packetize extends DEVSAtomic {
 
         LOG.printThis(this.name, " "  +  o);
         if ( port.equals(dataPE) ) {
-            inputQueue.add((Flit) o);
+            inputQueue.add((String) o);
         }
 
         switch (state) {
@@ -83,9 +82,9 @@ public class Packetize extends DEVSAtomic {
             } break;
 
             case PACKETIZE: {
-                    if ( port.equals(commandSwitch) ) {
-                        outQstatus = o.equals("ok");
-                    }
+                if ( port.equals(commandSwitch) ) {
+                    outQstatus = o.equals("ok");
+                }
             } break;
 
             case SEND_OUT_FLIT: {

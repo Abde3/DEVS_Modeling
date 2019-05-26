@@ -22,23 +22,19 @@ public class Generator_Task extends DEVSAtomic {
 
 	}
 
-	private enum State {WAIT, SENDOUT}
+	private enum State {WAIT, GENERATE, WAIT4OK, SET_STATUS}
 	public static Random random_generator = new Random();
 
 	/******************************************************************************************************************/
-	private Port out;			/**************************** OutPort of the model ********************************/
-	private Flit 	value_out;
+	private Port out;				/**************************** OutPort of the model ********************************/
+	private String 	value_out;
 
 	private State 	state;			/***************************  Represent the state     *****************************/
 	private float 	rho;			/***************************  Time elapsed in a state *****************************/
 
-	Packet currentPacket;
-	Message currentMessage;
-	String data;
 
-	boolean isTailFlit = false;
-	int currentFlitIndex = 0;
-	int currentPacketIndex = 0;
+	String data;
+	boolean outQstatus;
 
 
 	public Generator_Task(int networkSize, String name, String data, int dest_x, int dest_y) {
@@ -66,59 +62,15 @@ public class Generator_Task extends DEVSAtomic {
 	public void deltaInt() {
 
 		if (state.equals(State.WAIT)) {
-            int computation_requirement = random_generator.nextInt(4) + 1;
-            IPoint destination = new IPoint (
-            			new String[] {"x", "y"},
-						new Integer[]{  (dest_x < 0) ? (new Random().nextInt(networkSize)) : dest_x,  dest_y < 0 ? (new Random().nextInt(networkSize)) : dest_y}
-					);
+			value_out = data;
+			setState(State.GENERATE);
+			rho = 10;
 
-            if (currentMessage == null || currentPacketIndex == currentMessage.packets.size() - 1) {
-				currentMessage = new Message( data, destination );
-				currentPacket = currentMessage.packets.elementAt(currentPacketIndex);
-				currentPacketIndex = 0;
-
-				if (currentMessage != null) {
-					rho = Float.POSITIVE_INFINITY;
-				}
-
-			} else {
-				currentPacketIndex++;
-				currentPacket = currentMessage.packets.elementAt(currentPacketIndex);
-
-			}
-
-			LOG.printThis(this.name, " PACKET " + currentPacket + " created!");
-
-			setState(State.SENDOUT);
-			currentFlitIndex = 0;
-			value_out = currentPacket.flits.get(currentFlitIndex);
-			isTailFlit = false;
-			rho = 1F;
-
-		} else if (state.equals(State.SENDOUT)) {
-
-			if (isTailFlit) {
-
-				setState(State.WAIT);
-				isTailFlit = false;
-
-				if (currentPacketIndex == currentMessage.packets.size() - 1) {
-					rho = Float.POSITIVE_INFINITY;
-				} else {
-					rho = 100F;
-				}
-
-			} else {
-
-				currentFlitIndex++;
-				value_out = currentPacket.flits.get(currentFlitIndex);
-				isTailFlit = value_out.isTail;
-
-				setState(State.SENDOUT);
-				rho = 1;
-
-			}
+		} else if (state.equals(State.GENERATE)) {
+			setState(State.WAIT);
+			rho = Float.POSITIVE_INFINITY;
 		}
+
 	}
 
 	@Override
@@ -130,7 +82,7 @@ public class Generator_Task extends DEVSAtomic {
 	public void init() {
 		setState(State.WAIT);
 		rho   =  0F;
-		isTailFlit = true;
+		outQstatus = true;
 		LOG.printThis(this.name,"STARTING GENERATOR");
 	}
 
@@ -138,9 +90,9 @@ public class Generator_Task extends DEVSAtomic {
 	public Object[] lambda() {
 		Object[] output;
 
-		if (state.equals(State.SENDOUT)) {
+		if (state.equals(State.GENERATE)) {
 			output = setOutputLambda(out, value_out);
-			LOG.printThis(this.name,  " Flit " + value_out + " sent!");
+			LOG.printThis(this.name,  " DATA " + value_out + " sent!");
 		} else {
 			output = null;
 		}

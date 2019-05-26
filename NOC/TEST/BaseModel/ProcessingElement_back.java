@@ -8,7 +8,7 @@ import NocTopology.NOCDirections.IPoint;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
-public class ProcessingElement extends DEVSAtomic {
+public class ProcessingElement_back extends DEVSAtomic {
 
     private static final NOC.NodeType NODETYPE = NOC.NodeType.PE;
 
@@ -16,8 +16,7 @@ public class ProcessingElement extends DEVSAtomic {
 	Vector<Port> outputPorts;
     IPoint coordinate;
 
-
-    public ProcessingElement(IPoint coordinate, Vector<String> inputPortsNames, Vector<String> outputPortsNames, boolean isDefective) {
+	public ProcessingElement_back(IPoint coordinate, Vector<String> inputPortsNames, Vector<String> outputPortsNames) {
 
 		this.name = NODETYPE + "[" + coordinate.toString().trim() + "]";
         this.coordinate = coordinate;
@@ -38,19 +37,12 @@ public class ProcessingElement extends DEVSAtomic {
 
 		/** Add output port to the model */
 		this.outputPorts.forEach( outputPort -> addOutPort(outputPort) );
-
-		/** is this PE defective**/
-		this.isDefective = isDefective;
-
-		nbReceivedData = 0;
 	}
 
-	private enum STATE{ WAITING, PROCESSING, SENDING, SET_BAD_STATUS, ERROR}
+	private enum STATE{ WAITING, PROCESSING, SENDING}
     private STATE state;
     private Flit currentData;
     private float rho;
-    private boolean isDefective;
-    private int nbReceivedData;
 
 	@Override
 	public void init() {
@@ -59,23 +51,15 @@ public class ProcessingElement extends DEVSAtomic {
 
 	@Override
 	public void deltaExt(Port port, Object o, float v) {
-	    System.err.println( "PE : RECEIVED " + o);
 		switch ( state ) {
             case WAITING: {
-
                  currentData = ((Flit) o) ;
 
-                 if (isDefective && nbReceivedData == Constants.BUFFER_SIZE-1) {
+                 LOG.logThis(this.name, currentData);
 
-                     state = STATE.SET_BAD_STATUS;
+                 LOG.printThis(this.name,"(WAITING): RECEIVED DATA " + o);
 
-                 } else {
-                     nbReceivedData++;
-
-                     LOG.logThis(this.name, currentData);
-                     LOG.printThis(this.name,"(WAITING): RECEIVED DATA " + o);
-                     state = STATE.PROCESSING;
-                 }
+                 state = STATE.PROCESSING;
             } break;
 
             case PROCESSING: {
@@ -84,14 +68,6 @@ public class ProcessingElement extends DEVSAtomic {
 
             case SENDING: {
                 LOG.printThis(this.name,"(SENDING): ERROR RECEIVED PACKET " + o);
-            } break;
-
-            case SET_BAD_STATUS: {
-                LOG.printThis(this.name,"(SET_BAD_STATUS): ERROR RECEIVED PACKET " + o);
-            } break;
-
-            case ERROR: {
-                LOG.printThis(this.name,"(ERROR): ERROR RECEIVED PACKET " + o);
             } break;
         }
 	}
@@ -109,15 +85,6 @@ public class ProcessingElement extends DEVSAtomic {
             case SENDING: {
                 state = STATE.WAITING;
                 currentData = null;
-            } break;
-
-            case SET_BAD_STATUS: {
-                state = STATE.ERROR;
-                LOG.printThis(this.name, "---------- IN ERROR ---------- ");
-                currentData = null;
-            } break;
-
-            case ERROR: {
             } break;
         }
     }
@@ -141,17 +108,6 @@ public class ProcessingElement extends DEVSAtomic {
             }
             break;
 
-            case ERROR: {
-            }
-            break;
-
-            case SET_BAD_STATUS: {
-
-                output = new Object[ 2 ];
-                output[0] = this.getOutPort("out_status");
-                output[1] = "nok";
-            }
-            break;
         }
 
         return output;
@@ -160,11 +116,9 @@ public class ProcessingElement extends DEVSAtomic {
 	@Override
 	public float getDuration() {
         switch ( state ) {
-            case WAITING:        rho = Float.POSITIVE_INFINITY; break;
-            case PROCESSING:     rho = 0; break;
-            case SENDING:        rho = 0; break;
-            case SET_BAD_STATUS: rho = 0; break;
-            case ERROR:          rho = Float.POSITIVE_INFINITY; break;
+            case WAITING:       rho = Float.POSITIVE_INFINITY; break;
+            case PROCESSING:    rho = 0; break;
+            case SENDING:       rho = 0; break;
         }
 
         return rho;
