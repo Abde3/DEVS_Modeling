@@ -17,7 +17,7 @@ public abstract class AbstractNOCBuilder<TNOC extends NOC> {
     protected NocRoutingPolicy routingPolicy;
     protected int numberOfVirtualChannel;
     protected int size;
-    protected StateRepresentation watcher;
+    //protected StateRepresentation watcher;
 
     public abstract AbstractNOCBuilder withTopology(NocTopology topology) ;
     public abstract AbstractNOCBuilder withRoutingPolicy(NocRoutingPolicy.RoutingPolicy routingPolicy) throws UnhandledRoutingPolicyException;

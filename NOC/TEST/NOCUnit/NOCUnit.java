@@ -89,11 +89,18 @@ public class NOCUnit extends DEVSCoupled {
 
     private void buildIC() {
 
+        /****  VERSION WITH NI COMMENTED  ****/
+/*
         addIC(aSwitch.getOutPort("PE"), aNetworkInterface.getInPort("dataFromSW"));
         addIC(aNetworkInterface.getOutPort("dataToPE"), aProcessingElement.getInPort("in"));
         addIC(aProcessingElement.getOutPort("out"), aNetworkInterface.getInPort("dataFromPE"));
         addIC(aNetworkInterface.getOutPort("dataToSW"), aSwitch.getInPort("PE"));
         addIC(aSwitch.getOutPort("cmdToPE"), aNetworkInterface.getInPort("cmdFromSW"));
+*/
+
+        addIC(aSwitch.getOutPort("PE"), aProcessingElement.getInPort("in"));
+        addIC(aProcessingElement.getOutPort("out"), aSwitch.getInPort("PE"));
+        addIC(aProcessingElement.getOutPort("out_status"), aSwitch.getInPort("INPUT-COMMAND-PE"));
 
     }
 
@@ -197,12 +204,12 @@ public class NOCUnit extends DEVSCoupled {
     @Override
     public void setSelectPriority() {
 
-        // SWITCH > NI > PE
+        // SWITCH < NI < PE
 
-        this.selectPriority.put(new Vector<>( Arrays.asList(aSwitch, aNetworkInterface, aProcessingElement)), aSwitch );
-        this.selectPriority.put(new Vector<>( Arrays.asList(aSwitch, aNetworkInterface)), aSwitch );
-        this.selectPriority.put(new Vector<>( Arrays.asList(aSwitch, aProcessingElement)), aSwitch );
-        this.selectPriority.put(new Vector<>( Arrays.asList(aNetworkInterface, aProcessingElement)), aNetworkInterface );
+        this.selectPriority.put(new Vector<>( Arrays.asList(aSwitch, aNetworkInterface, aProcessingElement)), aProcessingElement );
+        this.selectPriority.put(new Vector<>( Arrays.asList(aSwitch, aNetworkInterface)), aNetworkInterface );
+        this.selectPriority.put(new Vector<>( Arrays.asList(aSwitch, aProcessingElement)), aProcessingElement );
+        this.selectPriority.put(new Vector<>( Arrays.asList(aNetworkInterface, aProcessingElement)), aProcessingElement );
 
 
     }

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public abstract class NOC extends DEVSCoupled {
 
 
-    public enum NodeType {NOC, NODE, QUEUE, SWITCH, PE, NETWORK_INTERFACE, PACKETIZER, DEPACKETIZER}
+    public enum NodeType {NOC, NODE, QUEUE, SWITCH, PE, NETWORK_INTERFACE, PACKETIZER, DEPACKETIZER, GENERATOR}
 
 
     protected final NodeType nodeType;                       /***** Represent the type of the element ************/

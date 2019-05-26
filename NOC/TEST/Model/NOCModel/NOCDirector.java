@@ -2,7 +2,7 @@ package Model.NOCModel;
 
 
 
-import BaseModel.Generator_Task;
+import BaseModel.Generator_Task_back;
 import Model.Exceptions.ExistingGeneratorException;
 import Model.Routing.NocRoutingPolicy;
 import Model.Routing.UnhandledRoutingPolicyException;
@@ -22,8 +22,8 @@ public class NOCDirector {
                     .withSize( sizeOftheNetwork )
                     .withTopology( meshTopology )
                     .withRoutingPolicy( NocRoutingPolicy.RoutingPolicy.DETERMINISTIC )
-                    .withAGenerator( new Generator_Task(sizeOftheNetwork, "Generator[0, 0]", "0123456789101112131415",1, 1), meshTopology.getNocNetwork().coordinateSpace.newPoint(1, 0) )
-                    .withAGenerator( new Generator_Task(sizeOftheNetwork, "Generator[1, 1]", "abcdefghijklmnopqrstuv",0, 0), meshTopology.getNocNetwork().coordinateSpace.newPoint(1, 1) )
+                    //.withAGenerator( new Generator_Task_back(sizeOftheNetwork, "Generator[0, 0]", "01234567891011121314",1, 1), meshTopology.getNocNetwork().coordinateSpace.newPoint(1, 0) )
+                    .withAGenerator( new Generator_Task_back(sizeOftheNetwork, "Generator[1, 1]", "abcdefghijklmnopqrst",0, 0), meshTopology.getNocNetwork().coordinateSpace.newPoint(1, 1) )
                     .withNumberOfVirtualChannel(1)
                     .build();
 

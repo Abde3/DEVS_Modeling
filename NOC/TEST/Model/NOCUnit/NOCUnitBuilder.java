@@ -134,6 +134,7 @@ public class NOCUnitBuilder extends AbstractNOCUnitBuilder<NOCUnit> {
                 .withCoordinate(coordinate)
                 .withInputPorts("in")
                 .withOutputPorts("out")
+                .withOutputPorts("out_status")
                 .build();
 
 

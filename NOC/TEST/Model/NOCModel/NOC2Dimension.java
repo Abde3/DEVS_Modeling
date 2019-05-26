@@ -13,9 +13,7 @@ public class NOC2Dimension extends NOC {
 
     protected NOC2Dimension(NocTopology topology, NocRoutingPolicy routingPolicy, HashMap<IPoint, DEVSModel> generators){
         super(topology, routingPolicy, generators);
-
     }
-
 
     @Override
     public void setSelectPriority() {

@@ -25,14 +25,18 @@ public class NOCUnitDirector {
 
         try {
 
-            List<String> inDirections  = topology.getInputDirections(coordinate);
-            List<String> outDirections = topology.getOutputDirections(coordinate);
+            List<String> inDirections_data  = topology.getInputDirections(coordinate);
+            List<String> inDirections_cmd  = topology.getInputDirections(coordinate);
+            List<String> outDirections_data = topology.getOutputDirections(coordinate);
+            List<String> outDirections_cmd = topology.getOutputDirections(coordinate);
+
+            inDirections_cmd.add("PE");
 
             builder = new NOCUnitBuilder()
-                    .withDataInPorts( inDirections )
-                    .withDataOutPorts( outDirections )
-                    .withCmdInPorts( inDirections )
-                    .withCmdOutPorts( outDirections )
+                    .withDataInPorts( inDirections_data )
+                    .withDataOutPorts( outDirections_data )
+                    .withCmdInPorts( inDirections_cmd )
+                    .withCmdOutPorts( outDirections_cmd )
                     .withCoordinate( coordinate )
                     .withQueuePerInPortRatio( 1 )
                     .withQueuePerOutPortRatio( 0 )
