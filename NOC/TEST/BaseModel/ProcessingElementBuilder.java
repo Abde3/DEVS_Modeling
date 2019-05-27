@@ -20,16 +20,22 @@ public class ProcessingElementBuilder {
         return this;
     }
 
-
     public ProcessingElementBuilder withCoordinate(IPoint coordinate) {
         this.coordinate = coordinate;
         return this;
     }
+
     public ProcessingElement build() {
         boolean isDefective = false;
 
         if (coordinate.getValueOnAxis("x")== 0 && coordinate.getValueOnAxis("y") == 0) {
-         isDefective = true;
+            isDefective = true;
+        }
+        if (coordinate.getValueOnAxis("x")== 0 && coordinate.getValueOnAxis("y") == 1) {
+            isDefective = true;
+        }
+        if (coordinate.getValueOnAxis("x")== 2 && coordinate.getValueOnAxis("y") == 1) {
+            isDefective = true;
         }
 
         return new ProcessingElement(coordinate, inputPortsNames, outputPortsNames, isDefective);
