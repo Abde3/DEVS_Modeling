@@ -22,7 +22,7 @@ public abstract class AbstractNOCBuilder<TNOC extends NOC> {
     public abstract AbstractNOCBuilder withTopology(NocTopology topology) ;
     public abstract AbstractNOCBuilder withRoutingPolicy(NocRoutingPolicy.RoutingPolicy routingPolicy) throws UnhandledRoutingPolicyException;
     public abstract AbstractNOCBuilder withNumberOfVirtualChannel(int numberOfVirtualChannel);
-    public abstract AbstractNOCBuilder withAGenerator(DEVSModel generator , IPoint coordinate) throws ExistingGeneratorException;
+    public abstract AbstractNOCBuilder withAGenerator(DEVSModel generator , IPoint coordinate, String fromDirection) throws ExistingGeneratorException;
     public abstract AbstractNOCBuilder withSize(int networkSize);
 
     public abstract TNOC build();

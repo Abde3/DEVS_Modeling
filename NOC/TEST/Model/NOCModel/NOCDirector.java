@@ -22,8 +22,8 @@ public class NOCDirector {
                     .withSize( sizeOftheNetwork )
                     .withTopology( meshTopology )
                     .withRoutingPolicy( NocRoutingPolicy.RoutingPolicy.DETERMINISTIC )
-                    //.withAGenerator( new Generator_Task_back(sizeOftheNetwork, "Generator[0, 0]", "01234567891011121314",1, 1), meshTopology.getNocNetwork().coordinateSpace.newPoint(1, 0) )
-                    .withAGenerator( new Generator_Task_back(sizeOftheNetwork, "Generator[1, 1]", "abcdefghijklmnopqrst",0, 0), meshTopology.getNocNetwork().coordinateSpace.newPoint(1, 1) )
+                    .withAGenerator( new Generator_Task_back(sizeOftheNetwork, "Generator[1, 0]", "01234567891011121314",1, 1, 2000), meshTopology.getNocNetwork().coordinateSpace.newPoint(1, 0), "WEST" )
+                    .withAGenerator( new Generator_Task_back(sizeOftheNetwork, "Generator[1, 1]", "abcdefghijklmnopqrst",0, 0, 0), meshTopology.getNocNetwork().coordinateSpace.newPoint(1, 1), "WEST" )
                     .withNumberOfVirtualChannel(1)
                     .build();
 

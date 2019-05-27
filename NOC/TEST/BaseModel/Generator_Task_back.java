@@ -34,19 +34,21 @@ public class Generator_Task_back extends DEVSAtomic {
 	Packet currentPacket;
 	Message currentMessage;
 	String data;
+	int startAtTime;
 
 	boolean isTailFlit = false;
 	int currentFlitIndex = 0;
 	int currentPacketIndex = 0;
 
 
-	public Generator_Task_back(int networkSize, String name, String data, int dest_x, int dest_y) {
+	public Generator_Task_back(int networkSize, String name, String data, int dest_x, int dest_y, int startAtTime) {
 		super();
 
 		this.networkSize = networkSize;
 		this.dest_x = dest_x;
 		this.dest_y = dest_y;
         this.data = data;
+        this.startAtTime = startAtTime;
 
         this.name = name;
         this.out = new Port(this, "out");
@@ -128,7 +130,7 @@ public class Generator_Task_back extends DEVSAtomic {
 	@Override
 	public void init() {
 		setState(State.WAIT);
-		rho   =  0F;
+		rho   =  startAtTime;
 		isTailFlit = true;
 		LOG.printThis(this.name,"STARTING GENERATOR");
 	}

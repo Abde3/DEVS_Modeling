@@ -11,6 +11,7 @@ import NOCUnit.NOCUnit;
 import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
 import Util.NocUtil;
+import javafx.util.Pair;
 
 
 import java.util.*;
@@ -24,7 +25,7 @@ public abstract class NOC extends DEVSCoupled {
 
 
     protected final NodeType nodeType;                       /***** Represent the type of the element ************/
-    protected final HashMap<IPoint, DEVSModel> generators;   /***** Represent all the generators of the model ****/
+    protected final HashMap<AbstractMap.SimpleEntry<IPoint,String>, DEVSModel> generators;   /***** Represent all the generators of the model ****/
     protected final NocTopology topology;                    /***** Represent the topology of the model **********/
     protected final NocRoutingPolicy routingPolicy;          /***** Represent routing policy applied *************/
     protected final int numberOfVirtualChannel;              /***** Represent the number of virtual channel ******/
@@ -34,7 +35,7 @@ public abstract class NOC extends DEVSCoupled {
     /********************************************* GETTERS AND SETTERS ************************************************/
 
 
-    protected NOC(NocTopology topology, NocRoutingPolicy routingPolicy, HashMap<IPoint,DEVSModel> generators ) {
+    protected NOC(NocTopology topology, NocRoutingPolicy routingPolicy, HashMap<AbstractMap.SimpleEntry<IPoint,String>,DEVSModel> generators ) {
         super();
 
         this.nodeType = NodeType.NOC;
@@ -60,8 +61,9 @@ public abstract class NOC extends DEVSCoupled {
 
         generators.forEach((coordinate, devsModel) ->
                 addGenerator(
-                    topology.getNocNetwork().getUnitAt( coordinate ),
-                    devsModel
+                    topology.getNocNetwork().getUnitAt( coordinate.getKey() ),
+                    devsModel,
+                    coordinate.getValue()
                 )
         );
 
@@ -80,9 +82,10 @@ public abstract class NOC extends DEVSCoupled {
         );
     }
 
-    protected void addGenerator(DEVSModel unit, DEVSModel generator) {
+    protected void addGenerator(DEVSModel unit, DEVSModel generator, String fromDirection) {
         addSubModel(generator);
-        addIC(generator.getOutPorts().firstElement(), unit.getInPorts().firstElement());
+        addIC(generator.getOutPorts().firstElement(), unit.getInPorts().stream().filter(port -> port.getName().contains(fromDirection)).findFirst().get());
+
     }
 
     @Override

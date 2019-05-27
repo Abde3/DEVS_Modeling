@@ -41,7 +41,6 @@ public class Generator extends DEVSCoupled {
         addEIC( networkInterface.cmdFromSW, cmdFromSW);
 
         this.setSelectPriority();
-
     }
 
     @Override

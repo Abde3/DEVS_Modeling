@@ -6,7 +6,7 @@ public class LOG {
 
     public static void logThis(Object coordinate, Object currentData) {
 
-        try (FileWriter fw = new FileWriter("/home/mofed/Bureau/RESULTSSIMU/"+coordinate+".txt", true);
+        try (FileWriter fw = new FileWriter("C:\\Users\\Abdelhak khemiri\\Desktop\\RESULTSSIMU\\"+coordinate+".txt", true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.println( coordinate + "->" + currentData  );

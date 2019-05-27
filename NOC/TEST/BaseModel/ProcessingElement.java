@@ -59,23 +59,21 @@ public class ProcessingElement extends DEVSAtomic {
 
 	@Override
 	public void deltaExt(Port port, Object o, float v) {
-	    System.err.println( "PE : RECEIVED " + o);
+        LOG.printThis(this.name, "PE : RECEIVED " + o);
 		switch ( state ) {
             case WAITING: {
 
-                 currentData = ((Flit) o) ;
+                currentData = ((Flit) o) ;
+                nbReceivedData++;
 
-                 if (isDefective && nbReceivedData == Constants.BUFFER_SIZE-1) {
+                LOG.logThis(this.name, currentData);
+                LOG.printThis(this.name,"(WAITING): RECEIVED DATA " + o);
 
-                     state = STATE.SET_BAD_STATUS;
-
-                 } else {
-                     nbReceivedData++;
-
-                     LOG.logThis(this.name, currentData);
-                     LOG.printThis(this.name,"(WAITING): RECEIVED DATA " + o);
+                if (isDefective && nbReceivedData == Constants.BUFFER_SIZE) {
+                    state = STATE.SET_BAD_STATUS;
+                } else {
                      state = STATE.PROCESSING;
-                 }
+                }
             } break;
 
             case PROCESSING: {

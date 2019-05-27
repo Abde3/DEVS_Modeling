@@ -7,7 +7,9 @@ import Model.Routing.NocRoutingPolicy;
 import Model.Routing.UnhandledRoutingPolicyException;
 import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
+import javafx.util.Pair;
 
+import java.util.AbstractMap;
 import java.util.HashMap;
 
 public class NOC2DimensionBuilder extends AbstractNOCBuilder {
@@ -35,17 +37,17 @@ public class NOC2DimensionBuilder extends AbstractNOCBuilder {
     }
 
     @Override
-    public AbstractNOCBuilder withAGenerator(DEVSModel generator, IPoint coordinate) throws ExistingGeneratorException {
+    public AbstractNOCBuilder withAGenerator(DEVSModel generator, IPoint coordinate, String fromDirection) throws ExistingGeneratorException {
 
         if( generators == null ) { generators = new HashMap<>(); }
-
-        Object hasBeenAdded = generators.putIfAbsent(coordinate, generator);
+        AbstractMap.SimpleEntry<IPoint,String> key = new AbstractMap.SimpleEntry<> (coordinate, fromDirection);
+        Object hasBeenAdded = generators.putIfAbsent(key, generator);
 
         if (hasBeenAdded != null) {
             throw new ExistingGeneratorException( "The added generator (ie. name = "
                     + generator.getName()
-                    + " ) already exists in the given position (ie. coordinate = "
-                    + coordinate
+                    + " ) already exists in the given position and source (ie. key = "
+                    + key
                     + " )");
         }
 

@@ -6,12 +6,13 @@ import NocTopology.NOCDirections.IPoint;
 import NocTopology.NocTopology;
 import Util.NocUtil;
 
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Vector;
 
 public class NOC2Dimension extends NOC {
 
-    protected NOC2Dimension(NocTopology topology, NocRoutingPolicy routingPolicy, HashMap<IPoint, DEVSModel> generators){
+    protected NOC2Dimension(NocTopology topology, NocRoutingPolicy routingPolicy, HashMap<AbstractMap.SimpleEntry<IPoint,String>, DEVSModel> generators){
         super(topology, routingPolicy, generators);
     }
 
